@@ -1,0 +1,54 @@
+
+<HTML>
+
+<HEAD>
+
+<meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
+ <TITLE>Keep a handle on your databases</TITLE> 
+</HEAD>
+
+<BODY     >
+
+ <H1>Keep a handle on your databases</H1> 
+ <P><UL>
+<LI><H2>Connecting to a database can be slow
+</H2>
+<UL>
+<LI>Oracle especially so, but even MySQL does a reverse DNS lookup by default
+</UL></UL><UL>
+<LI><H2>
+</H2>
+</UL><UL>
+<LI><H2>Try to connect once and stay connected where practical
+</H2>
+<UL>
+<LI>We'll discuss web server issues later
+</UL></UL><UL>
+<LI><H2>
+</H2>
+</UL><UL>
+<LI><H2>The connect_cached() method … 
+</H2>
+<UL>
+<LI>Acts like prepare_cached() but for database handles
+<LI>Like prepare_cached(), it’s handy for library code
+<LI>It also checks the connection and automatically reconnects if it's broken
+<LI>Works well combined with prepare_cached(), see following example
+</UL></UL><UL>
+<H2>.</H2>
+</UL></P>
+<P></P> 
+<P>
+<TABLE>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld029.htm">Previous slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld031.htm">Next slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="tsld001.htm">Back to first slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="sld030.htm">View graphic version</A> </TD>
+</TABLE>
+<BR>
+</P>
+
+
+
+</Body>
+</HTML>

@@ -1,0 +1,54 @@
+
+<HTML>
+
+<HEAD>
+
+<meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
+ <TITLE>What’s new with tracing?  (since the book)</TITLE> 
+</HEAD>
+
+<BODY     >
+
+ <H1>What’s new with tracing?  (since the book)</H1> 
+ <P><UL>
+<LI><H2>Tracing fetched data
+</H2>
+<UL>
+<LI>Trace level 1 only shows return from first and last fetch() calls
+<LI>Trace level 2 only shows returns from fetch() calls
+<LI>Trace level 3 shows entry and return from fetch() calls
+<UL>
+<LI>Those changes make it easier to use lower trace levels without drowning in data
+</UL><LI>Trace for fetch() calls now show the row number
+<LI>
+</UL></UL><UL>
+<LI><H2>Trace level can be set using an attribute
+</H2>
+<UL>
+$h-&#062{TraceLevel}
+<BR><UL>
+<LI>get or set trace level of a handle
+<LI>you can now use local() to set a temporary value for the current block
+<UL>
+ local $h-&#062{TraceLevel} = 2;
+<BR></UL><LI>and you can now set the trace level via the DSN
+<UL>
+ “dbi:Driver(PrintError=1,TraceLevel=2):dbname”
+<BR></UL></UL></UL></UL><UL>
+<H2>.</H2>
+</UL></P>
+<P></P> 
+<P>
+<TABLE>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld063.htm">Previous slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld065.htm">Next slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="tsld001.htm">Back to first slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="sld064.htm">View graphic version</A> </TD>
+</TABLE>
+<BR>
+</P>
+
+
+
+</Body>
+</HTML>

@@ -1,0 +1,53 @@
+
+<HTML>
+
+<HEAD>
+
+<meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
+ <TITLE>First, the simple stuff...</TITLE> 
+</HEAD>
+
+<BODY     >
+
+ <H1>First, the simple stuff...</H1> 
+ <P><UL>
+<LI><H2>After calling prepare() on a statement with placeholders:
+</H2>
+<UL>
+$sth = $dbh-&#062prepare(“select * from table where k1=? and k2=?”);
+<BR><UL>
+<LI>
+</UL></UL></UL><UL>
+<LI><H2>Values need to be assigned (‘bound’) to each placeholder before the database can execute the statement
+</H2>
+<UL>
+<LI>
+</UL></UL><UL>
+<LI><H2>Either at execute, for simple cases:
+</H2>
+<UL>
+$sth-&#062execute($p1, $p2);
+<BR><UL>
+<LI>
+</UL></UL></UL><UL>
+<LI><H2>or before execute:
+</H2>
+<UL>
+$sth-&#062bind_param(1, $p1);
+<BR><BR>$sth-&#062bind_param(2, $p2);
+<BR>$sth-&#062execute;</UL></UL></P>
+<P></P> 
+<P>
+<TABLE>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld033.htm">Previous slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld035.htm">Next slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="tsld001.htm">Back to first slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="sld034.htm">View graphic version</A> </TD>
+</TABLE>
+<BR>
+</P>
+
+
+
+</Body>
+</HTML>

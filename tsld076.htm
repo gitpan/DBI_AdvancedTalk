@@ -1,0 +1,54 @@
+
+<HTML>
+
+<HEAD>
+
+<meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
+ <TITLE>SQL Portability - Data Types</TITLE> 
+</HEAD>
+
+<BODY     >
+
+ <H1>SQL Portability - Data Types</H1> 
+ <P><UL>
+<LI><H2>For raw information about data types supported by the driver:
+</H2>
+<UL>
+
+<BR><BR>$type_info_data = $dbh-&#062type_info_all(…);
+</UL></UL><UL>
+<LI><H2>
+</H2>
+</UL><UL>
+<LI><H2>To map data type codes to names:
+</H2>
+<UL>
+<LI>
+<BR>$sth = $dbh-&#062prepare(“select foo, bar from tablename”);
+<BR>$sth-&#062execute;
+<BR>for my $i (0 .. $sth-&#062{NUM_OF_FIELDS}) {printf ”Column name %s: Column type name: %s”,    $sth-&#062{NAME}-&#062[$i],    $dbh-&#062type_info( $sth-&#062{TYPE} )-&#062{TYPE_NAME};
+<BR>}
+<BR>
+</UL></UL><UL>
+<LI><H2>To select the nearest type supported by the database:
+</H2>
+<UL>
+<LI>
+<BR>$my_date_type = $dbh-&#062type_info( [ SQL_DATE, SQL_TIMESTAMP ] );
+<BR>$my_smallint_type = $dbh-&#062type_info( [ SQL_SMALLINT, SQL_INTEGER, SQL_DECIMAL ] );
+</UL></UL></P>
+<P></P> 
+<P>
+<TABLE>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld075.htm">Previous slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld077.htm">Next slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="tsld001.htm">Back to first slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="sld076.htm">View graphic version</A> </TD>
+</TABLE>
+<BR>
+</P>
+
+
+
+</Body>
+</HTML>

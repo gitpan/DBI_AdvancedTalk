@@ -1,0 +1,53 @@
+
+<HTML>
+
+<HEAD>
+
+<meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
+ <TITLE>Some TYPE gotchas</TITLE> 
+</HEAD>
+
+<BODY     >
+
+ <H1>Some TYPE gotchas</H1> 
+ <P><UL>
+<LI><H2>Bind TYPE attribute is just a hint
+</H2>
+<UL>
+<LI>and like all hints in the DBI, they can be ignored
+<LI>
+</UL></UL><UL>
+<LI><H2>Many drivers only care about the number vs string distinction
+</H2>
+<UL>
+<LI>and ignore other types of TYPE value
+<LI>
+</UL></UL><UL>
+<LI><H2>For some drivers that do pay attention to the TYPE…
+</H2>
+<UL>
+<LI>using the wrong type can mean an index on the value field isn’t used!
+<LI>
+</UL></UL><UL>
+<LI><H2>Some drivers let you specify private types
+</H2>
+<UL>
+$sth-&#062bind_param(1, $value, { ora_type =&#062 97 });
+<BR></UL></UL><UL>
+<H2>-</H2>
+</UL></P>
+<P></P> 
+<P>
+<TABLE>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld036.htm">Previous slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld038.htm">Next slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="tsld001.htm">Back to first slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="sld037.htm">View graphic version</A> </TD>
+</TABLE>
+<BR>
+</P>
+
+
+
+</Body>
+</HTML>

@@ -1,0 +1,50 @@
+
+<HTML>
+
+<HEAD>
+
+<meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
+ <TITLE>Then, some more detail...</TITLE> 
+</HEAD>
+
+<BODY     >
+
+ <H1>Then, some more detail...</H1> 
+ <P><UL>
+<LI><H2>If  $sth-&#062execute(…) specifies any values, it must specify them all
+</H2>
+<UL>
+<LI>
+</UL></UL><UL>
+<LI><H2>Bound values are sticky across multiple executions:
+</H2>
+<UL>
+$sth-&#062bind_param(1, $p1);
+<BR><BR>foreach my $p2 (@p2) {
+<BR>  $sth-&#062bind_param(2, $p2);
+<BR>  $sth-&#062execute;
+<BR>}
+<BR>	
+</UL></UL><UL>
+<LI><H2>The currently bound values might be retrievable using:
+</H2>
+<UL>
+$dbh-&#062{ShowParamValues} = 1; # set before prepare()
+<BR><BR>%bound_values = %{ $sth-&#062{ParamValues} };
+<UL>
+<LI>Potential new DBI feature, not yet fully specified at time of writing this</UL></UL></UL></P>
+<P></P> 
+<P>
+<TABLE>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld034.htm">Previous slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld036.htm">Next slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="tsld001.htm">Back to first slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="sld035.htm">View graphic version</A> </TD>
+</TABLE>
+<BR>
+</P>
+
+
+
+</Body>
+</HTML>

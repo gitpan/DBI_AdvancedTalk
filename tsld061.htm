@@ -1,0 +1,72 @@
+
+<HTML>
+
+<HEAD>
+
+<meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
+ <TITLE>Our program for today...</TITLE> 
+</HEAD>
+
+<BODY     >
+
+ <H1>Our program for today...</H1> 
+ <P><UL>
+<H2>#!/usr/bin/perl -w
+</H2>
+</UL><UL>
+<H2>use DBI;
+</H2>
+</UL><UL>
+<H2>$dbh = DBI-&#062connect('', '', '', { RaiseError =&#062 1 });
+</H2>
+</UL><UL>
+<H2>replace_price(split(/\s+/, $_)) while (&#060STDIN&#062);
+</H2>
+</UL><UL>
+<H2>$dbh-&#062disconnect;
+</H2>
+</UL><UL>
+<H2>
+</H2>
+</UL><UL>
+<H2>sub replace_price {
+</H2>
+</UL><UL>
+<H2>  my ($id, $price) = @_;
+</H2>
+</UL><UL>
+<H2>  local $dbh-&#062{TraceLevel} = 1;
+</H2>
+</UL><UL>
+<H2>  my $upd = $dbh-&#062prepare("UPDATE prices SET price=? WHERE id=?");
+</H2>
+</UL><UL>
+<H2>  my $ins = $dbh-&#062prepare_cached("INSERT INTO prices (id,price) VALUES(?,?)");
+</H2>
+</UL><UL>
+<H2>  my $rows = $upd-&#062execute($price, $id);
+</H2>
+</UL><UL>
+<H2>  $ins-&#062execute($id, $price) if $rows == 0;
+</H2>
+</UL><UL>
+<H2>}
+</H2>
+<UL>
+
+<BR><BR>(The program is a little odd for the sake of producing a small trace output that can illustrate many concepts)</UL></UL></P>
+<P></P> 
+<P>
+<TABLE>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld060.htm">Previous slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld062.htm">Next slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="tsld001.htm">Back to first slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="sld061.htm">View graphic version</A> </TD>
+</TABLE>
+<BR>
+</P>
+
+
+
+</Body>
+</HTML>

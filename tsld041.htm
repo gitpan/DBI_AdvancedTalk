@@ -1,0 +1,57 @@
+
+<HTML>
+
+<HEAD>
+
+<meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
+ <TITLE>Handling errors the smart way</TITLE> 
+</HEAD>
+
+<BODY     >
+
+ <H1>Handling errors the smart way</H1> 
+ <P><UL>
+<LI><H2>Setting RaiseError make the DBI call die for you
+</H2>
+<UL>
+<LI>
+</UL></UL><UL>
+<LI><H2>For simple applications immediate death on error is fine
+</H2>
+<UL>
+<LI>The error message is usually accurate and detailed enough
+<LI>Better than the error messages some developers use!
+<LI>
+</UL></UL><UL>
+<LI><H2>For more advanced applications greater control is needed, perhaps:
+</H2>
+<UL>
+<LI>Correct the problem and retry
+<LI>or, Fail that chunk of work and move on to another
+<LI>or, Log error and clean up before a graceful exit
+<LI>or, whatever else to need to do
+<LI>
+</UL></UL><UL>
+<LI><H2>Buzzwords:
+</H2>
+<UL>
+<LI>Need to catch the error exception being thrown by RaiseError
+<LI>
+</UL></UL><UL>
+<H2>.</H2>
+</UL></P>
+<P></P> 
+<P>
+<TABLE>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld040.htm">Previous slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld042.htm">Next slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="tsld001.htm">Back to first slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="sld041.htm">View graphic version</A> </TD>
+</TABLE>
+<BR>
+</P>
+
+
+
+</Body>
+</HTML>

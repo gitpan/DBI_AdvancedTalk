@@ -1,0 +1,67 @@
+
+<HTML>
+
+<HEAD>
+
+<meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
+ <TITLE>SQL Portability - SQL Dialects</TITLE> 
+</HEAD>
+
+<BODY     >
+
+ <H1>SQL Portability - SQL Dialects</H1> 
+ <P><UL>
+<LI><H2>How to concatenate strings? Let me count the (incompatible) ways...
+</H2>
+<UL>
+SELECT first_name || ' ' || last_name FROM table
+<BR><BR>SELECT first_name + ' ' + last_name FROM table
+<BR>SELECT first_name CONCAT ' ' CONCAT last_name FROM table
+<BR>SELECT CONCAT(first_name, ' ', last_name) FROM table
+<BR>SELECT CONCAT(first_name, CONCAT(' ', last_name)) FROM table
+</UL></UL><UL>
+<LI><H2>
+</H2>
+</UL><UL>
+<LI><H2>The ODBC way:     (not pretty, but portable)
+</H2>
+<UL>
+SELECT {fn CONCAT(first_name, {fn CONCAT(' ', last_name))}} FROM table
+<BR></UL></UL><UL>
+<H2>
+</H2>
+</UL><UL>
+<LI><H2>The {fn …} will be rewritten by prepare() to the required syntax via a call to
+</H2>
+<UL>
+$new_sql_fragment = $dbh-&#062{Rewrite}-&#062CONCAT(”…”)
+<BR></UL></UL><UL>
+<LI><H2>
+</H2>
+</UL><UL>
+<LI><H2>Similarly for some data types:
+</H2>
+<UL>
+SELECT * FROM table WHERE date_time &#062 {ts ’2002-06-04 12:00:00’ } FROM table
+<BR><BR>$new_sql_fragment = $dbh-&#062{Rewrite}-&#062ts(’2002-06-04 12:00:00’)
+</UL></UL><UL>
+<LI><H2>
+</H2>
+</UL><UL>
+<LI><H2>This functionality is planned but not yet implemented</H2>
+</UL></P>
+<P></P> 
+<P>
+<TABLE>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld076.htm">Previous slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld078.htm">Next slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="tsld001.htm">Back to first slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="sld077.htm">View graphic version</A> </TD>
+</TABLE>
+<BR>
+</P>
+
+
+
+</Body>
+</HTML>

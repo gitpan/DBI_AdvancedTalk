@@ -1,0 +1,50 @@
+
+<HTML>
+
+<HEAD>
+
+<meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
+ <TITLE>SQL Portability - Metadata</TITLE> 
+</HEAD>
+
+<BODY     >
+
+ <H1>SQL Portability - Metadata</H1> 
+ <P><UL>
+<LI><H2>Getting data about your data:
+</H2>
+<UL>
+$sth = $dbh-&#062table_info( ... )
+<BR><UL>
+<LI>Now allows parameters to qualify which tables you want info on
+</UL>$sth = $dbh-&#062column_info($cat, $schema, $table, $col);
+<UL>
+<LI>Returns information about the columns of a table
+</UL>$sth = $dbh-&#062primary_key_info($cat, $schema, $table);
+<UL>
+<LI>Returns information about the primary keys of a table
+</UL>@keys = $dbh-&#062primary_key($cat, $schema, $table);
+<UL>
+<LI>Simpler way to return information about the primary keys of a table
+</UL>$sth = $dbh-&#062foreign_key_info($pkc, $pks, $pkt, $fkc, $fks, $fkt);
+<UL>
+<LI>Returns information about foreign keys
+<LI>
+</UL></UL></UL><UL>
+<LI><H2>These, and the features on the previous “SQL Portability” slides, are all fairly new so may not be supported by your driver yet. If not… offer to help implement them!</H2>
+</UL></P>
+<P></P> 
+<P>
+<TABLE>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld079.htm">Previous slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld081.htm">Next slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="tsld001.htm">Back to first slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="sld080.htm">View graphic version</A> </TD>
+</TABLE>
+<BR>
+</P>
+
+
+
+</Body>
+</HTML>

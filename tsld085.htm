@@ -1,0 +1,49 @@
+
+<HTML>
+
+<HEAD>
+
+<meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
+ <TITLE>The practical realities</TITLE> 
+</HEAD>
+
+<BODY     >
+
+ <H1>The practical realities</H1> 
+ <P><UL>
+<LI><H2>Modes of operation
+</H2>
+<UL>
+<LI>Multi-threaded Mode - one thread per connection
+<UL>
+<LI>Not safe for production use with perl 5.5 threads, untested with 5.6 iThreads
+<LI>DBI 1.30 now has iThreads support and should work once drivers are updated
+</UL><LI>Forking Mode - one process per connection
+<UL>
+<LI>Most practical mode for UNIX-like systems
+<LI>Doesn’t scale well to large numbers of connections
+<LI>Not available on Windows prior to Perl 5.6.0
+<LI>Fork emulation on Windows in Perl 5.6.0 not tested with DBI, 5.8.0 will be better
+</UL><LI>Single Connection Mode - only one connection per proxy server process
+<UL>
+<LI>Would need to start many processes to allow many connections
+</UL></UL></UL><UL>
+<LI><H2>No round-robin mode available yet
+</H2>
+<UL>
+<LI>patches welcome</UL></UL></P>
+<P></P> 
+<P>
+<TABLE>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld084.htm">Previous slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld086.htm">Next slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="tsld001.htm">Back to first slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="sld085.htm">View graphic version</A> </TD>
+</TABLE>
+<BR>
+</P>
+
+
+
+</Body>
+</HTML>

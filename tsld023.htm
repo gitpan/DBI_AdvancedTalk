@@ -1,0 +1,52 @@
+
+<HTML>
+
+<HEAD>
+
+<meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
+ <TITLE>How fast was that?</TITLE> 
+</HEAD>
+
+<BODY     >
+
+ <H1>How fast was that?</H1> 
+ <P><UL>
+<LI><H2>The DBI now has performance profiling built in
+</H2>
+<UL>
+Easiest to demonstrate by example...
+<BR><LI>
+</UL></UL><UL>
+<LI><H2>Overall summary:
+</H2>
+<UL>
+$ DBI_PROFILE=1 test.pl
+<BR><BR>DBI::Profile: 0.010782 seconds 1.05% (15 method calls) test.pl
+<BR>
+</UL></UL><UL>
+<LI><H2>Breakdown by statement:
+</H2>
+<UL>
+$ DBI_PROFILE=2 test.pl
+<BR><BR>DBI::Profile: 0.010842 seconds 1.80% (15 method calls) test.pl
+<BR>'' =&#062
+<BR>    0.007768s / 9 = 0.000863s avg (first 0.000022s, min 0.000022s, max 0.007444s)
+<BR>'INSERT INTO prices (prod_id,price) VALUES(?,?)' =&#062
+<BR>    0.001715s / 4 = 0.000429s avg (first 0.000587s, min 0.000040s, max 0.000612s)
+<BR>'UPDATE prices SET price=? WHERE prod_id=?' =&#062
+<BR>    0.001359s / 2 = 0.000680s avg (first 0.000404s, min 0.000404s, max 0.000955s)</UL></UL></P>
+<P></P> 
+<P>
+<TABLE>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld022.htm">Previous slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld024.htm">Next slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="tsld001.htm">Back to first slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="sld023.htm">View graphic version</A> </TD>
+</TABLE>
+<BR>
+</P>
+
+
+
+</Body>
+</HTML>

@@ -1,0 +1,59 @@
+
+<HTML>
+
+<HEAD>
+
+<meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
+ <TITLE>Respect your server's SQL cache</TITLE> 
+</HEAD>
+
+<BODY     >
+
+ <H1>Respect your server's SQL cache</H1> 
+ <P><UL>
+<LI><H2>Optimised Access Plan etc. is cached within the server
+</H2>
+<UL>
+<LI>keyed by the exact original SQL string used
+<LI>
+</UL></UL><UL>
+<LI><H2>Compare	do("insert … $id");
+</H2>
+<UL>
+        with	do("insert … ?", undef, $id);
+<BR><UL>
+<LI>
+</UL></UL></UL><UL>
+<LI><H2>Without placeholders, SQL string varies each time
+</H2>
+<UL>
+<LI>so cached one is not reused
+<LI>so time is wasted creating a new access plan
+<LI>the new statement and access plan are added to cache
+<LI>so the cache fills and other statements get pushed out
+<LI>on a busy system this can lead to ‘thrashing’
+<LI>
+</UL></UL><UL>
+<LI><H2>Oracle now has a way to avoid/reduce this problem
+</H2>
+<UL>
+<LI>it can effectively replace literal constants with placeholders
+<LI>but the quality of query execution plans can suffer
+</UL></UL><UL>
+<H2>.</H2>
+</UL></P>
+<P></P> 
+<P>
+<TABLE>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld015.htm">Previous slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld017.htm">Next slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="tsld001.htm">Back to first slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="sld016.htm">View graphic version</A> </TD>
+</TABLE>
+<BR>
+</P>
+
+
+
+</Body>
+</HTML>

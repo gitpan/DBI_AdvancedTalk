@@ -1,0 +1,51 @@
+
+<HTML>
+
+<HEAD>
+
+<meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
+ <TITLE>More Custom Error Handling</TITLE> 
+</HEAD>
+
+<BODY     >
+
+ <H1>More Custom Error Handling</H1> 
+ <P><UL>
+<LI><H2>It is also possible for HandleError to hide an error, to a limited degree
+</H2>
+<UL>
+<LI>use set_err() to reset $DBI::err and $DBI::errstr
+<LI>alter the return value of the failed method
+<LI>
+</UL>$h-&#062{HandleError} = sub {
+<BR>    my ($errmsg, $h) = @_;
+<BR>    return 0 unless $errmsg =~ /^\S+ fetchrow_arrayref failed:/;
+<BR>    return 0 unless $h-&#062err == 1234; # the error to 'hide'
+<BR>    $h-&#062set_err(0,"");	# turn off the error
+<BR>    $_[2] = [ ... ];	# supply alternative return value by altering parameter
+<BR>    return 1;
+<BR>};
+<LI>
+</UL><UL>
+<LI><H2>Only works for methods which return a single value and is hard to make reliable (avoiding infinite loops, for example) and so isn't recommended for general use!
+</H2>
+<UL>
+<LI>If you find a good use for it then please let me know.
+</UL></UL><UL>
+<H2>_</H2>
+</UL></P>
+<P></P> 
+<P>
+<TABLE>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld044.htm">Previous slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld046.htm">Next slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="tsld001.htm">Back to first slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="sld045.htm">View graphic version</A> </TD>
+</TABLE>
+<BR>
+</P>
+
+
+
+</Body>
+</HTML>

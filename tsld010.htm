@@ -1,0 +1,63 @@
+
+<HTML>
+
+<HEAD>
+
+<meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
+ <TITLE>How would you do it?</TITLE> 
+</HEAD>
+
+<BODY     >
+
+ <H1>How would you do it?</H1> 
+ <P><UL>
+<H2>   SELECT * FROM t1, t2  WHERE t1.key=1 AND t2.key=2 AND t1.value=t2.value
+</H2>
+</UL><UL>
+<H2>
+</H2>
+</UL><UL>
+<LI><H2>One possible approach:
+</H2>
+<UL>
+  Select from one table using its key field (assume both tables have an index on key)
+<BR><BR>  Then, loop for each row returned, and...
+<BR>	  select from the other table using its key field and the current row’s value field
+</UL></UL><UL>
+<LI><H2>But which table to select first?
+</H2>
+<UL>
+  To keep it simple, assume that both tables have the same value in all rows
+<BR></UL></UL><UL>
+<LI><H2>If we know that t1.key=1 matches 1000 rows and t2.key=2 matches 1
+</H2>
+<UL>
+then we know that we should select from t2 first
+<BR><BR>because that way we only have to select from each table once
+</UL></UL><UL>
+<LI><H2>If we selected from t1 first
+</H2>
+<UL>
+then we’d have to select from t2 1000 times!
+<BR></UL></UL><UL>
+<LI><H2>An alternative approach would be to select from both and merge
+</H2>
+</UL><UL>
+<H2>.
+</H2>
+</UL></P>
+<P></P> 
+<P>
+<TABLE>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld009.htm">Previous slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld011.htm">Next slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="tsld001.htm">Back to first slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="sld010.htm">View graphic version</A> </TD>
+</TABLE>
+<BR>
+</P>
+
+
+
+</Body>
+</HTML>

@@ -1,0 +1,58 @@
+
+<HTML>
+
+<HEAD>
+
+<meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
+ <TITLE>Changing plans (hint hint)</TITLE> 
+</HEAD>
+
+<BODY     >
+
+ <H1>Changing plans (hint hint)</H1> 
+ <P><UL>
+<LI><H2>Most database systems provide some way to influence the execution plan - typically via ‘hints’
+</H2>
+<UL>
+<LI>
+</UL></UL><UL>
+<LI><H2>Oracle supports a very large and complex range of hints
+</H2>
+<UL>
+<LI>Hints must be contained within special comments /*+ … */
+<UL>
+	
+<BR></UL></UL></UL><UL>
+<H2>		SELECT /*+ INDEX(table1 index1) */ foo, bar
+</H2>
+<UL>
+		FROM table1 WHERE key1=1 AND key2=2 AND key3=3;
+<BR><BR>		
+</UL></UL><UL>
+<LI><H2>MySQL has a very limited set of hints
+</H2>
+<UL>
+<LI>Hints can optionally be placed inside comments /*! … */
+</UL></UL><UL>
+<H2>		SELECT foo, bar FROM table1 /*! USE INDEX (key1,key2) */
+</H2>
+<UL>
+		WHERE key1=1 AND key2=2 AND key3=3;
+<BR></UL></UL><UL>
+<H2>.</H2>
+</UL></P>
+<P></P> 
+<P>
+<TABLE>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld014.htm">Previous slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld016.htm">Next slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="tsld001.htm">Back to first slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="sld015.htm">View graphic version</A> </TD>
+</TABLE>
+<BR>
+</P>
+
+
+
+</Body>
+</HTML>
