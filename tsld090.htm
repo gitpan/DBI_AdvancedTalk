@@ -4,44 +4,18 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>What’s new with fetching data? (since the book)</TITLE> 
+ <TITLE>The Power of the Proxy,</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>What’s new with fetching data? (since the book)</H1> 
+ <H1>The Power of the Proxy, Flexing the Multiplex,and a Pure-Perl DBI!</H1> 
  <P><UL>
-<LI><H2>$sth-&#062fetchrow_hashref()
-</H2>
-<UL>
-<LI>now 25% faster - but still much slower than non-hash fetching
-</UL></UL><UL>
-<LI><H2>$dbh-&#062selectrow_hashref() and $dbh-&#062selectrow_arrayref()
-</H2>
-<UL>
-<LI>new one-call prepare + execute + fetch + finish utility methods
-</UL></UL><UL>
-<LI><H2>$sth-&#062fetchall_arrayref($slice, $max_rows)
-</H2>
-<UL>
-<LI>Now implemented in C ‘within’ the driver for maximum speed
-<LI>The $max_rows enables fetching of batches of rows
-</UL></UL><UL>
-<LI><H2>$dbh-&#062selectall_hashref($statement, $keyfield, ...)
+<H2>Thin clients, high availability ...
 </H2>
 </UL><UL>
-<LI><H2>$sth-&#062fetchall_hashref($keyfield, ...)
-</H2>
-<UL>
-<LI>Returns a ref to hash with one entry per row
-<LI>The $keyfield specifies which column value to use for the key
-<LI>Each entry in the hash is a ref to a hash holding column values for the row
-</UL></UL><UL>
-<LI><H2>$h-&#062{FetchHashKeyName} = ’NAME_lc’
-</H2>
-<UL>
-<LI>Define the default attribute used by fetchrow_hashref() for key names
-<LI>Makes porting scripts much easier (e.g., MySQL &#060-&#062 Oracle)</UL></UL></P>
+<H2>and other buzz words</H2>
+</UL></P>
 <P></P> 
 <P>
 <TABLE>

@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>What’s new with tracing?  (since the book)</TITLE> 
+ <TITLE>Our program for today...</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld064.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld066.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld102.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld065.htm">Text</A>&nbsp;&nbsp;
@@ -25,36 +25,56 @@
          <IMG SRC="img065.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 65 of 96</P>
+<P>Slide 65 of 102</P>
 </CENTER>
 <!-- <UL>
-<H2>What’s new with tracing?  (since the book)</H2>
+<H2>Our program for today...</H2>
 </UL></P>
 <P><UL>
-<LI><H2>Tracing fetched data
+<H2>#!/usr/bin/perl -w
+</H2>
+</UL><UL>
+<H2>use DBI;
+</H2>
+</UL><UL>
+<H2>$dbh = DBI-&#062connect('', '', '', { RaiseError =&#062 1 });
+</H2>
+</UL><UL>
+<H2>replace_price(split(/\s+/, $_)) while (&#060STDIN&#062);
+</H2>
+</UL><UL>
+<H2>$dbh-&#062disconnect;
+</H2>
+</UL><UL>
+<H2>
+</H2>
+</UL><UL>
+<H2>sub replace_price {
+</H2>
+</UL><UL>
+<H2>  my ($id, $price) = @_;
+</H2>
+</UL><UL>
+<H2>  local $dbh-&#062{TraceLevel} = 1;
+</H2>
+</UL><UL>
+<H2>  my $upd = $dbh-&#062prepare("UPDATE prices SET price=? WHERE id=?");
+</H2>
+</UL><UL>
+<H2>  my $ins = $dbh-&#062prepare_cached("INSERT INTO prices (id,price) VALUES(?,?)");
+</H2>
+</UL><UL>
+<H2>  my $rows = $upd-&#062execute($price, $id);
+</H2>
+</UL><UL>
+<H2>  $ins-&#062execute($id, $price) if $rows == 0;
+</H2>
+</UL><UL>
+<H2>}
 </H2>
 <UL>
-<LI>Trace level 1 only shows return from first and last fetch() calls
-<LI>Trace level 2 only shows returns from fetch() calls
-<LI>Trace level 3 shows entry and return from fetch() calls
-<LI>Trace for fetch() calls now show the row number
-<LI>
-</UL></UL><UL>
-<LI><H2>Trace level can be set using an attribute
-</H2>
-<UL>
-$h-&#062{TraceLevel}
-<BR><UL>
-<LI>get or set trace level of a handle
-<LI>you can use local() to set a temporary value for the current block
-<UL>
- local $h-&#062{TraceLevel} = 2;
-<BR></UL><LI>and you can now set the trace level via the DSN
-<UL>
- “dbi:Driver(PrintError=1,TraceLevel=2):dbname”
-<BR></UL></UL></UL></UL><UL>
-<H2>.</H2>
-</UL></P>
+
+<BR><BR>(The program is a little odd for the sake of producing a small trace output that can illustrate many concepts)</UL></UL></P>
 <P>  -->
 </Body>
 </HTML>

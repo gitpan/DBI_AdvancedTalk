@@ -4,15 +4,42 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Intermission?</TITLE> 
+ <TITLE>Transactions - How the DBI helps</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Intermission?</H1> 
+ <H1>Transactions - How the DBI helps</H1> 
  <P><UL>
-<H2>  </H2>
-</UL></P>
+<LI><H2>Tools of the trade:
+</H2>
+<UL>
+<LI>Set AutoCommit off
+<LI>Set RaiseError on
+<LI>Wrap eval { … } around the code
+<LI>Use $dbh-&#062commit; and $dbh-&#062rollback;
+<UL>
+<LI>
+</UL></UL></UL><UL>
+<LI><H2>Disable AutoCommit via $dbh-&#062{AutoCommit}=0 or $dbh-&#062begin_work;
+</H2>
+<UL>
+<LI>to enable use of transactions
+</UL></UL><UL>
+<LI><H2>Enable RaiseError via $dbh-&#062{RaiseError} = 1;
+</H2>
+<UL>
+<LI>to automatically 'throw an exception' when an error is detected
+</UL></UL><UL>
+<LI><H2>Add surrounding eval { … } 
+</H2>
+<UL>
+<LI>catches the exception, the error text is stored in $@
+</UL></UL><UL>
+<LI><H2>Test $@ and then $dbh-&#062rollback() if set
+</H2>
+<UL>
+<LI>note that a failed statement doesn’t automatically trigger a transaction rollback</UL></UL></P>
 <P></P> 
 <P>
 <TABLE>

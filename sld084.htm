@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>A Proxy Picture</TITLE> 
+ <TITLE>SQL Portability - SQL Dialects</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld083.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld085.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld102.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld084.htm">Text</A>&nbsp;&nbsp;
@@ -25,11 +25,37 @@
          <IMG SRC="img084.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 84 of 96</P>
+<P>Slide 84 of 102</P>
 </CENTER>
 <!-- <UL>
-<H2>A Proxy Picture</H2>
+<H2>SQL Portability - SQL Dialects</H2>
 </UL></P>
+<P><UL>
+<LI><H2>Most people are familiar with how to portably quote a string literal:
+</H2>
+<UL>
+$dbh-&#062quote($value)
+<BR><UL>
+<LI>
+</UL></UL></UL><UL>
+<LI><H2>It’s now also possible to portably quote identifiers like table names:
+</H2>
+<UL>
+$dbh-&#062quote_identifier($name1, $name2, $name3, \%attr)
+<BR><BR>For example:
+<UL>
+$dbh-&#062quote_identifier( undef, 'Her schema', 'My table' );
+<BR><BR>using DBD::Oracle:		"Her schema"."My table”
+<BR>using DBD::mysql:		`Her schema`.`My table`
+</UL></UL></UL><UL>
+<LI><H2>
+</H2>
+</UL><UL>
+<LI><H2>If three names are supplied then the first is assumed to be a catalog name and special rules may be applied based on what get_info() returns for SQL_CATALOG_NAME_SEPARATOR and SQL_CATALOG_LOCATION.  For example:
+</H2>
+<UL>
+$dbh-&#062quote_identifier( ’link’, ’schema’, ’table’ );
+<BR><BR>using DBD::Oracle:		"schema"."table"@"link"</UL></UL></P>
 <P>  -->
 </Body>
 </HTML>

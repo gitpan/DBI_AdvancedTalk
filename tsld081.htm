@@ -4,34 +4,41 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>SQL Portability - Metadata</TITLE> 
+ <TITLE>Portability in practice</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>SQL Portability - Metadata</H1> 
+ <H1>Portability in practice</H1> 
  <P><UL>
-<LI><H2>Getting data about your data:
+<LI><H2>Portability requires care and testing - it can be tricky
 </H2>
 <UL>
-$sth = $dbh-&#062table_info( ... )
-<BR><UL>
-<LI>Now allows parameters to qualify which tables you want info on
-</UL>$sth = $dbh-&#062column_info($cat, $schema, $table, $col);
-<UL>
-<LI>Returns information about the columns of a table
-</UL>$sth = $dbh-&#062primary_key_info($cat, $schema, $table);
-<UL>
-<LI>Returns information about the primary keys of a table
-</UL>@keys = $dbh-&#062primary_key($cat, $schema, $table);
-<UL>
-<LI>Simpler way to return information about the primary keys of a table
-</UL>$sth = $dbh-&#062foreign_key_info($pkc, $pks, $pkt, $fkc, $fks, $fkt);
-<UL>
-<LI>Returns information about foreign keys
 <LI>
-</UL></UL></UL><UL>
-<LI><H2>These, and the features on the previous “SQL Portability” slides, are all fairly new so may not be supported by your driver yet. If not… offer to help implement them!</H2>
+</UL></UL><UL>
+<LI><H2>Platform Portability - the easier bit
+</H2>
+<UL>
+<LI>Availability of database client software and DBD driver
+<LI>DBD::Proxy can address both these issues - see later
+<LI>
+</UL></UL><UL>
+<LI><H2>Database Portability - more tricky but newer versions of the DBI are helping
+</H2>
+<UL>
+<LI>Differences in SQL dialects cause most problems
+<LI>Differences in data types can also be a problem
+<LI>Driver capabilities (placeholders etc.)
+<LI>Database meta-data (keys and indices etc.)
+<LI>A standard test suite for DBI drivers is needed
+<LI>
+</UL></UL><UL>
+<LI><H2>DBIx::AnyDBD  functionality has been merged into the DBI
+</H2>
+<UL>
+<LI>can help with writing portable code, just needs documenting
+</UL></UL><UL>
+<H2>-</H2>
 </UL></P>
 <P></P> 
 <P>

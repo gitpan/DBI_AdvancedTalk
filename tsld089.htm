@@ -4,20 +4,38 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>And finally...</TITLE> 
+ <TITLE>DBI::SQL::Nano</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>And finally...</H1> 
+ <H1>DBI::SQL::Nano</H1> 
  <P><UL>
-<H2>What’s new since the book
+<LI><H2>Supported syntax
 </H2>
-</UL><UL>
-<H2>(that we’ve not covered already)
+<UL>
+DROP TABLE [IF EXISTS] &#060table_name&#062
+<BR><BR>CREATE TABLE &#060table_name&#062 &#060col_def_list&#062
+<BR>INSERT INTO &#060table_name&#062 [&#060insert_col_list&#062] VALUES &#060val_list&#062
+<BR>DELETE FROM &#060table_name&#062 [&#060where_clause&#062]
+<BR>UPDATE &#060table_name&#062 SET &#060set_clause&#062 [&#060where_clause&#062]
+<BR>SELECT &#060select_col_list&#062 FROM &#060table_name&#062 [&#060where_clause&#062] [&#060order_clause&#062]
+<BR>
+</UL></UL><UL>
+<LI><H2>Where clause
 </H2>
-</UL><UL>
-<H2>and what’s planned?</H2>
+<UL>
+<LI>a single "[NOT] column/value &#060op&#062 column/value" predicate
+<LI>multiple predicates combined with ORs or ANDs are not supported
+<LI>op may be one of: &#060 &#062 &#062= &#060= = &#060&#062 LIKE CLIKE IS
+<LI>
+</UL></UL><UL>
+<LI><H2>If you need more functionality...
+</H2>
+<UL>
+<LI>Just install the SQL::Statement module
+</UL></UL><UL>
+<H2>_</H2>
 </UL></P>
 <P></P> 
 <P>

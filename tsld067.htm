@@ -4,39 +4,65 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Web DBI - Connect speed</TITLE> 
+ <TITLE>Trace level 2 and above</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Web DBI - Connect speed</H1> 
+ <H1>Trace level 2 and above</H1> 
  <P><UL>
-<LI><H2>Databases can be slow to connect
+<LI><H2>Level 2 adds trace of entry into methods, details of classes, handles, and more
 </H2>
 <UL>
-<LI>Traditional CGI forces a new connect per request
+<LI>we’ll just look at the trace for the prepare_cached() call here:
 </UL></UL><UL>
-<LI><H2>Move Perl and DBI into the web server
+<H2> 
+</H2>
+</UL><UL>
+<H2>    -&#062 prepare_cached in DBD::_::db for DBD::mysql::db
+</H2>
+</UL><UL>
+<H2>		(DBI::db=HASH(0x81bcd80)~0x823c6f4
+</H2>
+</UL><UL>
+<H2>		'INSERT INTO prices (prod_id,price) VALUES(?,?)')
+</H2>
+</UL><UL>
+<H2>1   -&#062 FETCH for DBD::mysql::db (DBI::db=HASH(0x823c6f4)~INNER 'CachedKids')
+</H2>
+</UL><UL>
+<H2>1   &#060- FETCH= undef at DBI.pm line 1507
+</H2>
+</UL><UL>
+<H2>1   -&#062 STORE for DBD::mysql::db (DBI::db=HASH(0x823c6f4)~INNER 'CachedKids'
+</H2>
+</UL><UL>
+<H2>		HASH(0x823a5d4))
+</H2>
+</UL><UL>
+<H2>1   &#060- STORE= 1 at DBI.pm line 1508
+</H2>
+</UL><UL>
+<H2>1   -&#062 prepare for DBD::mysql::db (DBI::db=HASH(0x823c6f4)~INNER
+</H2>
+</UL><UL>
+<H2>		'INSERT INTO prices (prod_id,price) VALUES(?,?)' undef)
+</H2>
+</UL><UL>
+<H2>1   &#060- prepare= DBI::st=HASH(0x823a5a4) at DBI.pm line 1519
+</H2>
+</UL><UL>
+<H2>    &#060- prepare_cached= DBI::st=HASH(0x823a5a4) at trace-ex1.pl line 11
+</H2>
+</UL><UL>
+<H2>
 </H2>
 <UL>
-<LI>Apache with mod_perl and Apache::DBI module
-<LI>Microsoft IIS with ActiveState's PerlEx
+<LI>Trace level 3 and above shows more internal processing and driver details
+<LI>Use $DBI::neat_maxlen to alter truncation of strings in trace output
 </UL></UL><UL>
-<LI><H2>Connections can then persist and be shared between requests
-</H2>
-<UL>
-<LI>Apache::DBI automatically used by DBI if loaded
-<LI>No CGI script changes required to get persistence
-</UL></UL><UL>
-<LI><H2>Take care not to change the shared session behaviour
-</H2>
-<UL>
-<LI>Leave the $dbh and db session in the same state you found it!
-</UL></UL><UL>
-<LI><H2>Other alternatives include
-</H2>
-<UL>
-<LI>FastCGI, CGI::SpeedyCGI and CGI::MiniSvr</UL></UL></P>
+<H2>.</H2>
+</UL></P>
 <P></P> 
 <P>
 <TABLE>

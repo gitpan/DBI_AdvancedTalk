@@ -4,47 +4,44 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Sling less for speed</TITLE> 
+ <TITLE>Bind those columns!</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Sling less for speed</H1> 
+ <H1>Bind those columns!</H1> 
  <P><UL>
-<LI><H2>while(@row = $sth-&#062fetchrow_array) { }
+<LI><H2>Compare
 </H2>
 <UL>
-<LI>one column:   51,155 fetches per second
-<LI>20 columns:   24,032 fetches per second 
+while($row = $sth-&#062fetchrow_arrayref) {
+<BR><BR>  print “$row-&#062[0]: $row-&#062[1]\n”;
+<BR>}
 </UL></UL><UL>
-<H2>
+<LI><H2>
 </H2>
 </UL><UL>
-<LI><H2>while($row = $sth-&#062fetchrow_arrayref) { }
+<LI><H2>with
 </H2>
 <UL>
-<LI>one column:   58,653 fetches per second  - approximately 12% faster
-<LI>20 columns:   49,390 fetches per second  - approximately 51% faster
+$sth-&#062bind_columns(\$key, \$value);
+<BR><BR>while($sth-&#062fetchrow_arrayref) {
+<BR>  print “$key: $value\n”;
+<BR>}
+<LI>
 </UL></UL><UL>
-<H2>
+<LI><H2>No row assignment code!
 </H2>
 </UL><UL>
-<LI><H2>while($row = shift(@$rowcache)  || shift(@{$rowcache=$sth-&#062fetchall_arrayref(undef, $max_rows)})) { }
-</H2>
-<UL>
-<LI>one column:   348,140 fetches per second - by far the fastest!
-<LI>20 columns:     42,128 fetches per second - now slower than fetchrow_arrayref!
-<LI>Why? Balance time saved making fewer calls with time spent managing more memory
-<LI>Do your own benchmarks to find what works best for your situations
-</UL></UL><UL>
-<H2>
+<LI><H2>No column access code!
 </H2>
 </UL><UL>
-<LI><H2>Notes:
+<H2>      			... just magic
 </H2>
-<UL>
-<LI>Tests used DBD::mysql on 100,000 rows with fields 9 chars each. $max_rows=1000;
-<LI>Time spent inside fetchrow_* method is approximately 0.000011s (~90,000 per second)</UL></UL></P>
+</UL><UL>
+<LI><H2>
+</H2>
+</UL></P>
 <P></P> 
 <P>
 <TABLE>

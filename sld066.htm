@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>DBI for the Web</TITLE> 
+ <TITLE>Trace level 1</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld065.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld067.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld102.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld066.htm">Text</A>&nbsp;&nbsp;
@@ -25,14 +25,50 @@
          <IMG SRC="img066.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 66 of 96</P>
+<P>Slide 66 of 102</P>
 </CENTER>
 <!-- <UL>
-<H2>DBI for the Web</H2>
+<H2>Trace level 1</H2>
 </UL></P>
 <P><UL>
-<H2>Hand waving from 30,000 feet</H2>
-</UL></P>
+<LI><H2>Level 1 shows method returns with first two parameters, results, and line numbers:
+</H2>
+</UL><UL>
+<H2>
+</H2>
+</UL><UL>
+<H2>    DBI::db=HASH(0x823c6f4) trace level 0x0/1 (DBI 0x0/0) DBI 1.43 (pid 78730)
+</H2>
+</UL><UL>
+<H2>    &#060- prepare('UPDATE prices SET price=? WHERE prod_id=?')=
+</H2>
+</UL><UL>
+<H2>			DBI::st=HASH(0x823a478) at trace-ex1.pl line 10
+</H2>
+</UL><UL>
+<H2>    &#060- prepare_cached('INSERT INTO prices (prod_id,price) VALUES(?,?)')=
+</H2>
+</UL><UL>
+<H2>			DBI::st=HASH(0x823a58c) at trace-ex1.pl line 11
+</H2>
+</UL><UL>
+<H2>    &#060- execute('42.2' '1')= 1 at trace-ex1.pl line 12
+</H2>
+</UL><UL>
+<H2>    &#060- STORE('TraceLevel' 0)= 1 at trace-ex1.pl line 4
+</H2>
+</UL><UL>
+<H2>    &#060- DESTROY(DBI::st=HASH(0x823a478))= undef at trace-ex1.pl line 4
+</H2>
+</UL><UL>
+<H2>
+</H2>
+</UL><UL>
+<LI><H2>Level 1 now only shows methods called by application
+</H2>
+<UL>
+<LI>not recursive calls made by the DBI or driver
+</UL></UL></P>
 <P>  -->
 </Body>
 </HTML>

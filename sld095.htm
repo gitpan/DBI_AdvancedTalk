@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>Reference Materials</TITLE> 
+ <TITLE>DBD::Multiplex</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld094.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld096.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld102.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld095.htm">Text</A>&nbsp;&nbsp;
@@ -25,42 +25,39 @@
          <IMG SRC="img095.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 95 of 96</P>
+<P>Slide 95 of 102</P>
 </CENTER>
 <!-- <UL>
-<H2>Reference Materials</H2>
+<H2>DBD::Multiplex</H2>
 </UL></P>
 <P><UL>
-<LI><H2>http://dbi.perl.org/
+<LI><H2>DBD::Multiplex
 </H2>
 <UL>
-<LI>The DBI Home Page
+<LI>Connects to multiple databases (DBI DSN's) at once and returns a single $dbh
+<LI>By default, executes any method call on that $dbh on each underlying $dbh in turn
 </UL></UL><UL>
-<LI><H2>http://www.perl.com/CPAN/authors/id/TIMB/DBI_IntroTalk_2002.tar.gz
+<LI><H2>Can be configured to
 </H2>
 <UL>
-<LI>The “Introduction to the DBI” tutorial
+<LI>modify (insert, update, …) only master db, select from one replica at random
+<LI>modify all databases but select from one ("poor man's replication")
+<LI>fallback to alternate database if primary is unavailable
+<LI>pick database for select at random to distribute load
+<LI>concatenate select results from multiple databases (effectively a 'union' select)
+<LI>return row counts/errors from non-select statements as select results
+<UL>
+<LI>one row for each underlying database
+</UL><LI>May also acquire fancy caching, retry, and other smart logic in the future
 </UL></UL><UL>
-<LI><H2>http://www.perl.com/CPAN/authors/id/TIMB/DBI_AdvancedTalk_2002.tar.gz
+<LI><H2>Watch this space: http://search.cpan.org/search?dist=DBD-Multiplex
 </H2>
 <UL>
-<LI>This “Advanced DBI” tutorial (updated each year)
-</UL></UL><UL>
-<LI><H2>http://www.oreilly.com/catalog/perldbi/
-</H2>
-<UL>
-<LI>or http://www.amazon.com/exec/obidos/ASIN/1565926994/dbi
-<LI>“Programming the Perl DBI” - The DBI book!</UL></UL></P>
+<LI>developed by Thomas Kishel and Tim Bunce
+<LI>currently undergoing a significant redevelopment</UL></UL></P>
 <P>  --><MAP NAME="Objmap">
-<AREA SHAPE=POLYGON COORDS="68, 295, 378, 295, 378, 321, 68, 321" HREF="http://www.perl.com/CPAN/authors/id/TIMB/DBI_Talk2_1998.tar.gz" >
-<AREA SHAPE=POLYGON COORDS="68, 236, 235, 236, 235, 262, 68, 262" HREF="http://www.perl.com/CPAN/authors/id/TIMB/DBI_Talk1_1997.tar.gz" >
-<AREA SHAPE=POLYGON COORDS="235, 236, 286, 236, 286, 262, 235, 262" HREF="http://www.perl.com/CPAN/authors/id/TIMB/DBI_IntroTalk_2002.tar.gz" >
-<AREA SHAPE=POLYGON COORDS="286, 236, 642, 236, 642, 262, 286, 262" HREF="http://www.perl.com/CPAN/authors/id/TIMB/DBI_Talk1_1997.tar.gz" >
-<AREA SHAPE=POLYGON COORDS="68, 177, 212, 177, 212, 203, 68, 203" HREF="http://www.symbolstone.org/technology/perl/DBI" >
-<AREA SHAPE=POLYGON COORDS="378, 295, 422, 295, 422, 321, 378, 321" HREF="http://www.perl.com/CPAN/authors/id/TIMB/DBI_AdvancedTalk_2002.tar.gz" >
-<AREA SHAPE=POLYGON COORDS="422, 295, 687, 295, 687, 321, 422, 321" HREF="http://www.perl.com/CPAN/authors/id/TIMB/DBI_Talk2_1998.tar.gz" >
-<AREA SHAPE=POLYGON COORDS="68, 354, 388, 354, 388, 380, 68, 380" HREF="http://www.oreilly.com/catalog/perldbi/" >
-<AREA SHAPE=POLYGON COORDS="152, 385, 584, 385, 584, 408, 152, 408" HREF="http://www.amazon.com/exec/obidos/ASIN/1565926994/dbi" >
+<AREA SHAPE=POLYGON COORDS="625, 497, 636, 497, 636, 526, 625, 526" HREF="ftp://not.tdlc.com/pub/Multiplex.pm" >
+<AREA SHAPE=POLYGON COORDS="219, 497, 625, 497, 625, 526, 219, 526" HREF="http://search.cpan.org/search?dist=DBD-Multiplex" >
 </MAP>
 
 </Body>

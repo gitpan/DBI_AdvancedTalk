@@ -4,39 +4,45 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Transactions - Further comments</TITLE> 
+ <TITLE>Transactions - Life Preservers</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Transactions - Further comments</H1> 
+ <H1>Transactions - Life Preservers</H1> 
  <P><UL>
-<LI><H2>The eval { … } catches all exceptions
+<LI><H2>Text Book:
 </H2>
 <UL>
-<LI>not just from DBI calls. Also catches fatal runtime errors from Perl
+<LI>system crash between one bank account being debited and another being credited.
 </UL></UL><UL>
-<LI><H2>Put commit() inside the eval
+<LI><H2>Dramatic:
 </H2>
 <UL>
-<LI>ensures commit failure is caught cleanly
-<LI>remember that commit itself may fail for many reasons
+<LI>power failure during update on 3 million rows when only part way through.
 </UL></UL><UL>
-<LI><H2>Don't forget that rollback() may also fail
+<LI><H2>Real-world:
 </H2>
 <UL>
-<LI>due to database crash or network failure etc.
-<LI>so you may want to call eval { $dbh-&#062rollback };
+<LI>complex series of inter-related updates, deletes and inserts on many separate tables fails at the last step due to a duplicate unique key on an insert.
+<LI>
 </UL></UL><UL>
-<LI><H2>Other points:
+<LI><H2>Locking alone won’t help you in any of these situations
 </H2>
 <UL>
-<LI>Always explicitly commit or rollback before disconnect
-<LI>Destroying a connected $dbh should always rollback
-<LI>END blocks can catch exit-without-disconnect to rollback and disconnect cleanly
-<LI>You can use ($dbh && $dbh-&#062{Active}) to check if still connected
+<LI>(And locking with DBD::mysql &#060 2.1027 is unsafe due to auto reconnect)
 </UL></UL><UL>
-<H2>-</H2>
+<LI><H2>Transaction recovery would handle all these situations - automatically
+</H2>
+<UL>
+<LI>Makes a system far more robust and trustworthy over the long term.
+</UL></UL><UL>
+<LI><H2>Use transactions if your database supports them.
+</H2>
+<UL>
+<LI>If it doesn't and you need them, switch to a different database.
+</UL></UL><UL>
+<H2>.</H2>
 </UL></P>
 <P></P> 
 <P>

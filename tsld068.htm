@@ -4,41 +4,36 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Web DBI - Too many connections</TITLE> 
+ <TITLE>What’s new with tracing?</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Web DBI - Too many connections</H1> 
+ <H1>What’s new with tracing?</H1> 
  <P><UL>
-<LI><H2>Busy web sites run many web server processes
+<LI><H2>Trace level now split into trace level (0-15) and trace topics
 </H2>
 <UL>
-<LI>possibly on many machines...
-<LI>Machines * Processes = Many Connections
-<LI>Machines * Processes * Users = Very Many Connections
+<LI>DBI and drivers can define named trace topics
 <LI>
 </UL></UL><UL>
-<LI><H2>Limits on database connections
+<LI><H2>New $h-&#062parse_trace_flags("foo|SQL|7")method
 </H2>
 <UL>
-<LI>Memory consumption of web server processes
-<LI>Database server resources (memory, threads etc.) or licensing
+<LI>map trace topic names into the corresponding trace flag bits.
 <LI>
 </UL></UL><UL>
-<LI><H2>So… partition web servers into General and Database groups
+<LI><H2>Added automatic calling of parse_trace_flags()
 </H2>
 <UL>
-<LI>
-</UL></UL><UL>
-<LI><H2>Direct requests that require database access to the Database web servers
-</H2>
+<LI>if setting the trace level to a non-numeric value:
 <UL>
-<LI>Use Reverse Proxy / Redirect / Rewrite to achieve this
-<LI>Allows each subset of servers to be tuned to best fit workload
-<LI>And/or be run on appropriate hardware platforms
-</UL></UL><UL>
-<H2>.</H2>
+$h-&#062{TraceLevel} = "foo|SQL|7";
+<BR><BR>DBI-&#062connect("dbi:Driver(TraceLevel=SQL|bar):...", ...);
+<BR>DBI_TRACE = "foo|SQL|7|baz" # environment variable
+<BR>
+</UL></UL></UL><UL>
+<LI><H2>Currently no trace topics have been defined.</H2>
 </UL></P>
 <P></P> 
 <P>

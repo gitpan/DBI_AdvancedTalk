@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>SQL Portability - Data Types</TITLE> 
+ <TITLE>Bulk Operations</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld076.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld078.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld102.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld077.htm">Text</A>&nbsp;&nbsp;
@@ -25,38 +25,45 @@
          <IMG SRC="img077.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 77 of 96</P>
+<P>Slide 77 of 102</P>
 </CENTER>
 <!-- <UL>
-<H2>SQL Portability - Data Types</H2>
+<H2>Bulk Operations</H2>
 </UL></P>
 <P><UL>
-<LI><H2>For raw information about data types supported by the driver:
+<LI><H2>Execute a statement for multiple values
 </H2>
 <UL>
-
-<BR><BR>$type_info_data = $dbh-&#062type_info_all(…);
-</UL></UL><UL>
-<LI><H2>
+$sth = $dbh-&#062prepare("insert into table (foo,bar) values (?,?)");
+<BR><BR>$tuples = $sth-&#062execute_array(\%attr, \@list_of_param_array_refs);
+<UL>
+<LI>returns count of executions, even ones that failed, and not rows-affected
+<LI>
+</UL></UL></UL><UL>
+<LI><H2>Explicit array binding
 </H2>
-</UL><UL>
-<LI><H2>To map data type codes to names:
-</H2>
+<UL>
+$dbh-&#062bind_param_array(1, \@array_of_foo_values, \%attr);
+<BR><BR>$dbh-&#062bind_param_array(2, \@array_of_bar_values, \%attr);
+<BR>$sth-&#062execute_array(\%attr) # uses bind_param_array values
 <UL>
 <LI>
-<BR>$sth = $dbh-&#062prepare(“select foo, bar from tablename”);
-<BR>$sth-&#062execute;
-<BR>for my $i (0 .. $sth-&#062{NUM_OF_FIELDS}) {printf ”Column name %s: Column type name: %s”,    $sth-&#062{NAME}-&#062[$i],    $dbh-&#062type_info( $sth-&#062{TYPE} )-&#062{TYPE_NAME};
-<BR>}
-<BR>
-</UL></UL><UL>
-<LI><H2>To select the nearest type supported by the database:
+</UL></UL></UL><UL>
+<LI><H2>Attributes for row-wise binding and per-tuple status:
 </H2>
 <UL>
+ArrayTupleFetch =&#062 $code_ref_or_sth	row-wise binding
+<BR><BR>ArrayTupleStatus =&#062 $array_ref		return rows-affected and errors
+<UL>
 <LI>
-<BR>$my_date_type = $dbh-&#062type_info( [ SQL_DATE, SQL_TIMESTAMP ] );
-<BR>$my_smallint_type = $dbh-&#062type_info( [ SQL_SMALLINT, SQL_INTEGER, SQL_DECIMAL ] );
-</UL></UL></P>
+</UL></UL></UL><UL>
+<LI><H2>DBI provides default methods that work for all drivers
+</H2>
+<UL>
+<LI>Some drivers support use of specific database API for very high performance 
+</UL></UL><UL>
+<H2>_</H2>
+</UL></P>
 <P>  -->
 </Body>
 </HTML>

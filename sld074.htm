@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>Handling LONG/BLOB data</TITLE> 
+ <TITLE>Web DBI - Concurrent editing</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld073.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld075.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld102.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld074.htm">Text</A>&nbsp;&nbsp;
@@ -25,40 +25,34 @@
          <IMG SRC="img074.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 74 of 96</P>
+<P>Slide 74 of 102</P>
 </CENTER>
 <!-- <UL>
-<H2>Handling LONG/BLOB data</H2>
+<H2>Web DBI - Concurrent editing</H2>
 </UL></P>
 <P><UL>
-<LI><H2>What makes LONG / BLOB / MEMO data special?
+<LI><H2>How to prevent updates overwriting each other?
 </H2>
 <UL>
-<LI>Not practical to pre-allocate fixed size buffers for worst case
-<LI>
-</UL></UL><UL>
-<LI><H2>Fetching LONGs - treat as normal fields after setting:
+<LI>You can use Optimistic Locking via 'qualified update':
+<UL>
+update table set ...
+<BR><BR>where  key = $old_key
+<BR>and field1 = $old_field1
+<BR>and field2 = $old_field2  and …  for all other fields
+</UL></UL></UL><UL>
+<LI><H2>Check the update row count
 </H2>
 <UL>
-<LI>$dbh-&#062{LongReadLen} - buffer size to allocate for expected data
-<LI>$dbh-&#062{LongTruncOk} - should truncating-to-fit be allowed
-<LI>
-</UL></UL><UL>
-<LI><H2>Inserting LONGs
+<LI>If it's zero then you know the record has been changed
+<UL>
+<LI>or deleted by another process
+</UL></UL></UL><UL>
+<LI><H2>Note
 </H2>
 <UL>
-<LI>The limitations of string literals
-<LI>The benefits of placeholders
-<LI>
-</UL></UL><UL>
-<LI><H2>Chunking / Piecewise processing not yet supported
-</H2>
-<UL>
-<LI>So you're limited to available memory
-<LI>Some drivers support blob_read()and other private methods
-</UL></UL><UL>
-<H2>-</H2>
-</UL></P>
+<LI>Potential problems with floating point data values not matching
+<LI>Some databases support a high-resolution 'update timestamp' field that can be checked instead</UL></UL></P>
 <P>  -->
 </Body>
 </HTML>

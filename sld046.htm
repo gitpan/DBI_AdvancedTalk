@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>More Custom Error Handling</TITLE> 
+ <TITLE>Picking up the Pieces</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld045.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld047.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld102.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld046.htm">Text</A>&nbsp;&nbsp;
@@ -25,35 +25,38 @@
          <IMG SRC="img046.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 46 of 96</P>
+<P>Slide 46 of 102</P>
 </CENTER>
 <!-- <UL>
-<H2>More Custom Error Handling</H2>
+<H2>Picking up the Pieces</H2>
 </UL></P>
 <P><UL>
-<LI><H2>It is also possible for HandleError to hide an error, to a limited degree
+<LI><H2>So, what went wrong?
 </H2>
 <UL>
-<LI>use set_err() to reset $DBI::err and $DBI::errstr
-<LI>alter the return value of the failed method
+$@
+<BR><UL>
+<LI>holds the text of the error message
+</UL>if ($DBI::err && $@ =~ /^(\S+) (\S+) failed: /)
+<UL>
+<LI>then it was probably a DBI error
+<LI>and $1 is the driver class (e.g. DBD::foo::db), $2 is the name of the method (e.g. prepare)
+</UL>$DBI::lasth
+<UL>
+<LI>holds last DBI handle used (not recommended for general use)
+</UL>$h-&#062{Statement}
+<UL>
+<LI>holds the statement text associated with the handle (even if it’s a database handle)
 <LI>
-</UL>$h-&#062{HandleError} = sub {
-<BR>    my ($errmsg, $h) = @_;
-<BR>    return 0 unless $errmsg =~ /^\S+ fetchrow_arrayref failed:/;
-<BR>    return 0 unless $h-&#062err == 1234; # the error to 'hide'
-<BR>    $h-&#062set_err(0,"");	# turn off the error
-<BR>    $_[2] = [ ... ];	# supply alternative return value by altering parameter
-<BR>    return 1;
-<BR>};
-<LI>
-</UL><UL>
-<LI><H2>Only works for methods which return a single value and is hard to make reliable (avoiding infinite loops, for example) and so isn't recommended for general use!
+</UL></UL></UL><UL>
+<LI><H2>$h-&#062{ShowErrorStatement} = 1
 </H2>
 <UL>
-<LI>If you find a good use for it then please let me know.
-</UL></UL><UL>
-<H2>_</H2>
-</UL></P>
+<LI>appends $h-&#062{Statement} to RaiseError/PrintError messages:
+<LI>DBD::foo::execute failed: duplicate key [for ``insert …’’]
+<LI>for statement handles it also includes the $h-&#062{ParamValues} if available.
+<LI>Makes error messages much more useful. Better than using $DBI::lasth
+<LI>Many drivers should enable it by default. Inherited by child handles.</UL></UL></P>
 <P>  -->
 </Body>
 </HTML>

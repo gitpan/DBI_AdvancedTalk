@@ -4,49 +4,37 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Trace level 1</TITLE> 
+ <TITLE>Watching the DBI in action</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Trace level 1</H1> 
+ <H1>Watching the DBI in action</H1> 
  <P><UL>
-<LI><H2>Level 1 shows method returns with first two parameters, results, and line numbers:
+<LI><H2>DBI has detailed call tracing built-in
 </H2>
-</UL><UL>
-<H2>
+<UL>
+<LI>Can be very helpful in understanding application behavior
+<LI>Shows parameters and results
+<LI>Has multiple levels of detail
+<LI>Can show detailed internal information from the DBI and drivers
+<LI>
+</UL></UL><UL>
+<LI><H2>Trace information can be written to a file
 </H2>
-</UL><UL>
-<H2>    DBI::db=HASH(0x83674f0) trace level set to 1 in DBI 1.26
+<UL>
+<LI>
+</UL></UL><UL>
+<LI><H2>Not used often enough
 </H2>
-</UL><UL>
-<H2>    &#060- prepare('UPDATE prices SET price=? WHERE prod_id=?')= 			DBI::st=HASH(0x8367658) at test.pl line 10
-</H2>
-</UL><UL>
-<H2>1   &#060- FETCH('CachedKids')= undef at DBI.pm line 1274
-</H2>
-</UL><UL>
-<H2>1   &#060- STORE('CachedKids' HASH(0x8367778))= 1 at DBI.pm line 1275
-</H2>
-</UL><UL>
-<H2>1   &#060- prepare('INSERT INTO prices (prod_id,price) VALUES(?,?)' undef)= 		DBI::st=HASH(0x8367748) at DBI.pm line 1287
-</H2>
-</UL><UL>
-<H2>    &#060- prepare_cached('INSERT INTO prices (prod_id,price) VALUES(?,?)')= 		DBI::st=HASH(0x8367748) at test.pl line 11
-</H2>
-</UL><UL>
-<H2>    &#060- execute('42.2' '1')= 1 at test.pl line 12
-</H2>
-</UL><UL>
-<H2>    &#060- DESTROY= undef at test.pl line 4
-</H2>
-</UL><UL>
-<H2>    &#060- STORE('TraceLevel' 0)= 1 at test.pl line 4
-</H2>
-</UL><UL>
-<H2>    &#060- DESTROY= undef at test.pl line 5
-</H2>
-</UL></P>
+<UL>
+	Not used often enough
+<BR><UL>
+	Not used often enough!
+<BR><UL>
+	Not used often enough!
+<BR></UL>
+</UL></UL></UL></P>
 <P></P> 
 <P>
 <TABLE>

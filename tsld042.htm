@@ -4,39 +4,31 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Handling errors the smart way</TITLE> 
+ <TITLE>The importance of error checking</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Handling errors the smart way</H1> 
+ <H1>The importance of error checking</H1> 
  <P><UL>
-<LI><H2>Setting RaiseError make the DBI call die for you
+<LI><H2>Errors happen!
 </H2>
 <UL>
-<LI>
-</UL></UL><UL>
-<LI><H2>For simple applications immediate death on error is fine
-</H2>
+<LI>Failure happens when you don't expect errors!
 <UL>
-<LI>The error message is usually accurate and detailed enough
-<LI>Better than the error messages some developers use!
+<LI>database crash / network disconnection
+<LI>lack of disk space for insert or select (sort space for order by)
+<LI>server math error on select (divide by zero after fetching 10,000 rows)
+<LI>and maybe, just maybe, errors in your own code [Gasp!]
 <LI>
-</UL></UL><UL>
-<LI><H2>For more advanced applications greater control is needed, perhaps:
-</H2>
+</UL><LI>Beat failure by expecting errors!
+<LI>
+<LI>Detect errors early to limit effects
 <UL>
-<LI>Correct the problem and retry
-<LI>or, Fail that chunk of work and move on to another
-<LI>or, Log error and clean up before a graceful exit
-<LI>or, whatever else to need to do
+<LI>Defensive Programming, e.g., check assumptions
+<LI>Through Programming, e.g., check for errors after fetch loops
 <LI>
-</UL></UL><UL>
-<LI><H2>Buzzwords:
-</H2>
-<UL>
-<LI>Need to catch the error exception being thrown by RaiseError
-<LI>
+</UL><LI>(and undefined values are your friends: always enable warnings)
 </UL></UL><UL>
 <H2>.</H2>
 </UL></P>

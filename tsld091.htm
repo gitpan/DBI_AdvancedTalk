@@ -4,40 +4,39 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>What else is new? (since the book)</TITLE> 
+ <TITLE>DBD::Proxy & DBI::ProxyServer</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>What else is new? (since the book)</H1> 
+ <H1>DBD::Proxy & DBI::ProxyServer</H1> 
  <P><UL>
-<LI><H2>$ok = $sth-&#062can($method_name)
+<LI><H2>Networking for Non-networked databases
+</H2>
+</UL><UL>
+<LI><H2>DBD::Proxy driver forwards calls over network to remote DBI::ProxyServer
+</H2>
+</UL><UL>
+<LI><H2>No changes in application behavior
 </H2>
 <UL>
-<LI>Check if a method is implemented
-<LI>Returns false for methods where the DBI has provided a ‘stub’ method
-<LI>
+<LI>Only the DBI-&#062connect statement needs to be changed
 </UL></UL><UL>
-<LI><H2>DBD::Foo::db-&#062install_method($private_method_name)
+<LI><H2>Proxy can be made completely transparent
 </H2>
 <UL>
-<LI>Enables driver-private methods to be installed into the DBI dispatcher
-<LI>So they can be called naturally, without using $h-&#062func(...)
-<LI>
+<LI>by setting the DBI_AUTOPROXY environment variable
+<LI>so not even the DBI-&#062connect statement needs to be changed!
 </UL></UL><UL>
-<LI><H2>$dbh2 = $dbh1-&#062clone(\%attr)
+<LI><H2>DBI::ProxyServer works on Win32
 </H2>
 <UL>
-<LI>Returns a new database handle $dbh2 that’s a clone of $dbh1
-<LI>Can be used even if $dbh1 is disconnected
+<LI>Access to Access and other Win32 ODBC and ADO data sources
+<UL>
 <LI>
-</UL></UL><UL>
-<LI><H2>Username and Password attributes
-</H2>
-<UL>
-<LI>"dbi:mysql(RaiseError=1,Username=joe,Password=blogs):database=dbname"
-<LI>Username is stored as handle attribute, Password isn't, currently
-</UL></UL></P>
+</UL></UL></UL><UL>
+<LI><H2>Developed by Jochen Wiedmann</H2>
+</UL></P>
 <P></P> 
 <P>
 <TABLE>

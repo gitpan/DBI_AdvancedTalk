@@ -4,41 +4,36 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Custom Error Handling</TITLE> 
+ <TITLE>Catching the Exception</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Custom Error Handling</H1> 
+ <H1>Catching the Exception</H1> 
  <P><UL>
-<LI><H2>Don’t want to just Print or Raise an Error?
+<LI><H2>Life after death
 </H2>
 <UL>
-<LI>Now you can Handle it as well…
+$h-&#062{RaiseError} = 1;
+<BR><BR>eval {
+<BR>	  foo();
+<BR>	  $h-&#062method;		# if it fails then the DBI calls die
+<BR>	  bar($h);		# may also call DBI methods
+<BR>};
+<BR>if ($@) {		# $@ holds error message
+<BR>	  ... handle the error here …
+<BR>}
 <UL>
-$h-&#062{HandleError} = sub { … };
-<BR><BR>
-</UL></UL></UL><UL>
-<LI><H2>The HandleError code
+
+<BR></UL></UL></UL><UL>
+<LI><H2>Bonus
 </H2>
 <UL>
-<LI>is called just before PrintError/RaiseError are handled
-<LI>it’s passed
-<UL>
-<LI>the error message string that RaiseError/PrintError would use
-<LI>the DBI handle being used
-<LI>the first value being returned by the method that failed (typically undef)
-</UL><LI>if it returns false then RaiseError/PrintError are checked and acted upon as normal
+<LI>Other, non-DBI, code within the eval block may also raise an exception
+<LI>that will also be caught and can be handled cleanly
 </UL></UL><UL>
-<LI><H2>
-</H2>
-</UL><UL>
-<LI><H2>The handler code can
-</H2>
-<UL>
-<LI>alter the error message text by changing $_[0]
-<LI>use caller() or Carp::confess() or similar to get a stack trace
-<LI>use Exception or a similar module to throw a formal exception object</UL></UL></P>
+<H2>.</H2>
+</UL></P>
 <P></P> 
 <P>
 <TABLE>

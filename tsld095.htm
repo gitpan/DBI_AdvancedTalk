@@ -4,33 +4,37 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Reference Materials</TITLE> 
+ <TITLE>DBD::Multiplex</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Reference Materials</H1> 
+ <H1>DBD::Multiplex</H1> 
  <P><UL>
-<LI><H2><A HREF="http://www.symbolstone.org/technology/perl/DBI">http://dbi.perl.org/</A>
+<LI><H2>DBD::Multiplex
 </H2>
 <UL>
-<LI>The DBI Home Page
+<LI>Connects to multiple databases (DBI DSN's) at once and returns a single $dbh
+<LI>By default, executes any method call on that $dbh on each underlying $dbh in turn
 </UL></UL><UL>
-<LI><H2><A HREF="http://www.perl.com/CPAN/authors/id/TIMB/DBI_Talk1_1997.tar.gz">http://www.perl.com/</A><A HREF="http://www.perl.com/CPAN/authors/id/TIMB/DBI_IntroTalk_2002.tar.gz">CPAN</A><A HREF="http://www.perl.com/CPAN/authors/id/TIMB/DBI_Talk1_1997.tar.gz">/authors/id/TIMB/DBI_IntroTalk_2002.tar.gz</A>
+<LI><H2>Can be configured to
 </H2>
 <UL>
-<LI>The “Introduction to the DBI” tutorial
-</UL></UL><UL>
-<LI><H2><A HREF="http://www.perl.com/CPAN/authors/id/TIMB/DBI_Talk2_1998.tar.gz">http://www.perl.com/CPAN/authors/id/</A><A HREF="http://www.perl.com/CPAN/authors/id/TIMB/DBI_AdvancedTalk_2002.tar.gz">TIMB</A><A HREF="http://www.perl.com/CPAN/authors/id/TIMB/DBI_Talk2_1998.tar.gz">/DBI_AdvancedTalk_2002.tar.gz</A>
-</H2>
+<LI>modify (insert, update, …) only master db, select from one replica at random
+<LI>modify all databases but select from one ("poor man's replication")
+<LI>fallback to alternate database if primary is unavailable
+<LI>pick database for select at random to distribute load
+<LI>concatenate select results from multiple databases (effectively a 'union' select)
+<LI>return row counts/errors from non-select statements as select results
 <UL>
-<LI>This “Advanced DBI” tutorial (updated each year)
+<LI>one row for each underlying database
+</UL><LI>May also acquire fancy caching, retry, and other smart logic in the future
 </UL></UL><UL>
-<LI><H2><A HREF="http://www.oreilly.com/catalog/perldbi/">http://www.oreilly.com/catalog/perldbi/
+<LI><H2>Watch this space: <A HREF="http://search.cpan.org/search?dist=DBD-Multiplex">http://search.cpan.org/search?dist=DBD-Multiplex</A><A HREF="ftp://not.tdlc.com/pub/Multiplex.pm">
 </A></H2>
 <UL>
-<LI>or <A HREF="http://www.amazon.com/exec/obidos/ASIN/1565926994/dbi">http://www.amazon.com/exec/obidos/ASIN/1565926994/dbi</A>
-<LI>“Programming the Perl DBI” - The DBI book!</UL></UL></P>
+<LI>developed by Thomas Kishel and Tim Bunce
+<LI>currently undergoing a significant redevelopment</UL></UL></P>
 <P></P> 
 <P>
 <TABLE>

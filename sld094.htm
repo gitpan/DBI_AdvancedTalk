@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>What’s planned? (some other stuff)</TITLE> 
+ <TITLE>The practical realities</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld093.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld095.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld102.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld094.htm">Text</A>&nbsp;&nbsp;
@@ -25,45 +25,33 @@
          <IMG SRC="img094.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 94 of 96</P>
+<P>Slide 94 of 102</P>
 </CENTER>
 <!-- <UL>
-<H2>What’s planned? (some other stuff)</H2>
+<H2>The practical realities</H2>
 </UL></P>
 <P><UL>
-<LI><H2>Faster database and statement handle creation
-</H2>
-</UL><UL>
-<LI><H2>Add stackable pre and post method dispatch hooks
+<LI><H2>Modes of operation
 </H2>
 <UL>
-<LI>will enable all sorts of interesting ‘plug-ins’ for the DBI
+<LI>Multi-threaded Mode - one thread per connection
 <UL>
-<LI>monitoring, tracing, benchmarking, logging etc
+<LI>DBI supports threads in perl 5.6 but recent 5.8.x recommended
+<LI>Threads are still not recommended for production use with the DBI
+</UL><LI>Forking Mode - one process per connection
+<UL>
+<LI>Most practical mode for UNIX-like systems
+<LI>Doesn’t scale well to large numbers of connections
+<LI>For is emulated on windows using threads - so see above.
+</UL><LI>Single Connection Mode - only one connection per proxy server process
+<UL>
+<LI>Would need to start many processes to allow many connections
+<LI>Mainly for testing
+<LI>
 <LI>
 </UL></UL></UL><UL>
-<LI><H2>$h-&#062swap_internal_handle($other_h)
-</H2>
-<UL>
-<LI>Brain transplants for handles! Opens the way for some cute features like
-<UL>
-<LI>lazy connect and lazy prepare
-<LI>reconnect to database but still use original handle
-<LI>
-</UL></UL></UL><UL>
-<LI><H2>Add $sth-&#062fetch_scroll()
-</H2>
-</UL><UL>
-<LI><H2>Rename  finish() to discard_pending_results()
-</H2>
-<UL>
-<LI>only half joking, I’d leave finish as an alias!
-</UL></UL><UL>
-<LI><H2>Think about Perl6 (supporting driver migration etc.) ...
-</H2>
-<UL>
-<LI>
-</UL></UL></P>
+<H2>_</H2>
+</UL></P>
 <P>  -->
 </Body>
 </HTML>

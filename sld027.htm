@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>Attribution</TITLE> 
+ <TITLE>Attribution - For Methods</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld026.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld028.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld102.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld027.htm">Text</A>&nbsp;&nbsp;
@@ -25,47 +25,36 @@
          <IMG SRC="img027.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 27 of 96</P>
+<P>Slide 27 of 102</P>
 </CENTER>
 <!-- <UL>
-<H2>Attribution</H2>
+<H2>Attribution - For Methods</H2>
 </UL></P>
 <P><UL>
-<LI><H2>Two kinds: Handle Attributes and Method Attributes
+<LI><H2>Two kinds of attributes: Handle Attributes and Method Attributes
 </H2>
 </UL><UL>
 <LI><H2>
 </H2>
 </UL><UL>
-<LI><H2>A DBI handle is a reference to a hash
-</H2>
-</UL><UL>
-<LI><H2>Handle Attributes can be read or set by accessing the hash
-</H2>
-<UL>
-$h-&#062{AutoCommit} = 0;
-<BR><BR>$autocomitting = $h-&#062{AutoCommit};
-</UL></UL><UL>
-<LI><H2>Some attributes are read-only
-</H2>
-<UL>
-$sth-&#062{NUM_OF_FIELDS} = 42; # fatal error
-<BR></UL>
-</UL><UL>
 <LI><H2>Many DBI methods take an ‘attributes’ parameter
 </H2>
 <UL>
 <LI>in the form of a reference to a hash of key-value pairs
+<LI>
 </UL></UL><UL>
 <LI><H2>The attributes parameter is typically used to provide ‘hints’ to the driver
 </H2>
 <UL>
-<LI>Unrecognised attributes are ignored
+<LI>Unrecognised attributes are simply ignored
+<LI>So invalid attribute name (like typos) won't be caught
+<LI>
 </UL></UL><UL>
 <LI><H2>The method attributes are generally unrelated to handle attributes
 </H2>
 <UL>
-<LI>The DBI-&#062connect(…) method is an exception</UL></UL></P>
+<LI>The connect() method is an exception
+<LI>In DBI v2 prepare() will also accept handle attributes for the new handle</UL></UL></P>
 <P>  -->
 </Body>
 </HTML>

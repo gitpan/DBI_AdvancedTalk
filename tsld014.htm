@@ -4,13 +4,46 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>PPT Slide</TITLE> 
+ <TITLE>Changing plans (hint hint)</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>PPT Slide</H1> 
- <P></P> 
+ <H1>Changing plans (hint hint)</H1> 
+ <P><UL>
+<LI><H2>Most database systems provide a way to influence the execution plan
+</H2>
+<UL>
+<LI>typically via ‘hints’
+<LI>
+</UL></UL><UL>
+<LI><H2>Oracle supports a very large and complex range of hints
+</H2>
+<UL>
+<LI>Hints must be contained within special comments /*+ … */
+<LI>
+<BR>	SELECT /*+ INDEX(table1 index1) */ foo, bar
+<BR>	FROM table1 WHERE key1=1 AND key2=2 AND key3=3;
+<BR>		
+</UL></UL><UL>
+<LI><H2>MySQL has a very limited set of hints
+</H2>
+<UL>
+<LI>Hints can optionally be placed inside comments /*! … */
+<LI>
+<BR>	SELECT foo, bar FROM table1 /*! USE INDEX (key1,key2) */
+<BR>	WHERE key1=1 AND key2=2 AND key3=3;
+<LI>
+</UL></UL><UL>
+<LI><H2>Use sparingly! Generally as a last resort.
+</H2>
+<UL>
+<LI>A hint may help now but later schema (or data) changes may make it worse.
+<LI>Usually best to let the optimizer do its job
+</UL></UL><UL>
+<H2>.</H2>
+</UL></P>
+<P></P> 
 <P>
 <TABLE>
   <TD HEIGHT=100 WIDTH=100> <A HREF="tsld013.htm">Previous slide</A> </TD>

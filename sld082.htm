@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>The Power of the Proxy,</TITLE> 
+ <TITLE>SQL Portability - Data Types</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld081.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld083.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld102.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld082.htm">Text</A>&nbsp;&nbsp;
@@ -25,17 +25,38 @@
          <IMG SRC="img082.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 82 of 96</P>
+<P>Slide 82 of 102</P>
 </CENTER>
 <!-- <UL>
-<H2>The Power of the Proxy, Flexing the Multiplex,and a Pure-Perl DBI!</H2>
+<H2>SQL Portability - Data Types</H2>
 </UL></P>
 <P><UL>
-<H2>Thin clients, high availability ...
+<LI><H2>For raw information about data types supported by the driver:
+</H2>
+<UL>
+
+<BR><BR>$type_info_data = $dbh-&#062type_info_all(…);
+</UL></UL><UL>
+<LI><H2>
 </H2>
 </UL><UL>
-<H2>and other buzz words</H2>
-</UL></P>
+<LI><H2>To map data type codes to names:
+</H2>
+<UL>
+<LI>
+<BR>$sth = $dbh-&#062prepare(“select foo, bar from tablename”);
+<BR>$sth-&#062execute;
+<BR>for my $i (0 .. $sth-&#062{NUM_OF_FIELDS}) {printf ”Column name %s: Column type name: %s”,    $sth-&#062{NAME}-&#062[$i],    $dbh-&#062type_info( $sth-&#062{TYPE} )-&#062{TYPE_NAME};
+<BR>}
+<BR>
+</UL></UL><UL>
+<LI><H2>To select the nearest type supported by the database:
+</H2>
+<UL>
+<LI>
+<BR>$my_date_type = $dbh-&#062type_info( [ SQL_DATE, SQL_TIMESTAMP ] );
+<BR>$my_smallint_type = $dbh-&#062type_info( [ SQL_SMALLINT, SQL_INTEGER, SQL_DECIMAL ] );
+</UL></UL></P>
 <P>  -->
 </Body>
 </HTML>

@@ -4,39 +4,40 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Keep a handle on your databases</TITLE> 
+ <TITLE>Some prepare_cached() issues</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Keep a handle on your databases</H1> 
+ <H1>Some prepare_cached() issues</H1> 
  <P><UL>
-<LI><H2>Connecting to a database can be slow
+<LI><H2>A cached statement handle may still be Active
 </H2>
 <UL>
-<LI>Oracle especially so
+<LI>because some other code is still fetching from it
+<LI>or didn't fetch all the rows (and didn't didn't call finish)
+<LI>perhaps due to an exception
+<LI>
 </UL></UL><UL>
-<LI><H2>
-</H2>
-</UL><UL>
-<LI><H2>Try to connect once and stay connected where practical
+<LI><H2>Default behavior for prepare_cached()
 </H2>
 <UL>
-<LI>We'll discuss web server issues later
+<LI>if Active then warn and call finish()
+<LI>
 </UL></UL><UL>
-<LI><H2>
-</H2>
-</UL><UL>
-<LI><H2>The connect_cached() method … 
+<LI><H2>Rarely an issue in practice
 </H2>
 <UL>
-<LI>Acts like prepare_cached() but for database handles
-<LI>Like prepare_cached(), it’s handy for library code
-<LI>It also checks the connection and automatically reconnects if it's broken
-<LI>Works well combined with prepare_cached(), see following example
+<LI>
 </UL></UL><UL>
-<H2>.</H2>
-</UL></P>
+<LI><H2>But if it is
+</H2>
+<UL>
+<LI>Alternative behaviors are available via the $is_active parameter
+<UL>
+prepare_cached($sql, \%attr, $if_active)
+<BR></UL><LI>See the docs for details
+</UL></UL></P>
 <P></P> 
 <P>
 <TABLE>

@@ -4,48 +4,38 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Web DBI - Tips for the novice</TITLE> 
+ <TITLE>Web DBI - State-less-ness</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Web DBI - Tips for the novice</H1> 
+ <H1>Web DBI - State-less-ness</H1> 
  <P><UL>
-<LI><H2>Test one step at a time
+<LI><H2>No fixed client-server pair
 </H2>
 <UL>
-<LI>Test perl + DBI + DBD driver outside the web server first
-<LI>Test web server + non-DBI CGI next
+<LI>Each request can be handled by a different process.
+<LI>So can't simply stop fetching rows from $sth when one page is complete and continue fetching from the same $sth when the next page is requested.
+<LI>And transactions can't span requests.
+<LI>Even if they could you'd have problems with database locks being held etc.
 </UL></UL><UL>
-<LI><H2>Remember that CGI scripts run as a different user with a different environment
+<LI><H2>Need access to 'accumulated state' somehow: 
 </H2>
 <UL>
-<LI>expect to be tripped up by that
+<LI>via the client (e.g., hidden form fields - simple but insecure)
+<UL>
+<LI>Can be made safer using encryption or extra field with checksum (e.g. MD5 hash)
+</UL><LI>via the server:
+<UL>
+<LI>requires a session id (via cookie or url)
+<LI>in the database (records in a session_state table keyed the session id)
+<LI>in the web server file system (DBM files etc) if shared across servers
+<LI>Need to purge old state info if stored on server, so timestamp it
+<LI>See Apache::Session module
+</UL><LI>DBI::ProxyServer + connect_cached with session id may suit, one day
 </UL></UL><UL>
-<LI><H2>DBI $h-&#062trace($level, $filename) is your friend
-</H2>
-<UL>
-<LI>use it!
-</UL></UL><UL>
-<LI><H2>Use the perl "-w" and "-T" options.
-</H2>
-<UL>
-<LI>Always "use strict;" everywhere
-</UL></UL><UL>
-<LI><H2>Read and inwardly digest the WWW Security FAQ:  
-</H2>
-<UL>
-<LI><A HREF="http://www.w3.org/Security/Faq/www-security-faq.html">http://www.w3.org/Security/Faq/www-security-faq.html
-</A></UL></UL><UL>
-<LI><H2>Read the CGI related Perl FAQs:
-</H2>
-<UL>
-<LI><A HREF="http://www.perl.com/perl/faq/">http://www.perl.com/perl/faq/
-</A></UL></UL><UL>
-<LI><H2>And if using Apache, read the mod_perl information available from:
-</H2>
-<UL>
-<LI><A HREF="http://perl.apache.org/">http://perl.apache.org</A></UL></UL></P>
+<H2>.</H2>
+</UL></P>
 <P></P> 
 <P>
 <TABLE>

@@ -4,34 +4,38 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Then, some more detail...</TITLE> 
+ <TITLE>First, the simple stuff...</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Then, some more detail...</H1> 
+ <H1>First, the simple stuff...</H1> 
  <P><UL>
-<LI><H2>If  $sth-&#062execute(…) specifies any values, it must specify them all
+<LI><H2>After calling prepare() on a statement with placeholders:
+</H2>
+<UL>
+$sth = $dbh-&#062prepare(“select * from table where k1=? and k2=?”);
+<BR><UL>
+<LI>
+</UL></UL></UL><UL>
+<LI><H2>Values need to be assigned (‘bound’) to each placeholder before the database can execute the statement
 </H2>
 <UL>
 <LI>
 </UL></UL><UL>
-<LI><H2>Bound values are sticky across multiple executions:
+<LI><H2>Either at execute, for simple cases:
+</H2>
+<UL>
+$sth-&#062execute($p1, $p2);
+<BR><UL>
+<LI>
+</UL></UL></UL><UL>
+<LI><H2>or before execute:
 </H2>
 <UL>
 $sth-&#062bind_param(1, $p1);
-<BR><BR>foreach my $p2 (@p2) {
-<BR>  $sth-&#062bind_param(2, $p2);
-<BR>  $sth-&#062execute;
-<BR>}
-<BR>	
-</UL></UL><UL>
-<LI><H2>The currently bound values are retrievable using:
-</H2>
-<UL>
-%bound_values = %{ $sth-&#062{ParamValues} };
-<BR><UL>
-<LI>New DBI feature, added in 1.28, not implemented by all drivers yet</UL></UL></UL></P>
+<BR><BR>$sth-&#062bind_param(2, $p2);
+<BR>$sth-&#062execute;</UL></UL></P>
 <P></P> 
 <P>
 <TABLE>

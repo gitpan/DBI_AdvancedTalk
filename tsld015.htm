@@ -4,41 +4,43 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Changing plans (hint hint)</TITLE> 
+ <TITLE>Respect your server's SQL cache</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Changing plans (hint hint)</H1> 
+ <H1>Respect your server's SQL cache</H1> 
  <P><UL>
-<LI><H2>Most database systems provide some way to influence the execution plan - typically via ‘hints’
+<LI><H2>Optimised Access Plan and related data
 </H2>
 <UL>
+<LI>is cached within the server (for Oracle etc, but not MySQL etc)
+<LI>keyed by the exact original SQL string used
 <LI>
 </UL></UL><UL>
-<LI><H2>Oracle supports a very large and complex range of hints
+<LI><H2>Compare	do("insert … $id");
 </H2>
 <UL>
-<LI>Hints must be contained within special comments /*+ … */
-<UL>
-	
-<BR></UL></UL></UL><UL>
-<H2>		SELECT /*+ INDEX(table1 index1) */ foo, bar
+        with	do("insert … ?", undef, $id);
+<BR><UL>
+<LI>
+</UL></UL></UL><UL>
+<LI><H2>Without placeholders, SQL string varies each time
 </H2>
 <UL>
-		FROM table1 WHERE key1=1 AND key2=2 AND key3=3;
-<BR><BR>		
+<LI>so cached one is not reused
+<LI>so time is wasted creating a new access plan
+<LI>the new statement and access plan are added to cache
+<LI>so the cache fills and other statements get pushed out
+<LI>on a busy system this can lead to ‘thrashing’
+<LI>
 </UL></UL><UL>
-<LI><H2>MySQL has a very limited set of hints
+<LI><H2>Oracle now has a way to avoid/reduce this problem
 </H2>
 <UL>
-<LI>Hints can optionally be placed inside comments /*! … */
+<LI>it can effectively replace literal constants with placeholders
+<LI>but the quality of query execution plans can suffer
 </UL></UL><UL>
-<H2>		SELECT foo, bar FROM table1 /*! USE INDEX (key1,key2) */
-</H2>
-<UL>
-		WHERE key1=1 AND key2=2 AND key3=3;
-<BR></UL></UL><UL>
 <H2>.</H2>
 </UL></P>
 <P></P> 

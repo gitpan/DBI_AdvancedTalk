@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>Attribution</TITLE> 
+ <TITLE>Attribution - For Handles</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld025.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld027.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld102.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld026.htm">Text</A>&nbsp;&nbsp;
@@ -25,14 +25,43 @@
          <IMG SRC="img026.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 26 of 96</P>
+<P>Slide 26 of 102</P>
 </CENTER>
 <!-- <UL>
-<H2>Attribution</H2>
+<H2>Attribution - For Handles</H2>
 </UL></P>
 <P><UL>
-<H2>Names and Places</H2>
-</UL></P>
+<LI><H2>Two kinds of attributes: Handle Attributes and Method Attributes
+</H2>
+<UL>
+<LI>
+</UL></UL><UL>
+<LI><H2>A DBI handle is a reference to a hash
+</H2>
+<UL>
+<LI>
+</UL></UL><UL>
+<LI><H2>Handle Attributes can be read or set by accessing the hash via the reference
+</H2>
+<UL>
+$h-&#062{AutoCommit} = 0;
+<BR><BR>$autocomitting = $h-&#062{AutoCommit};
+<BR>
+</UL></UL><UL>
+<LI><H2>Some attributes are read-only
+</H2>
+<UL>
+$sth-&#062{NUM_OF_FIELDS} = 42; # fatal error
+<BR><BR>
+</UL></UL><UL>
+<LI><H2>Using an unknown attribute triggers a warning
+</H2>
+<UL>
+		$sth-&#062{AutoCommat} = 42; # triggers a warning
+<BR><BR>		$autocomitting = $sth-&#062{AutoCommat}; # triggers a warning
+<UL>
+<LI>driver-private attributes (which have lowercase names) do not trigger a warning
+</UL></UL></UL></P>
 <P>  -->
 </Body>
 </HTML>

@@ -4,48 +4,37 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Attribution</TITLE> 
+ <TITLE>Attribution - For Methods</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Attribution</H1> 
+ <H1>Attribution - For Methods</H1> 
  <P><UL>
-<LI><H2>Two kinds: Handle Attributes and Method Attributes
+<LI><H2>Two kinds of attributes: Handle Attributes and Method Attributes
 </H2>
 </UL><UL>
 <LI><H2>
 </H2>
 </UL><UL>
-<LI><H2>A DBI handle is a reference to a hash
-</H2>
-</UL><UL>
-<LI><H2>Handle Attributes can be read or set by accessing the hash
-</H2>
-<UL>
-$h-&#062{AutoCommit} = 0;
-<BR><BR>$autocomitting = $h-&#062{AutoCommit};
-</UL></UL><UL>
-<LI><H2>Some attributes are read-only
-</H2>
-<UL>
-$sth-&#062{NUM_OF_FIELDS} = 42; # fatal error
-<BR></UL>
-</UL><UL>
 <LI><H2>Many DBI methods take an ‘attributes’ parameter
 </H2>
 <UL>
 <LI>in the form of a reference to a hash of key-value pairs
+<LI>
 </UL></UL><UL>
 <LI><H2>The attributes parameter is typically used to provide ‘hints’ to the driver
 </H2>
 <UL>
-<LI>Unrecognised attributes are ignored
+<LI>Unrecognised attributes are simply ignored
+<LI>So invalid attribute name (like typos) won't be caught
+<LI>
 </UL></UL><UL>
 <LI><H2>The method attributes are generally unrelated to handle attributes
 </H2>
 <UL>
-<LI>The DBI-&#062connect(…) method is an exception</UL></UL></P>
+<LI>The connect() method is an exception
+<LI>In DBI v2 prepare() will also accept handle attributes for the new handle</UL></UL></P>
 <P></P> 
 <P>
 <TABLE>

@@ -4,51 +4,42 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>SQL Portability - SQL Dialects</TITLE> 
+ <TITLE>DBI security tainting</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>SQL Portability - SQL Dialects</H1> 
+ <H1>DBI security tainting</H1> 
  <P><UL>
-<LI><H2>How to concatenate strings? Let me count the (incompatible) ways...
+<LI><H2>By default DBI ignores Perl tainting
 </H2>
 <UL>
-SELECT first_name || ' ' || last_name FROM table
-<BR><BR>SELECT first_name + ' ' + last_name FROM table
-<BR>SELECT first_name CONCAT ' ' CONCAT last_name FROM table
-<BR>SELECT CONCAT(first_name, ' ', last_name) FROM table
-<BR>SELECT CONCAT(first_name, CONCAT(' ', last_name)) FROM table
+<LI>doesn't taint database data returned ‘out’ of the DBI
+<LI>doesn't check that parameters passed ‘in’ to the DBI are not tainted
+</UL><LI>
+</UL><UL>
+<LI><H2>The TaintIn and TaintOut attributes enable those behaviours
+</H2>
+<UL>
+<LI>If Perl itself is in taint mode.
+<LI>
 </UL></UL><UL>
-<LI><H2>
-</H2>
-</UL><UL>
-<LI><H2>The ODBC way:     (not pretty, but portable)
+<LI><H2>Each handle has it's own inherited tainting attributes
 </H2>
 <UL>
-SELECT {fn CONCAT(first_name, {fn CONCAT(' ', last_name))}} FROM table
-<BR></UL></UL><UL>
-<H2>
-</H2>
+<LI>So can be enabled for particular connections and disabled for particular statements, for example:
+</UL>$dbh = DBI-&#062connect(…, { Taint =&#062 1 }); # enable TaintIn and TaintOut
+<BR>$sth = $dbh-&#062prepare("select * from safe_table");
+<BR>$sth-&#062{TaintOut} = 0;  # don’t taint data from this statement handle
+<BR>
 </UL><UL>
-<LI><H2>The {fn …} will be rewritten by prepare() to the required syntax via a call to
+<LI><H2>Attribute metadata currently varies in degree of tainting
 </H2>
 <UL>
-$new_sql_fragment = $dbh-&#062{Rewrite}-&#062CONCAT(”…”)
-<BR></UL></UL><UL>
-<LI><H2>
-</H2>
-</UL><UL>
-<LI><H2>Similarly for some data types:
-</H2>
-<UL>
-SELECT * FROM table WHERE date_time &#062 {ts ’2002-06-04 12:00:00’ } FROM table
-<BR><BR>$new_sql_fragment = $dbh-&#062{Rewrite}-&#062ts(’2002-06-04 12:00:00’)
+$sth-&#062{NAME};	 — generally not tainted
+<BR><BR>$dbh-&#062get_info(…);	 — may be tainted if the item of info is fetched from database
 </UL></UL><UL>
-<LI><H2>
-</H2>
-</UL><UL>
-<LI><H2>This functionality is planned but not yet implemented</H2>
+<H2>.</H2>
 </UL></P>
 <P></P> 
 <P>

@@ -17,21 +17,22 @@
 <LI>e.g., library code to lookup values from the database
 <LI>
 </UL></UL><UL>
-<LI><H2>The prepare_cached() method gives you a client side statement handle cache:
+<LI><H2>The prepare_cached() method
 </H2>
 <UL>
-
-<BR><BR>sub lookup_foo {
+<LI>gives you a client side statement handle cache:
+</UL>
+<BR>sub lookup_foo {
 <BR>    my ($dbh, $id) = @_;
 <BR>    $sth = $dbh-&#062prepare_cached("select foo from table where id=?");
 <BR>    return $dbh-&#062selectrow_array($sth, $id);
 <BR>}
 <BR>
-</UL></UL><UL>
-<LI><H2>On later calls returns the previous cached handle
+</UL><UL>
+<LI><H2>On later calls returns the previously cached handle
 </H2>
 <UL>
-<LI>for the given statement text (and any method attributes)
+<LI>for the given statement text and any method attributes
 </UL></UL><UL>
 <LI><H2>Can avoid the need for global statement handle variables
 </H2>

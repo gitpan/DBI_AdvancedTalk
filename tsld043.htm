@@ -4,35 +4,30 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Handling errors the smart way</TITLE> 
+ <TITLE>Error checking - ways and means</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Handling errors the smart way</H1> 
+ <H1>Error checking - ways and means</H1> 
  <P><UL>
-<LI><H2>Life after death:
+<LI><H2>Error checking the hard way...
 </H2>
-<UL>
-$h-&#062{RaiseError} = 1;
-<BR><BR>eval {
-<BR>	  foo();
-<BR>	  $h-&#062method;		# if it fails then the DBI calls die
-<BR>	  bar($h);		# may also call DBI methods
-<BR>};
-<BR>if ($@) {		# $@ holds error message
-<BR>	  ... handle the error here …
-<BR>}
 <UL>
 
-<BR></UL></UL></UL><UL>
-<LI><H2>Bonus prize:
+<BR><BR>$h-&#062method or die "DBI method failed: $DBI::errstr";
+<BR>$h-&#062method or die "DBI method failed: $DBI::errstr";
+<BR>$h-&#062method or die "DBI method failed: $DBI::errstr";
+<BR>
+</UL></UL><UL>
+<LI><H2>Error checking the smart way...
 </H2>
 <UL>
-<LI>Other, non-DBI, code within the eval block may also raise an exception that will be caught and can be handled cleanly
-</UL></UL><UL>
-<H2>.</H2>
-</UL></P>
+
+<BR><BR>$h-&#062{RaiseError} = 1;
+<BR>$h-&#062method;
+<BR>$h-&#062method;
+<BR>$h-&#062method;</UL></UL></P>
 <P></P> 
 <P>
 <TABLE>

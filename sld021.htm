@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>Speedy Summary</TITLE> 
+ <TITLE>Optimizing Perl - Some Tips</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld020.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld022.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld102.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld021.htm">Text</A>&nbsp;&nbsp;
@@ -25,49 +25,39 @@
          <IMG SRC="img021.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 21 of 96</P>
+<P>Slide 21 of 102</P>
 </CENTER>
 <!-- <UL>
-<H2>Speedy Summary</H2>
+<H2>Optimizing Perl - Some Tips</H2>
 </UL></P>
 <P><UL>
-<LI><H2>Think about the big picture first
+<LI><H2>Perl is fast, but not that fast...
+</H2>
+</UL><UL>
+<LI><H2>Still need to take care with apparently simple things in 'hot' code
 </H2>
 <UL>
-<LI>Partitioning, choice of tools etc
+<LI>Function/method calls have significant overheads per call.
+<LI>Copying data also isn't cheap, especially long strings (allocate and copy)
+<LI>Perl compiles to 'op codes' then executes them in a loop...
+<LI>The more ops, the slower the code (all else being roughly equal).
+<LI>Try to do more with fewer ops. Especially if you can move loops into ops.
 </UL></UL><UL>
-<LI><H2>Check and tune the access plans for your statements
+<LI><H2>Key techniques include:
 </H2>
 <UL>
-<LI>Teach your database about any uneven key distributions
+<LI>Caching at many levels, from common sub-expression elimination to web caching
+<LI>Functional programming: @result = map { … } grep { … } @data; 
 </UL></UL><UL>
-<LI><H2>Use placeholders - where supported
+<LI><H2>But don't get carried away... only optimize hot code, and only if needed
 </H2>
 <UL>
-<LI>Especially for any statements that vary and will be executed often
-</UL></UL><UL>
-<LI><H2>Replace do() in a loop
-</H2>
-<UL>
-<LI>with prepare() and execute()
-</UL></UL><UL>
-<LI><H2>Sling less data for faster row fetching
-</H2>
-<UL>
-<LI>Or sling none per row by binding columns to perl variables
-</UL></UL><UL>
-<LI><H2>Do more with less by using the DBI in the most efficient way
-</H2>
-<UL>
-<LI>Make fewer, better, DBI method calls
-</UL></UL><UL>
-<LI><H2>Other important things to consider…
-</H2>
-<UL>
-<LI>your perl code, plus hardware, operating system, and database configuration tuning
-</UL></UL><UL>
-<H2>-</H2>
-</UL></P>
-<P>  -->
+<LI>Don't optimize for performance at the cost of maintenance. Learn perl idioms.
+<LI>Beware "Compulsive Tuning Disorder" - Gaja Krishna Vaidyanatha 
+<LI>And remember that "Premature optimization is the root of all evil" - Donald Knuth</UL></UL></P>
+<P>  --><MAP NAME="Objmap">
+<AREA SHAPE=POLYGON COORDS="616, 509, 621, 509, 621, 531, 616, 531" HREF="file://C:\Documents and Settings\timbo\Desktop\DBI_AdvancedTalk_200210.ppt" >
+</MAP>
+
 </Body>
 </HTML>

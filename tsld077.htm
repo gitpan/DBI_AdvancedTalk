@@ -4,39 +4,46 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>SQL Portability - Data Types</TITLE> 
+ <TITLE>Bulk Operations</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>SQL Portability - Data Types</H1> 
+ <H1>Bulk Operations</H1> 
  <P><UL>
-<LI><H2>For raw information about data types supported by the driver:
+<LI><H2>Execute a statement for multiple values
 </H2>
 <UL>
-
-<BR><BR>$type_info_data = $dbh-&#062type_info_all(…);
-</UL></UL><UL>
-<LI><H2>
+$sth = $dbh-&#062prepare("insert into table (foo,bar) values (?,?)");
+<BR><BR>$tuples = $sth-&#062execute_array(\%attr, \@list_of_param_array_refs);
+<UL>
+<LI>returns count of executions, even ones that failed, and not rows-affected
+<LI>
+</UL></UL></UL><UL>
+<LI><H2>Explicit array binding
 </H2>
-</UL><UL>
-<LI><H2>To map data type codes to names:
-</H2>
+<UL>
+$dbh-&#062bind_param_array(1, \@array_of_foo_values, \%attr);
+<BR><BR>$dbh-&#062bind_param_array(2, \@array_of_bar_values, \%attr);
+<BR>$sth-&#062execute_array(\%attr) # uses bind_param_array values
 <UL>
 <LI>
-<BR>$sth = $dbh-&#062prepare(“select foo, bar from tablename”);
-<BR>$sth-&#062execute;
-<BR>for my $i (0 .. $sth-&#062{NUM_OF_FIELDS}) {printf ”Column name %s: Column type name: %s”,    $sth-&#062{NAME}-&#062[$i],    $dbh-&#062type_info( $sth-&#062{TYPE} )-&#062{TYPE_NAME};
-<BR>}
-<BR>
-</UL></UL><UL>
-<LI><H2>To select the nearest type supported by the database:
+</UL></UL></UL><UL>
+<LI><H2>Attributes for row-wise binding and per-tuple status:
 </H2>
 <UL>
+ArrayTupleFetch =&#062 $code_ref_or_sth	row-wise binding
+<BR><BR>ArrayTupleStatus =&#062 $array_ref		return rows-affected and errors
+<UL>
 <LI>
-<BR>$my_date_type = $dbh-&#062type_info( [ SQL_DATE, SQL_TIMESTAMP ] );
-<BR>$my_smallint_type = $dbh-&#062type_info( [ SQL_SMALLINT, SQL_INTEGER, SQL_DECIMAL ] );
-</UL></UL></P>
+</UL></UL></UL><UL>
+<LI><H2>DBI provides default methods that work for all drivers
+</H2>
+<UL>
+<LI>Some drivers support use of specific database API for very high performance 
+</UL></UL><UL>
+<H2>_</H2>
+</UL></P>
 <P></P> 
 <P>
 <TABLE>

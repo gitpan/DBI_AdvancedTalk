@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld007.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld009.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld102.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld008.htm">Text</A>&nbsp;&nbsp;
@@ -25,17 +25,21 @@
          <IMG SRC="img008.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 8 of 96</P>
+<P>Slide 8 of 102</P>
 </CENTER>
 <!-- <UL>
 <H2>Partition for speed</H2>
 </UL></P>
 <P><UL>
-<LI><H2>Application partitioning
+<LI><H2>Start at the beginning
 </H2>
 <UL>
-<LI>do what where? - stop and think - work smarter not harder
-</UL><LI>Pick the right database for the job, if you have the choice.
+<LI>Pick the right database for the job, if you have the choice.
+<LI>Understand the performance issues in schema design.
+</UL></UL><UL>
+<LI><H2>Application partitioning: Do What Where?
+</H2>
+<UL>
 <LI>Work close to the data
 <UL>
 <LI>Moving data to/from the client is always expensive
@@ -43,12 +47,12 @@
 <LI>Use stored procedures where appropriate
 <LI>Do more in SQL where appropriate - get a good book
 </UL><LI>Multiple simple queries with 'joins' in Perl may be faster.
-<LI>Use proprietary bulk-load, not Perl, where appropriate.
-<LI>Consider local caching, in memory or DBM file etc, e.g. Memoize.pm
+<LI>Proprietary bulk-load is almost always faster than Perl.
+<LI>Caching is valuable, in memory or DBM file etc, e.g. Memoize.pm
 <LI>Mix 'n Match techniques as needed
 <UL>
 <LI>experiment and do your own benchmarks
-</UL>.</UL></P>
+</UL>.</UL></UL></P>
 <P>  -->
 </Body>
 </HTML>

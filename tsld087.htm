@@ -4,37 +4,21 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>DBD::Multiplex</TITLE> 
+ <TITLE>DBI::SQL::Nano</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>DBD::Multiplex</H1> 
+ <H1>DBI::SQL::Nano</H1> 
  <P><UL>
-<LI><H2>DBD::Multiplex
+<H2>A
 </H2>
-<UL>
-<LI>Connects to multiple databases (DBI DSN's) at once and returns a single $dbh
-<LI>By default, executes any method call on that $dbh on each underlying $dbh in turn
-</UL></UL><UL>
-<LI><H2>Can be configured to:
+</UL><UL>
+<H2>"smaller than micro"
 </H2>
-<UL>
-<LI>modify (insert, update, …) only master db, select from one replica at random
-<LI>modify all databases but select from one ("poor man's replication")
-<LI>fallback to alternate database if primary is unavailable
-<LI>pick database for select at random to distribute load
-<LI>concatenate select results from multiple databases (effectively a 'union' select)
-<LI>return row counts/errors from non-select statements as select results
-<UL>
-<LI>one row for each underlying database
-</UL><LI>May also acquire fancy caching, retry, and other smart logic in the future
-</UL></UL><UL>
-<LI><H2>Watch this space: <A HREF="http://search.cpan.org/search?dist=DBD-Multiplex">http://search.cpan.org/search?dist=DBD-Multiplex</A><A HREF="ftp://not.tdlc.com/pub/Multiplex.pm">
-</A></H2>
-<UL>
-<LI>developed by Thomas Kishel and Tim Bunce
-<LI>currently undergoing a significant redevelopment</UL></UL></P>
+</UL><UL>
+<H2>SQL parser</H2>
+</UL></P>
 <P></P> 
 <P>
 <TABLE>

@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>Hot handles</TITLE> 
+ <TITLE>Sling less for speed</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld016.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld018.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld102.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld017.htm">Text</A>&nbsp;&nbsp;
@@ -25,40 +25,46 @@
          <IMG SRC="img017.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 17 of 96</P>
+<P>Slide 17 of 102</P>
 </CENTER>
 <!-- <UL>
-<H2>Hot handles</H2>
+<H2>Sling less for speed</H2>
 </UL></P>
 <P><UL>
-<LI><H2>Avoid using $dbh-&#062do(…) in a speed-critical loop
+<LI><H2>while(@row = $sth-&#062fetchrow_array) { }
 </H2>
 <UL>
-<LI>It’s usually creating and destroying a statement handle each time
+<LI>one column:   51,155 fetches per second
+<LI>20 columns:   24,032 fetches per second 
 </UL></UL><UL>
-<LI><H2>Use $sth = $dbh-&#062prepare(…)and $sth-&#062execute() instead
+<H2>
 </H2>
 </UL><UL>
-<LI><H2>Using prepare() gets a handle on the statement in the SQL cache
+<LI><H2>while($row = $sth-&#062fetchrow_arrayref) { }
 </H2>
 <UL>
-<LI>Avoids a round-trip to server for SQL cache check on each use
+<LI>one column:   58,653 fetches per second  - approximately 12% faster
+<LI>20 columns:   49,390 fetches per second  - approximately 51% faster
 </UL></UL><UL>
-<LI><H2>For example…  convert looped
+<H2>
+</H2>
+</UL><UL>
+<LI><H2>while($row = shift(@$rowcache)  || shift(@{$rowcache=$sth-&#062fetchall_arrayref(undef, $max_rows)})) { }
 </H2>
 <UL>
-                 $dbh-&#062do("insert … ?", undef, $id)
-<BR><BR>       into    $sth = $dbh-&#062prepare("insert … ?”) before the loop
-<BR>       and    $sth-&#062execute($id) inside the loop
+<LI>one column:   348,140 fetches per second - by far the fastest!
+<LI>20 columns:     42,128 fetches per second - now slower than fetchrow_arrayref!
+<LI>Why? Balance time saved making fewer calls with time spent managing more memory
+<LI>Do your own benchmarks to find what works best for your situations
 </UL></UL><UL>
-<LI><H2>This often gives a significant performance boost
+<H2>
+</H2>
+</UL><UL>
+<LI><H2>Notes:
 </H2>
 <UL>
-<LI>even where placeholders are emulated, such as the current DBD::mysql
-<LI>because it avoids statement handle creation overhead
-</UL></UL><UL>
-<H2>.</H2>
-</UL></P>
+<LI>Tests used DBD::mysql on 100,000 rows with fields 9 chars each. $max_rows=1000;
+<LI>Time spent inside fetchrow_* method is approximately 0.000011s (~90,000 per second)</UL></UL></P>
 <P>  -->
 </Body>
 </HTML>

@@ -1,0 +1,55 @@
+
+<HTML>
+
+<HEAD>
+
+<meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
+ <TITLE>DBI v2 - Other Changes</TITLE> 
+</HEAD>
+
+<BODY     >
+
+ <H1>DBI v2 - Other Changes</H1> 
+ <P><UL>
+<LI><H2>Framework for comprehensive test suite
+</H2>
+<UL>
+<LI>Installable and reusable by drivers for compliance testing
+<LI>
+</UL></UL><UL>
+<LI><H2>Define expected UTF-8 behaviour
+</H2>
+<UL>
+<LI>Basically drivers need to set UTF8 flag on results when appropriate
+<LI>
+</UL></UL><UL>
+<LI><H2>More hooks
+</H2>
+<UL>
+$sth-&#062{OnRowFetch} = sub { … };
+<BR><BR>bind_col($n, \$foo, { OnColFetch =&#062 sub { ... } });
+<BR>
+</UL></UL><UL>
+<LI><H2>Way to specify default bind_col() attributes for each TYPE
+</H2>
+<UL>
+$dbh-&#062{BindColumnTypes} = {
+<BR><BR>	SQL_DATE =&#062 SQL_DATE,
+<BR>	SQL_DATETIME =&#062 { TYPE =&#062 SQL_DATETIME, OnFetch =&#062 \&foo },
+<BR>};
+</UL></UL></P>
+<P></P> 
+<P>
+<TABLE>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld098.htm">Previous slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=100> <A HREF="tsld100.htm">Next slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="tsld001.htm">Back to first slide</A> </TD>
+  <TD HEIGHT=100 WIDTH=150> <A HREF="sld099.htm">View graphic version</A> </TD>
+</TABLE>
+<BR>
+</P>
+
+
+
+</Body>
+</HTML>

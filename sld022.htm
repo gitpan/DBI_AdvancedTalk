@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>Optimizing Perl - Some Tips</TITLE> 
+ <TITLE>Profiling DBI Performance</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld021.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld023.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld102.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld022.htm">Text</A>&nbsp;&nbsp;
@@ -25,39 +25,17 @@
          <IMG SRC="img022.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 22 of 96</P>
+<P>Slide 22 of 102</P>
 </CENTER>
 <!-- <UL>
-<H2>Optimizing Perl - Some Tips</H2>
+<H2>Profiling DBI Performance</H2>
 </UL></P>
 <P><UL>
-<LI><H2>Perl is fast, but not that fast...
+<H2>Time flies like an arrow
 </H2>
 </UL><UL>
-<LI><H2>Still need to take care with apparently simple things in 'hot' code
-</H2>
-<UL>
-<LI>Function/method calls have 'significant' overheads per call.
-<LI>Copying data also isn't cheap, especially long strings (allocate and copy)
-<LI>Perl compiles to 'op codes' then executes them in a loop...
-<LI>The more ops, the slower the code (all else being roughly equal).
-<LI>Try to do more with fewer ops. Especially if you can move loops into ops.
-</UL></UL><UL>
-<LI><H2>Key techniques include:
-</H2>
-<UL>
-<LI>Caching at many levels, from common sub-expression elimination to web caching
-<LI>Functional programming: @result = map { … } grep { … } @data; 
-</UL></UL><UL>
-<LI><H2>But don't get carried away... only optimize hot code, and only if needed
-</H2>
-<UL>
-<LI>Don't optimize for performance at the cost of maintenance. Learn perl idioms.
-<LI>Beware "Compulsive Tuning Disorder" - Gaja Krishna Vaidyanatha 
-<LI>And remember that "Premature optimization is the root of all evil" - Donald Knuth</UL></UL></P>
-<P>  --><MAP NAME="Objmap">
-<AREA SHAPE=POLYGON COORDS="616, 509, 621, 509, 621, 531, 616, 531" HREF="file://C:\Documents and Settings\timbo\Desktop\DBI_AdvancedTalk_200210.ppt" >
-</MAP>
-
+<H2>(fruit flies like a banana)</H2>
+</UL></P>
+<P>  -->
 </Body>
 </HTML>

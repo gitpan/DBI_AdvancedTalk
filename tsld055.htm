@@ -4,37 +4,39 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Setting the scene</TITLE> 
+ <TITLE>Transactions - Further comments</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Setting the scene</H1> 
+ <H1>Transactions - Further comments</H1> 
  <P><UL>
-<LI><H2>Inner and outer worlds
+<LI><H2>The eval { … } catches all exceptions
 </H2>
 <UL>
-<LI>Application and Drivers
-<LI>
+<LI>not just from DBI calls. Also catches fatal runtime errors from Perl
 </UL></UL><UL>
-<LI><H2>Inner and outer handles
+<LI><H2>Put commit() inside the eval
 </H2>
 <UL>
-<LI>DBI handles are references to tied hashes
-<LI>
+<LI>ensures commit failure is caught cleanly
+<LI>remember that commit itself may fail for many reasons
 </UL></UL><UL>
-<LI><H2>The DBI Method Dispatcher
+<LI><H2>Don't forget that rollback() may also fail
 </H2>
 <UL>
-<LI>gateway between the inner and outer worlds, and the heart of the DBI
+<LI>due to database crash or network failure etc.
+<LI>so you'll probably want to use eval { $dbh-&#062rollback };
 </UL></UL><UL>
-<LI><H2>
+<LI><H2>Other points:
 </H2>
-</UL><UL>
-<LI><H2>
-</H2>
-</UL><UL>
-<H2>… Now we'll go all deep and visual for a while...</H2>
+<UL>
+<LI>Always explicitly commit or rollback before disconnect
+<LI>Destroying a connected $dbh should always rollback
+<LI>END blocks can catch exit-without-disconnect to rollback and disconnect cleanly
+<LI>You can use ($dbh && $dbh-&#062{Active}) to check if still connected
+</UL></UL><UL>
+<H2>-</H2>
 </UL></P>
 <P></P> 
 <P>

@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>Custom Error Handling</TITLE> 
+ <TITLE>Catching the Exception</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld044.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld046.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld102.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld045.htm">Text</A>&nbsp;&nbsp;
@@ -25,40 +25,35 @@
          <IMG SRC="img045.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 45 of 96</P>
+<P>Slide 45 of 102</P>
 </CENTER>
 <!-- <UL>
-<H2>Custom Error Handling</H2>
+<H2>Catching the Exception</H2>
 </UL></P>
 <P><UL>
-<LI><H2>Don’t want to just Print or Raise an Error?
+<LI><H2>Life after death
 </H2>
 <UL>
-<LI>Now you can Handle it as well…
+$h-&#062{RaiseError} = 1;
+<BR><BR>eval {
+<BR>	  foo();
+<BR>	  $h-&#062method;		# if it fails then the DBI calls die
+<BR>	  bar($h);		# may also call DBI methods
+<BR>};
+<BR>if ($@) {		# $@ holds error message
+<BR>	  ... handle the error here …
+<BR>}
 <UL>
-$h-&#062{HandleError} = sub { … };
-<BR><BR>
-</UL></UL></UL><UL>
-<LI><H2>The HandleError code
+
+<BR></UL></UL></UL><UL>
+<LI><H2>Bonus
 </H2>
 <UL>
-<LI>is called just before PrintError/RaiseError are handled
-<LI>it’s passed
-<UL>
-<LI>the error message string that RaiseError/PrintError would use
-<LI>the DBI handle being used
-<LI>the first value being returned by the method that failed (typically undef)
-</UL><LI>if it returns false then RaiseError/PrintError are checked and acted upon as normal
+<LI>Other, non-DBI, code within the eval block may also raise an exception
+<LI>that will also be caught and can be handled cleanly
 </UL></UL><UL>
-<LI><H2>
-</H2>
-</UL><UL>
-<LI><H2>The handler code can
-</H2>
-<UL>
-<LI>alter the error message text by changing $_[0]
-<LI>use caller() or Carp::confess() or similar to get a stack trace
-<LI>use Exception or a similar module to throw a formal exception object</UL></UL></P>
+<H2>.</H2>
+</UL></P>
 <P>  -->
 </Body>
 </HTML>

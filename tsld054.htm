@@ -4,18 +4,28 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Wheels within Wheels</TITLE> 
+ <TITLE>Transactions - Example code</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Wheels within Wheels</H1> 
+ <H1>Transactions - Example code</H1> 
  <P><UL>
-<H2>The DBI architecture
-</H2>
-</UL><UL>
-<H2>and how to watch it at work</H2>
-</UL></P>
+$dbh-&#062{RaiseError} = 1;
+<BR>$dbh-&#062begin_work;      # AutoCommit off till commit/rollback
+<BR>eval {
+<BR>    $dbh-&#062method(…);   # assorted DBI calls
+<BR>    foo(...);          # application code
+<BR>    $dbh-&#062commit;      # commit the changes
+<BR>};
+<BR>if ($@) {
+<BR>    warn "Transaction aborted because $@";
+<BR>    $dbh-&#062rollback;
+<BR>    ...
+<BR>}
+</UL>
+<BR>
+<BR>.</P>
 <P></P> 
 <P>
 <TABLE>

@@ -4,45 +4,46 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Transactions - Life Preservers</TITLE> 
+ <TITLE>Information and Warnings</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Transactions - Life Preservers</H1> 
+ <H1>Information and Warnings</H1> 
  <P><UL>
-<LI><H2>Text Book:
+<LI><H2>Drivers can indicate Information and Warning states in addition to Error states
 </H2>
 <UL>
-<LI>system crash between one bank account being debited and another being credited.
-</UL></UL><UL>
-<LI><H2>Dramatic:
-</H2>
+<LI>Uses false-but-defined values of $h-&#062err and $DBI::err
+<LI>Zero "0" indicates a "warning"
+<LI>Empty "" indicates "success with information" or other messages from database
 <UL>
-<LI>power failure during update on 3 million rows when only part way through.
-</UL></UL><UL>
-<LI><H2>Real-world:
-</H2>
-<UL>
-<LI>complex series of inter-related updates, deletes and inserts on many separate tables fails at the last step due to a duplicate unique key on an insert.
 <LI>
-</UL></UL><UL>
-<LI><H2>Locking alone won’t help you in any of these situations
+</UL></UL></UL><UL>
+<LI><H2>Drivers should use $h-&#062set_err(…) method to  record info/warn/error states
 </H2>
 <UL>
-<LI>(And locking with DBD::mysql &#060 2.1027 is unsafe due to auto reconnect)
-</UL></UL><UL>
-<LI><H2>Transaction recovery would handle all these situations - automatically
+<LI>implements logic to correctly merge multiple info/warn/error states
+<LI>info/warn/error messages are appended to errstr with a newline
+<LI>$h-&#062{ErrCount} attribute is incremented whenever an error is recorded
+<UL>
+<LI>
+</UL></UL></UL><UL>
+<LI><H2>The $h-&#062{HandleSetErr} attribute can be used to influence $h-&#062set_err()
 </H2>
 <UL>
-<LI>Makes a system far more robust and trustworthy over the long term.
-</UL></UL><UL>
-<LI><H2>Use transactions if your database supports them.
+<LI>A code reference that's called by set_err and can edit its parameters
+<LI>So can promote warnings/info to errors or demote/hide errors etc.
+<LI>Called at point of error from within driver, unlike $h-&#062{HandleError}
+<UL>
+<LI>
+</UL></UL></UL><UL>
+<LI><H2>The $h-&#062{PrintWarn} attribute acts like $h-&#062{PrintError} but for warnings
 </H2>
 <UL>
-<LI>If it doesn't and you need them, switch to a different database.
+<LI>Default is on
 </UL></UL><UL>
-<H2>.</H2>
+<H2>_</H2>
 </UL></P>
 <P></P> 
 <P>

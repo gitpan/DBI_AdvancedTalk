@@ -4,42 +4,40 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>DBI::PurePerl</TITLE> 
+ <TITLE>DBI::SQL::Nano</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>DBI::PurePerl</H1> 
+ <H1>DBI::SQL::Nano</H1> 
  <P><UL>
-<LI><H2>Need to use the DBI somewhere where you can’t compile extensions?
+<LI><H2>The DBI now includes an SQL parser module: DBI::SQL::Nano
 </H2>
 <UL>
-<LI>To deliver pure-perl code to clients that might not have the DBI installed?
-<LI>On an ISP that won’t let you run extensions?
-<LI>On a Palm Pilot?
+<LI>Has an API compatible with SQL::Statement
 <LI>
 </UL></UL><UL>
-<LI><H2>The DBI::PurePerl module is an emulation of the DBI written in Perl
+<LI><H2>If SQL::Statement is installed then DBI::SQL::Nano becomes an empty subclass of SQL::Statement
 </H2>
 <UL>
-<LI>Works with pure-perl drivers, including:
-<UL>
-AnyData, CSV, Excel, LDAP, mysqlPP, Sprite, XBase, etc.
-<BR></UL><LI>plus DBD::Proxy!
+<LI>unless the DBI_SQL_NANO env var is true.
 <LI>
 </UL></UL><UL>
-<LI><H2>Enabled via the DBI_PUREPERL environment variable:
+<LI><H2>Existing DBD::File module is now shipped with the DBI
 </H2>
 <UL>
-0 - Disabled
-<BR><BR>1 - Automatically fall-back to DBI::PurePerl if DBI extension can’t be bootstrapped
-<BR>2 - Force use of DBI::PurePerl
-<BR>
+<LI>base class for simple DBI drivers
+<LI>modified to use DBI::SQL::Nano.
+<LI>
 </UL></UL><UL>
-<LI><H2>Reasonably complete emulation - enough for the drivers to work well
+<LI><H2>New DBD::DBM driver now shipped with the DBI
 </H2>
 <UL>
-<LI>See DBI::PurePerl documentation for the small-print if you want to use it</UL></UL></P>
+<LI>An SQL interface to DBM and MLDBM files using DBD::File and DBI::SQL::Nano.
+<LI>
+</UL></UL><UL>
+<LI><H2>Thanks to Jeff Zucker</H2>
+</UL></P>
 <P></P> 
 <P>
 <TABLE>

@@ -11,11 +11,15 @@
 
  <H1>Partition for speed</H1> 
  <P><UL>
-<LI><H2>Application partitioning
+<LI><H2>Start at the beginning
 </H2>
 <UL>
-<LI>do what where? - stop and think - work smarter not harder
-</UL><LI>Pick the right database for the job, if you have the choice.
+<LI>Pick the right database for the job, if you have the choice.
+<LI>Understand the performance issues in schema design.
+</UL></UL><UL>
+<LI><H2>Application partitioning: Do What Where?
+</H2>
+<UL>
 <LI>Work close to the data
 <UL>
 <LI>Moving data to/from the client is always expensive
@@ -23,12 +27,12 @@
 <LI>Use stored procedures where appropriate
 <LI>Do more in SQL where appropriate - get a good book
 </UL><LI>Multiple simple queries with 'joins' in Perl may be faster.
-<LI>Use proprietary bulk-load, not Perl, where appropriate.
-<LI>Consider local caching, in memory or DBM file etc, e.g. Memoize.pm
+<LI>Proprietary bulk-load is almost always faster than Perl.
+<LI>Caching is valuable, in memory or DBM file etc, e.g. Memoize.pm
 <LI>Mix 'n Match techniques as needed
 <UL>
 <LI>experiment and do your own benchmarks
-</UL>.</UL></P>
+</UL>.</UL></UL></P>
 <P></P> 
 <P>
 <TABLE>

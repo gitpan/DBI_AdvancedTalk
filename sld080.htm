@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>SQL Portability - Driver Capabilities</TITLE> 
+ <TITLE>Portability</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld079.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld081.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld102.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld080.htm">Text</A>&nbsp;&nbsp;
@@ -25,32 +25,17 @@
          <IMG SRC="img080.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 80 of 96</P>
+<P>Slide 80 of 102</P>
 </CENTER>
 <!-- <UL>
-<H2>SQL Portability - Driver Capabilities</H2>
+<H2>Portability</H2>
 </UL></P>
 <P><UL>
-<LI><H2>How can you tell what functionality the current driver and database support?
+<H2>A Holy Grail
 </H2>
-<UL>
-$value = $dbh-&#062get_info( … );
-<BR></UL></UL><UL>
-<LI><H2>Here’s a small sample of the information potentially available:
-</H2>
-<UL>
-<LI>AGGREGATE_FUNCTIONS  BATCH_SUPPORT  CATALOG_NAME_SEPARATOR  CONCAT_NULL_BEHAVIOR  CONVERT_DATE  CONVERT_FUNCTIONS  CURSOR_COMMIT_BEHAVIOR  CURSOR_SENSITIVITY  DATETIME_LITERALS  DBMS_NAME  DBMS_VER  DEFAULT_TXN_ISOLATION  EXPRESSIONS_IN_ORDERBY  GETDATA_EXTENSIONS  GROUP_BY  IDENTIFIER_CASE  IDENTIFIER_QUOTE_CHAR  INTEGRITY  KEYWORDS  LIKE_ESCAPE_CLAUSE  LOCK_TYPES  MAX_COLUMNS_IN_INDEX  MAX_COLUMNS_IN_SELECT  MAX_IDENTIFIER_LEN  MAX_STATEMENT_LEN  MAX_TABLES_IN_SELECT  MULT_RESULT_SETS  OJ_CAPABILITIES  PROCEDURES  SQL_CONFORMANCE  TXN_CAPABLE  TXN_ISOLATION_OPTION  UNION … 
-</UL></UL><UL>
-<LI><H2>A specific item of information is requested using its standard numeric value
-</H2>
-<UL>
-$db_version = $dbh-&#062get_info( 18 );  # 18 == SQL_DBMS_VER
-<BR></UL></UL><UL>
-<LI><H2>The standard names can be mapped to numeric values using:
-</H2>
-<UL>
-use DBI::Const::GetInfo;
-<BR><BR>$dbh-&#062get_info($GetInfoType{SQL_DBMS_VER})</UL></UL></P>
+</UL><UL>
+<H2>(to be taken with a pinch of salt)</H2>
+</UL></P>
 <P>  -->
 </Body>
 </HTML>

@@ -4,31 +4,38 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>The importance of error checking</TITLE> 
+ <TITLE>Some TYPE gotchas</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>The importance of error checking</H1> 
+ <H1>Some TYPE gotchas</H1> 
  <P><UL>
-<LI><H2>Errors happen!
+<LI><H2>Bind TYPE attribute is just a hint
 </H2>
 <UL>
-<LI>Failure happens when you don't expect errors!
-<UL>
-<LI>database crash / network disconnection
-<LI>lack of disk space for insert or select (sort space for order by)
-<LI>server math error on select (divide by zero after 10,000 rows)
-<LI>and maybe, just maybe, errors in your own code [Gasp!]
+<LI>and like all hints in the DBI, they can be ignored
+<LI>the driver is unlikely to warn you that it's ignoring an attribute
 <LI>
-</UL><LI>Beat failure by expecting errors!
-<LI>
-<LI>Detect errors early to limit effects
+</UL></UL><UL>
+<LI><H2>Many drivers only care about the number vs string distinction
+</H2>
 <UL>
-<LI>Defensive Programming, e.g., check assumptions
-<LI>Through Programming, e.g., check for errors after fetch loops
-</UL></UL></UL><UL>
-<H2>.</H2>
+<LI>and ignore other kinds of TYPE value
+<LI>
+</UL></UL><UL>
+<LI><H2>For some drivers/databases that do pay attention to the TYPE…
+</H2>
+<UL>
+<LI>using the wrong type can mean an index on the value field isn’t used
+<LI>
+</UL></UL><UL>
+<LI><H2>Some drivers let you specify private types
+</H2>
+<UL>
+$sth-&#062bind_param(1, $value, { ora_type =&#062 97 });
+<BR></UL></UL><UL>
+<H2>-</H2>
 </UL></P>
 <P></P> 
 <P>

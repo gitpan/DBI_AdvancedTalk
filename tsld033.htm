@@ -4,39 +4,36 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Some connect_cached() issues</TITLE> 
+ <TITLE>A connect_cached() example</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Some connect_cached() issues</H1> 
+ <H1>A connect_cached() example</H1> 
  <P><UL>
-<LI><H2>Because connect_cached() may return a new connection it’s important to specify all significant attributes at connect time
+<LI><H2>Compare and contrast...
 </H2>
 <UL>
-<LI>e.g., AutoCommit, RaiseError, PrintError
-<LI>So pass the same set of attributes into all connect calls
-<LI>
-<LI>
+my $dbh = DBI-&#062connect(…);
+<BR><BR>sub lookup_foo_1 {
+<BR>    my ($id) = @_;
+<BR>    $sth = $dbh-&#062prepare_cached("select foo from table where id=?");
+<BR>    return $dbh-&#062selectrow_array($sth, $id);
+<BR>}
+<BR>
 </UL></UL><UL>
-<LI><H2>Similar, but not quite the same as Apache::DBI
+<LI><H2>with...
 </H2>
 <UL>
-<LI>Doesn’t disable the disconnect() method.
-<LI>
+sub lookup_foo_2 {
+<BR><BR>    my ($id) = @_;
+<BR>    my $dbh = DBI-&#062connect_cached(…);
+<BR>    $sth = $dbh-&#062prepare_cached("select foo from table where id=?");
+<BR>    return $dbh-&#062selectrow_array($sth, $id);
+<BR>}
+<BR>
 </UL></UL><UL>
-<LI><H2>The caches can be accessed via the CachedKids handle attribute
-</H2>
-<UL>
-<LI>$dbh-&#062{CachedKids} and $dbh-&#062{Driver}-&#062{CachedKids}
-<LI>Could also be tied to implement LRU and other size-limiting caching strategies
-<UL>
-tie %{$dbh-&#062{CachedKids}}, SomeCacheModule
-<BR></UL></UL></UL><UL>
-<LI><H2>
-</H2>
-</UL><UL>
-<H2>-</H2>
+<H2>Clue: what happens if the database is restarted?</H2>
 </UL></P>
 <P></P> 
 <P>

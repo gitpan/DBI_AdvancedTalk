@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>Do more with less!</TITLE> 
+ <TITLE>Speedy Summary</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld019.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld021.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld102.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld020.htm">Text</A>&nbsp;&nbsp;
@@ -25,39 +25,48 @@
          <IMG SRC="img020.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 20 of 96</P>
+<P>Slide 20 of 102</P>
 </CENTER>
 <!-- <UL>
-<H2>Do more with less!</H2>
+<H2>Speedy Summary</H2>
 </UL></P>
 <P><UL>
-<LI><H2>Reduce the number of DBI calls
+<LI><H2>Think about the big picture first
 </H2>
 <UL>
-<LI>The DBI is fast -- but it isn’t free!
-</UL><LI>
-</UL><UL>
-<LI><H2>Using RaiseError is faster than checking return values
-</H2>
-<UL>
-<LI>and much faster than checking $DBI::err or $h-&#062err
-<LI>
+<LI>Choice of tools, schema design, partitioning, latency, etc.
 </UL></UL><UL>
-<LI><H2>Using fetchall_arrayref (or selectall_arrayref) is now much faster
+<LI><H2>Check and tune the access plans for your statements
 </H2>
 <UL>
-<LI>if using a driver extension compiled with the DBI’s Driver.xst wrapper (most are) 
-<LI>because the loop is written in C and doesn’t make a method call per row
+<LI>Teach your database about any uneven key distributions
 </UL></UL><UL>
-<LI><H2>
-</H2>
-</UL><UL>
-<LI><H2>Using fetchall_arrayref is now possible for very large result sets
+<LI><H2>Use placeholders - where supported
 </H2>
 <UL>
-<LI>new $max_rows parameter limits rows returned (and memory consumed)
-<LI>just add an outer loop to process the results in ‘batches’, or do it in-line:
-</UL>$row = shift(@$cache) || shift @{$cache=$sth-&#062fetchall_arrayref(undef,10_000)};
+<LI>Especially for any statements that vary and will be executed often
+</UL></UL><UL>
+<LI><H2>Replace do() in a loop
+</H2>
+<UL>
+<LI>with prepare() and execute()
+</UL></UL><UL>
+<LI><H2>Sling less data for faster row fetching
+</H2>
+<UL>
+<LI>Or sling none per row by binding columns to perl variables
+</UL></UL><UL>
+<LI><H2>Do more with less by using the DBI in the most efficient way
+</H2>
+<UL>
+<LI>Make fewer, better, DBI method calls
+</UL></UL><UL>
+<LI><H2>Other important things to consider…
+</H2>
+<UL>
+<LI>your perl code, plus hardware, operating system, and database configuration etc.
+</UL></UL><UL>
+<H2>-</H2>
 </UL></P>
 <P>  -->
 </Body>

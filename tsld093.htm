@@ -4,33 +4,40 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>What’s planned? (the big stuff)</TITLE> 
+ <TITLE>Thin clients and other buzz words</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>What’s planned? (the big stuff)</H1> 
+ <H1>Thin clients and other buzz words</H1> 
  <P><UL>
-<LI><H2>$h-&#062{FetchHashReuse} = 1;       or     … = {};
+<LI><H2>Proxying for remote access: "thin-client"
 </H2>
 <UL>
-<LI>Enables greatly optimized fetchrow_hashref() performance
-<UL>
-<LI>if you promise to play by the rules!
-</UL><LI>
+<LI>No need for database client code on the DBI client
 </UL></UL><UL>
-<LI><H2>$sql_new = $dbh-&#062preparse($sql_orig, $return, $accept)
+<LI><H2>Proxying for network security: "encryption"
 </H2>
 <UL>
-<LI>Gateway to extra functionality in the future, especially portability
+<LI>Can use Crypt::IDEA, Crypt::DES etc.
+</UL></UL><UL>
+<LI><H2>Proxying for "access control" and "firewalls"
+</H2>
 <UL>
-<LI>rewrite comments to suit database e.g., ‘#’ into ’-- ’
-<LI>rewrite placeholders e.g. ‘?’ into ‘%s’
-<LI>rewrite ODBC escape sequences like {fn CONCAT(…)}
-<LI>(thanks to Scott Hildreth for kick-starting this work)
-<LI>
-</UL></UL></UL><UL>
-<H2>.</H2>
+<LI>extra user/password checks, choose port number, handy for web servers
+</UL></UL><UL>
+<LI><H2>Proxying for action control
+</H2>
+<UL>
+<LI>e.g., only allow specific select or insert statements per user or host
+</UL></UL><UL>
+<LI><H2>Proxying for performance: "compression"
+</H2>
+<UL>
+<LI>Can compress data transfers using Compress::Zlib
+</UL></UL><UL>
+<H2>.
+</H2>
 </UL></P>
 <P></P> 
 <P>

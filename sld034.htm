@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>Binding (Value Bondage)</TITLE> 
+ <TITLE>Some connect_cached() issues</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld033.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld035.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld102.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld034.htm">Text</A>&nbsp;&nbsp;
@@ -25,13 +25,40 @@
          <IMG SRC="img034.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 34 of 96</P>
+<P>Slide 34 of 102</P>
 </CENTER>
 <!-- <UL>
-<H2>Binding (Value Bondage)</H2>
+<H2>Some connect_cached() issues</H2>
 </UL></P>
 <P><UL>
-<H2>Placing values in holders</H2>
+<LI><H2>Because connect_cached() may return a new connection...
+</H2>
+<UL>
+<LI>it’s important to specify all significant attributes within the connect() call
+<LI>e.g., AutoCommit, RaiseError, PrintError
+<LI>So pass the same set of attributes into all connect calls
+<LI>
+<LI>
+</UL></UL><UL>
+<LI><H2>Similar, but not quite the same as Apache::DBI
+</H2>
+<UL>
+<LI>Doesn’t disable the disconnect() method.
+<LI>
+</UL></UL><UL>
+<LI><H2>The caches can be accessed via the CachedKids handle attribute
+</H2>
+<UL>
+<LI>$dbh-&#062{CachedKids}		- for prepare_cached()
+<LI>$dbh-&#062{Driver}-&#062{CachedKids}	- for connect_cached()
+<LI>Could also be tied to implement LRU and other size-limiting caching strategies
+<UL>
+tie %{$dbh-&#062{CachedKids}}, SomeCacheModule
+<BR></UL></UL></UL><UL>
+<LI><H2>
+</H2>
+</UL><UL>
+<H2>_</H2>
 </UL></P>
 <P>  -->
 </Body>

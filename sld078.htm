@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>SQL Portability - SQL Dialects</TITLE> 
+ <TITLE>DBI security tainting</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld077.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld079.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld102.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld078.htm">Text</A>&nbsp;&nbsp;
@@ -25,50 +25,41 @@
          <IMG SRC="img078.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 78 of 96</P>
+<P>Slide 78 of 102</P>
 </CENTER>
 <!-- <UL>
-<H2>SQL Portability - SQL Dialects</H2>
+<H2>DBI security tainting</H2>
 </UL></P>
 <P><UL>
-<LI><H2>How to concatenate strings? Let me count the (incompatible) ways...
+<LI><H2>By default DBI ignores Perl tainting
 </H2>
 <UL>
-SELECT first_name || ' ' || last_name FROM table
-<BR><BR>SELECT first_name + ' ' + last_name FROM table
-<BR>SELECT first_name CONCAT ' ' CONCAT last_name FROM table
-<BR>SELECT CONCAT(first_name, ' ', last_name) FROM table
-<BR>SELECT CONCAT(first_name, CONCAT(' ', last_name)) FROM table
+<LI>doesn't taint database data returned ‘out’ of the DBI
+<LI>doesn't check that parameters passed ‘in’ to the DBI are not tainted
+</UL><LI>
+</UL><UL>
+<LI><H2>The TaintIn and TaintOut attributes enable those behaviours
+</H2>
+<UL>
+<LI>If Perl itself is in taint mode.
+<LI>
 </UL></UL><UL>
-<LI><H2>
-</H2>
-</UL><UL>
-<LI><H2>The ODBC way:     (not pretty, but portable)
+<LI><H2>Each handle has it's own inherited tainting attributes
 </H2>
 <UL>
-SELECT {fn CONCAT(first_name, {fn CONCAT(' ', last_name))}} FROM table
-<BR></UL></UL><UL>
-<H2>
-</H2>
+<LI>So can be enabled for particular connections and disabled for particular statements, for example:
+</UL>$dbh = DBI-&#062connect(…, { Taint =&#062 1 }); # enable TaintIn and TaintOut
+<BR>$sth = $dbh-&#062prepare("select * from safe_table");
+<BR>$sth-&#062{TaintOut} = 0;  # don’t taint data from this statement handle
+<BR>
 </UL><UL>
-<LI><H2>The {fn …} will be rewritten by prepare() to the required syntax via a call to
+<LI><H2>Attribute metadata currently varies in degree of tainting
 </H2>
 <UL>
-$new_sql_fragment = $dbh-&#062{Rewrite}-&#062CONCAT(”…”)
-<BR></UL></UL><UL>
-<LI><H2>
-</H2>
-</UL><UL>
-<LI><H2>Similarly for some data types:
-</H2>
-<UL>
-SELECT * FROM table WHERE date_time &#062 {ts ’2002-06-04 12:00:00’ } FROM table
-<BR><BR>$new_sql_fragment = $dbh-&#062{Rewrite}-&#062ts(’2002-06-04 12:00:00’)
+$sth-&#062{NAME};	 — generally not tainted
+<BR><BR>$dbh-&#062get_info(…);	 — may be tainted if the item of info is fetched from database
 </UL></UL><UL>
-<LI><H2>
-</H2>
-</UL><UL>
-<LI><H2>This functionality is planned but not yet implemented</H2>
+<H2>.</H2>
 </UL></P>
 <P>  -->
 </Body>

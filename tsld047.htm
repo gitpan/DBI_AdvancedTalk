@@ -4,18 +4,41 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Transactions</TITLE> 
+ <TITLE>Custom Error Handling</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Transactions</H1> 
+ <H1>Custom Error Handling</H1> 
  <P><UL>
-<H2>To do or to undo,
+<LI><H2>Don’t want to just Print or Raise an Error?
+</H2>
+<UL>
+<LI>Now you can Handle it as well…
+<UL>
+$h-&#062{HandleError} = sub { … };
+<BR><BR>
+</UL></UL></UL><UL>
+<LI><H2>The HandleError code
+</H2>
+<UL>
+<LI>is called just before PrintError/RaiseError are handled
+<LI>it’s passed
+<UL>
+<LI>the error message string that RaiseError/PrintError would use
+<LI>the DBI handle being used
+<LI>the first value being returned by the method that failed (typically undef)
+</UL><LI>if it returns false then RaiseError/PrintError are checked and acted upon as normal
+</UL></UL><UL>
+<LI><H2>
 </H2>
 </UL><UL>
-<H2>that is the question</H2>
-</UL></P>
+<LI><H2>The handler code can
+</H2>
+<UL>
+<LI>alter the error message text by changing $_[0]
+<LI>use caller() or Carp::confess() or similar to get a stack trace
+<LI>use Exception or a similar module to throw a formal exception object</UL></UL></P>
 <P></P> 
 <P>
 <TABLE>

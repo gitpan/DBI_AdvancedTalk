@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>Respect your server's SQL cache</TITLE> 
+ <TITLE>Hot handles</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld015.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld017.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld102.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld016.htm">Text</A>&nbsp;&nbsp;
@@ -25,40 +25,37 @@
          <IMG SRC="img016.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 16 of 96</P>
+<P>Slide 16 of 102</P>
 </CENTER>
 <!-- <UL>
-<H2>Respect your server's SQL cache</H2>
+<H2>Hot handles</H2>
 </UL></P>
 <P><UL>
-<LI><H2>Optimised Access Plan etc. is cached within the server
+<LI><H2>Avoid using $dbh-&#062do(…) in a speed-critical loop
 </H2>
 <UL>
-<LI>keyed by the exact original SQL string used
-<LI>
+<LI>It’s usually creating and destroying a statement handle each time
 </UL></UL><UL>
-<LI><H2>Compare	do("insert … $id");
+<LI><H2>Use $sth = $dbh-&#062prepare(…)and $sth-&#062execute() instead
+</H2>
+</UL><UL>
+<LI><H2>Using prepare() gets a handle on the statement in the SQL cache
 </H2>
 <UL>
-        with	do("insert … ?", undef, $id);
-<BR><UL>
-<LI>
-</UL></UL></UL><UL>
-<LI><H2>Without placeholders, SQL string varies each time
-</H2>
-<UL>
-<LI>so cached one is not reused
-<LI>so time is wasted creating a new access plan
-<LI>the new statement and access plan are added to cache
-<LI>so the cache fills and other statements get pushed out
-<LI>on a busy system this can lead to ‘thrashing’
-<LI>
+<LI>Avoids a round-trip to server for SQL cache check on each use
 </UL></UL><UL>
-<LI><H2>Oracle now has a way to avoid/reduce this problem
+<LI><H2>For example…  convert looped
 </H2>
 <UL>
-<LI>it can effectively replace literal constants with placeholders
-<LI>but the quality of query execution plans can suffer
+                 $dbh-&#062do("insert … ?", undef, $id)
+<BR><BR>       into    $sth = $dbh-&#062prepare("insert … ?”) before the loop
+<BR>       and    $sth-&#062execute($id) inside the loop
+</UL></UL><UL>
+<LI><H2>This often gives a significant performance boost
+</H2>
+<UL>
+<LI>even where placeholders are emulated, such as the current DBD::mysql
+<LI>because it avoids statement handle creation overhead
 </UL></UL><UL>
 <H2>.</H2>
 </UL></P>
