@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>The Power of the Proxy,</TITLE> 
+ <TITLE>SQL Portability - Metadata</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld080.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld082.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld093.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld081.htm">Text</A>&nbsp;&nbsp;
@@ -25,16 +25,33 @@
          <IMG SRC="img081.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 81 of 93</P>
+<P>Slide 81 of 96</P>
 </CENTER>
 <!-- <UL>
-<H2>The Power of the Proxy, Flexing the Multiplex,and a Pure-Perl DBI!</H2>
+<H2>SQL Portability - Metadata</H2>
 </UL></P>
 <P><UL>
-<H2>Thin clients, high availability ...
+<LI><H2>Getting data about your data:
 </H2>
-</UL><UL>
-<H2>and other buzz words</H2>
+<UL>
+$sth = $dbh-&#062table_info( ... )
+<BR><UL>
+<LI>Now allows parameters to qualify which tables you want info on
+</UL>$sth = $dbh-&#062column_info($cat, $schema, $table, $col);
+<UL>
+<LI>Returns information about the columns of a table
+</UL>$sth = $dbh-&#062primary_key_info($cat, $schema, $table);
+<UL>
+<LI>Returns information about the primary keys of a table
+</UL>@keys = $dbh-&#062primary_key($cat, $schema, $table);
+<UL>
+<LI>Simpler way to return information about the primary keys of a table
+</UL>$sth = $dbh-&#062foreign_key_info($pkc, $pks, $pkt, $fkc, $fks, $fkt);
+<UL>
+<LI>Returns information about foreign keys
+<LI>
+</UL></UL></UL><UL>
+<LI><H2>These, and the features on the previous “SQL Portability” slides, are all fairly new so may not be supported by your driver yet. If not… offer to help implement them!</H2>
 </UL></P>
 <P>  -->
 </Body>

@@ -4,43 +4,36 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Transactions - Life Preservers</TITLE> 
+ <TITLE>Transactions - What's it all about? </TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Transactions - Life Preservers</H1> 
+ <H1>Transactions - What's it all about? </H1> 
  <P><UL>
-<LI><H2>Text Book:
-</H2>
-<UL>
-<LI>system crash between one bank account being debited and another being credited.
-</UL></UL><UL>
-<LI><H2>Dramatic:
-</H2>
-<UL>
-<LI>power failure during update on 3 million rows when only part way through.
-</UL></UL><UL>
-<LI><H2>Real-world:
-</H2>
-<UL>
-<LI>complex series of inter-related updates, deletes and inserts on many separate tables fails at the last step due to a duplicate unique key on an insert.
-<LI>
-</UL></UL><UL>
-<LI><H2>Locking alone won’t help you in these situations
+<LI><H2>Far more than just locking
 </H2>
 </UL><UL>
-<LI><H2>Transaction recovery would handle all these situations automatically.
+<LI><H2>The A.C.I.D. test
 </H2>
 <UL>
-<LI>Makes a system far more robust and trustworthy over the long term.
+<LI>Atomicity - Consistency - Isolation - Durability  
 </UL></UL><UL>
-<LI><H2>Use transactions if your database supports them.
+<LI><H2>True transactions give true safety
 </H2>
 <UL>
-<LI>If it doesn't and you need them, switch to a different database.
+<LI>even from power failures and system crashes!
+<LI>Incomplete transactions are automatically rolled-back by the database server when it's restarted.
 </UL></UL><UL>
-<H2>.</H2>
+<LI><H2>Also removes burden of undoing incomplete changes
+</H2>
+</UL><UL>
+<LI><H2>Hard to implement (for the vendor)
+</H2>
+<UL>
+<LI>and can have significant performance cost
+</UL></UL><UL>
+<LI><H2>A very large topic worthy of an entire tutorial</H2>
 </UL></P>
 <P></P> 
 <P>

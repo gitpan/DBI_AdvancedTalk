@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>How fast was what?</TITLE> 
+ <TITLE>How fast was that?</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld023.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld025.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld093.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld024.htm">Text</A>&nbsp;&nbsp;
@@ -25,35 +25,36 @@
          <IMG SRC="img024.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 24 of 93</P>
+<P>Slide 24 of 96</P>
 </CENTER>
 <!-- <UL>
-<H2>How fast was what?</H2>
+<H2>How fast was that?</H2>
 </UL></P>
 <P><UL>
-<LI><H2>Breakdown by statement and method:
+<LI><H2>The DBI now has performance profiling built in
 </H2>
 <UL>
-$ DBI_PROFILE=6 test.pl         (only part of output is shown here)
-<BR><BR>'UPDATE prices SET price=? WHERE prod_id=?' =&#062
-<BR>    'execute' =&#062
-<BR>        0.000951s
-<BR>    'prepare' =&#062
-<BR>        0.000404s
+Easiest to demonstrate by example...
+<BR><LI>
+</UL></UL><UL>
+<LI><H2>Overall summary:
+</H2>
+<UL>
+$ DBI_PROFILE=1 test.pl
+<BR><BR>DBI::Profile: 0.010782 seconds 1.05% (15 method calls) test.pl
 <BR>
 </UL></UL><UL>
-<LI><H2>Some key points
+<LI><H2>Breakdown by statement:
 </H2>
 <UL>
-<LI>Only profiles ‘top level’ calls from application, not ‘recursive’ calls from within DBI/DBD.
-<LI>Timing data is collected and merged into a $h-&#062{Profile} data tree
-<LI>All handles share the same data tree by default - giving one overall set of results
-<LI>The ‘path’ through the tree to where the data is merged-in can be dynamically controlled
-<LI>By default $dbh method calls are usually associated with the $dbh-&#062{Statement} string
-<LI>DBI::Profile module can be subclassed to customize and extend functionality
-<LI>Applications can add their own timing data
-<LI>More features than I can fit on the slide...
-</UL></UL></P>
+$ DBI_PROFILE=2 test.pl
+<BR><BR>DBI::Profile: 0.010842 seconds 1.80% (15 method calls) test.pl
+<BR>'' =&#062
+<BR>    0.007768s / 9 = 0.000863s avg (first 0.000022s, min 0.000022s, max 0.007444s)
+<BR>'INSERT INTO prices (prod_id,price) VALUES(?,?)' =&#062
+<BR>    0.001715s / 4 = 0.000429s avg (first 0.000587s, min 0.000040s, max 0.000612s)
+<BR>'UPDATE prices SET price=? WHERE prod_id=?' =&#062
+<BR>    0.001359s / 2 = 0.000680s avg (first 0.000404s, min 0.000404s, max 0.000955s)</UL></UL></P>
 <P>  -->
 </Body>
 </HTML>

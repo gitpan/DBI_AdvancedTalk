@@ -11,31 +11,28 @@
 
  <H1>Handling errors the smart way</H1> 
  <P><UL>
-<LI><H2>So what went wrong?
+<LI><H2>Life after death:
 </H2>
 <UL>
-$@
-<BR><UL>
-<LI>holds the text of the error message
-</UL>if ($DBI::err && $@ =~ /^(\S+) (\S+) failed: /)
+$h-&#062{RaiseError} = 1;
+<BR><BR>eval {
+<BR>	  foo();
+<BR>	  $h-&#062method;		# if it fails then the DBI calls die
+<BR>	  bar($h);		# may also call DBI methods
+<BR>};
+<BR>if ($@) {		# $@ holds error message
+<BR>	  ... handle the error here …
+<BR>}
 <UL>
-<LI>then it was probably a DBI error
-<LI>and $1 is the driver class (e.g. DBD::foo::db), $2 is the name of the method (e.g. prepare)
-</UL>$DBI::lasth
-<UL>
-<LI>holds last DBI handle used (not recommended for general use)
-</UL>$h-&#062{Statement}
-<UL>
-<LI>holds the statement text associated with the handle (even if it’s a database handle)
-<LI>
-</UL></UL></UL><UL>
-<LI><H2>$h-&#062{ShowErrorStatement} = 1
+
+<BR></UL></UL></UL><UL>
+<LI><H2>Bonus prize:
 </H2>
 <UL>
-<LI>append $h-&#062{Statement} to RaiseError/PrintError messages:
-<LI>DBD::foo::execute failed: duplicate key [for ``insert …’’]
-<LI>makes error messages much more useful. Better than using $DBI::lasth
-<LI>Many drivers should enable it by default. Inherited by child handles.</UL></UL></P>
+<LI>Other, non-DBI, code within the eval block may also raise an exception that will be caught and can be handled cleanly
+</UL></UL><UL>
+<H2>.</H2>
+</UL></P>
 <P></P> 
 <P>
 <TABLE>

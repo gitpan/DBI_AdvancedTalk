@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>DBD::Multiplex</TITLE> 
+ <TITLE>The practical realities</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld085.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld087.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld093.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld086.htm">Text</A>&nbsp;&nbsp;
@@ -25,41 +25,33 @@
          <IMG SRC="img086.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 86 of 93</P>
+<P>Slide 86 of 96</P>
 </CENTER>
 <!-- <UL>
-<H2>DBD::Multiplex</H2>
+<H2>The practical realities</H2>
 </UL></P>
 <P><UL>
-<LI><H2>DBD::Multiplex
+<LI><H2>Modes of operation
 </H2>
 <UL>
-<LI>Connects to multiple databases at once (via DBI)
-<LI>Single $dbh used to access all databases
-<LI>Executes each statement on each database by default
-</UL></UL><UL>
-<LI><H2>Could be configured to:
+<LI>Multi-threaded Mode - one thread per connection
+<UL>
+<LI>Not safe for production use with perl 5.5 threads, untested with 5.6 iThreads
+<LI>DBI 1.30 now has iThreads support and should work once drivers are updated
+</UL><LI>Forking Mode - one process per connection
+<UL>
+<LI>Most practical mode for UNIX-like systems
+<LI>Doesn’t scale well to large numbers of connections
+<LI>Not available on Windows prior to Perl 5.6.0
+<LI>Fork emulation on Windows in Perl 5.6.0 not tested with DBI, 5.8.0 will be better
+</UL><LI>Single Connection Mode - only one connection per proxy server process
+<UL>
+<LI>Would need to start many processes to allow many connections
+</UL></UL></UL><UL>
+<LI><H2>No round-robin mode available yet
 </H2>
 <UL>
-<LI>insert into all databases but select from one
-<LI>fallback to alternate database if primary is unavailable
-<LI>select round-robin / or at random to distribute load
-<LI>select from all and check results (pick most common)
-</UL></UL><UL>
-<LI><H2>Can be used with DBD::Proxy, either above or below
-</H2>
-</UL><UL>
-<LI><H2>May also acquire fancy caching in later versions
-</H2>
-</UL><UL>
-<LI><H2>Watch this space: http://search.cpan.org/search?dist=DBD-Multiplex
-</H2>
-<UL>
-<LI>developed by Thomas Kishel</UL></UL></P>
-<P>  --><MAP NAME="Objmap">
-<AREA SHAPE=POLYGON COORDS="687, 500, 697, 500, 697, 532, 687, 532" HREF="ftp://not.tdlc.com/pub/Multiplex.pm" >
-<AREA SHAPE=POLYGON COORDS="235, 500, 687, 500, 687, 532, 235, 532" HREF="http://search.cpan.org/search?dist=DBD-Multiplex" >
-</MAP>
-
+<LI>patches welcome</UL></UL></P>
+<P>  -->
 </Body>
 </HTML>

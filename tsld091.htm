@@ -4,48 +4,39 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>What’s planned? (some other stuff)</TITLE> 
+ <TITLE>What else is new? (since the book)</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>What’s planned? (some other stuff)</H1> 
+ <H1>What else is new? (since the book)</H1> 
  <P><UL>
-<LI><H2>Faster database and statement handle creation
-</H2>
-</UL><UL>
-<LI><H2>Get some life into the on-line DBI FAQ-o-matic system 
-</H2>
-</UL><UL>
-<LI><H2>Add stackable pre and post method dispatch hooks
+<LI><H2>$ok = $sth-&#062can($method_name)
 </H2>
 <UL>
-<LI>will enable all sorts of interesting ‘plug-ins’ for the DBI
-<UL>
-<LI>monitoring, tracing, benchmarking, logging etc
+<LI>Check if a method is implemented
+<LI>Returns false for methods where the DBI has provided a ‘stub’ method
 <LI>
-</UL></UL></UL><UL>
-<LI><H2>$h-&#062swap_internal_handle($other_h)
-</H2>
-<UL>
-<LI>Brain transplants for handles! Opens the way for some cute features like
-<UL>
-<LI>lazy connect and lazy prepare
-<LI>reconnect to database but still use original handle
-<LI>
-</UL></UL></UL><UL>
-<LI><H2>Add $sth-&#062fetch_scroll()
-</H2>
-</UL><UL>
-<LI><H2>Rename  finish() to discard_pending_rows()
-</H2>
-<UL>
-<LI>only half joking, I’d leave finish as an alias!
 </UL></UL><UL>
-<LI><H2>Think about Perl6 (supporting driver migration etc.) ...
+<LI><H2>DBD::Foo::db-&#062install_method($private_method_name)
 </H2>
 <UL>
+<LI>Enables driver-private methods to be installed into the DBI dispatcher
+<LI>So they can be called naturally, without using $h-&#062func(...)
 <LI>
+</UL></UL><UL>
+<LI><H2>$dbh2 = $dbh1-&#062clone(\%attr)
+</H2>
+<UL>
+<LI>Returns a new database handle $dbh2 that’s a clone of $dbh1
+<LI>Can be used even if $dbh1 is disconnected
+<LI>
+</UL></UL><UL>
+<LI><H2>Username and Password attributes
+</H2>
+<UL>
+<LI>"dbi:mysql(RaiseError=1,Username=joe,Password=blogs):database=dbname"
+<LI>Username is stored as handle attribute, Password isn't, currently
 </UL></UL></P>
 <P></P> 
 <P>

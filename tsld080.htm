@@ -4,35 +4,33 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>SQL Portability - Metadata</TITLE> 
+ <TITLE>SQL Portability - Driver Capabilities</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>SQL Portability - Metadata</H1> 
+ <H1>SQL Portability - Driver Capabilities</H1> 
  <P><UL>
-<LI><H2>Getting data about your data:
+<LI><H2>How can you tell what functionality the current driver and database support?
 </H2>
 <UL>
-$sth = $dbh-&#062table_info( ... )
-<BR><UL>
-<LI>Now allows parameters to qualify which tables you want info on
-</UL>$sth = $dbh-&#062column_info($cat, $schema, $table, $col);
+$value = $dbh-&#062get_info( … );
+<BR></UL></UL><UL>
+<LI><H2>Here’s a small sample of the information potentially available:
+</H2>
 <UL>
-<LI>Returns information about the columns of a table
-</UL>$sth = $dbh-&#062primary_key_info($cat, $schema, $table);
+<LI>AGGREGATE_FUNCTIONS  BATCH_SUPPORT  CATALOG_NAME_SEPARATOR  CONCAT_NULL_BEHAVIOR  CONVERT_DATE  CONVERT_FUNCTIONS  CURSOR_COMMIT_BEHAVIOR  CURSOR_SENSITIVITY  DATETIME_LITERALS  DBMS_NAME  DBMS_VER  DEFAULT_TXN_ISOLATION  EXPRESSIONS_IN_ORDERBY  GETDATA_EXTENSIONS  GROUP_BY  IDENTIFIER_CASE  IDENTIFIER_QUOTE_CHAR  INTEGRITY  KEYWORDS  LIKE_ESCAPE_CLAUSE  LOCK_TYPES  MAX_COLUMNS_IN_INDEX  MAX_COLUMNS_IN_SELECT  MAX_IDENTIFIER_LEN  MAX_STATEMENT_LEN  MAX_TABLES_IN_SELECT  MULT_RESULT_SETS  OJ_CAPABILITIES  PROCEDURES  SQL_CONFORMANCE  TXN_CAPABLE  TXN_ISOLATION_OPTION  UNION … 
+</UL></UL><UL>
+<LI><H2>A specific item of information is requested using its standard numeric value
+</H2>
 <UL>
-<LI>Returns information about the primary keys of a table
-</UL>@keys = $dbh-&#062primary_key($cat, $schema, $table);
+$db_version = $dbh-&#062get_info( 18 );  # 18 == SQL_DBMS_VER
+<BR></UL></UL><UL>
+<LI><H2>The standard names can be mapped to numeric values using:
+</H2>
 <UL>
-<LI>Simpler way to return information about the primary keys of a table
-</UL>$sth = $dbh-&#062foreign_key_info($pkc, $pks, $pkt, $fkc, $fks, $fkt);
-<UL>
-<LI>Returns information about foreign keys
-<LI>
-</UL></UL></UL><UL>
-<LI><H2>These, and the features on the previous “SQL Portability” slides, are all fairly new so may not be supported by your driver yet. If not… offer to help implement them!</H2>
-</UL></P>
+use DBI::Const::GetInfo;
+<BR><BR>$dbh-&#062get_info($GetInfoType{SQL_DBMS_VER})</UL></UL></P>
 <P></P> 
 <P>
 <TABLE>

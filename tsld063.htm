@@ -4,58 +4,47 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Trace level 2 and above</TITLE> 
+ <TITLE>Trace level 1</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Trace level 2 and above</H1> 
+ <H1>Trace level 1</H1> 
  <P><UL>
-<LI><H2>Level 2 adds trace of entry into methods, details of classes, handles, and more
-</H2>
-<UL>
-<LI>we’ll just look at the trace for the prepare_cached() call here:
-</UL></UL><UL>
-<H2> 
-</H2>
-</UL><UL>
-<H2>    -&#062 prepare_cached in DBD::_::db for DBD::mysql::db 				(DBI::db=HASH(0x8367568)~0x83674f0 'INSERT INTO prices ...')
-</H2>
-</UL><UL>
-<H2>1   -&#062 FETCH for DBD::mysql::db (DBI::db=HASH(0x83674f0)~INNER 'CachedKids')
-</H2>
-</UL><UL>
-<H2>1   &#060- FETCH= undef at DBI.pm line 1274
-</H2>
-</UL><UL>
-<H2>1   -&#062 STORE for DBD::mysql::db (DBI::db=HASH(0x83674f0)~INNER 'CachedKids' 			HASH(0x8367790))
-</H2>
-</UL><UL>
-<H2>1   &#060- STORE= 1 at DBI.pm line 1275
-</H2>
-</UL><UL>
-<H2>1   -&#062 prepare for DBD::mysql::db (DBI::db=HASH(0x83674f0)~INNER
-</H2>
-</UL><UL>
-<H2>			'INSERT INTO prices ...' undef)
-</H2>
-</UL><UL>
-<H2>1   &#060- prepare= DBI::st=HASH(0x8367760) at DBI.pm line 1287
-</H2>
-</UL><UL>
-<H2>    &#060- prepare_cached= DBI::st=HASH(0x8367760) at test.pl line 11
+<LI><H2>Level 1 shows method returns with first two parameters, results, and line numbers:
 </H2>
 </UL><UL>
 <H2>
 </H2>
 </UL><UL>
-<LI><H2>Trace level 3 and above shows more internal processing and driver details
+<H2>    DBI::db=HASH(0x83674f0) trace level set to 1 in DBI 1.26
 </H2>
 </UL><UL>
-<LI><H2>Use $DBI::neat_maxlen to alter truncation of strings in trace output
+<H2>    &#060- prepare('UPDATE prices SET price=? WHERE prod_id=?')= 			DBI::st=HASH(0x8367658) at test.pl line 10
 </H2>
 </UL><UL>
-<H2>-
+<H2>1   &#060- FETCH('CachedKids')= undef at DBI.pm line 1274
+</H2>
+</UL><UL>
+<H2>1   &#060- STORE('CachedKids' HASH(0x8367778))= 1 at DBI.pm line 1275
+</H2>
+</UL><UL>
+<H2>1   &#060- prepare('INSERT INTO prices (prod_id,price) VALUES(?,?)' undef)= 		DBI::st=HASH(0x8367748) at DBI.pm line 1287
+</H2>
+</UL><UL>
+<H2>    &#060- prepare_cached('INSERT INTO prices (prod_id,price) VALUES(?,?)')= 		DBI::st=HASH(0x8367748) at test.pl line 11
+</H2>
+</UL><UL>
+<H2>    &#060- execute('42.2' '1')= 1 at test.pl line 12
+</H2>
+</UL><UL>
+<H2>    &#060- DESTROY= undef at test.pl line 4
+</H2>
+</UL><UL>
+<H2>    &#060- STORE('TraceLevel' 0)= 1 at test.pl line 4
+</H2>
+</UL><UL>
+<H2>    &#060- DESTROY= undef at test.pl line 5
 </H2>
 </UL></P>
 <P></P> 

@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>Transactions - Example code</TITLE> 
+ <TITLE>Transactions - How the DBI helps</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld049.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld051.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld093.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld050.htm">Text</A>&nbsp;&nbsp;
@@ -25,24 +25,41 @@
          <IMG SRC="img050.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 50 of 93</P>
+<P>Slide 50 of 96</P>
 </CENTER>
 <!-- <UL>
-<H2>Transactions - Example code</H2>
+<H2>Transactions - How the DBI helps</H2>
 </UL></P>
 <P><UL>
-$dbh-&#062{RaiseError} = 1;
-<BR>$dbh-&#062begin_work;      # AutoCommit off till commit/rollback
-<BR>eval {
-<BR>    $dbh-&#062method(…);   # assorted DBI calls
-<BR>    foo(...);          # application code
-<BR>    $dbh-&#062commit;      # commit the changes
-<BR>};
-<BR>if ($@) {
-<BR>    warn "Transaction aborted because $@";
-<BR>    $dbh-&#062rollback;
-<BR>    ...
-<BR>}</UL></P>
+<LI><H2>Tools of the trade:
+</H2>
+<UL>
+<LI>Set AutoCommit off
+<LI>Set RaiseError on
+<LI>Wrap eval { … } around the code
+<LI>Use $dbh-&#062commit; and $dbh-&#062rollback;
+<UL>
+<LI>
+</UL></UL></UL><UL>
+<LI><H2>Disable AutoCommit via $dbh-&#062{AutoCommit}=0 or $dbh-&#062begin_work;
+</H2>
+<UL>
+<LI>to enable transactions and thus rollback-on-error
+</UL></UL><UL>
+<LI><H2>Enable RaiseError via $dbh-&#062{RaiseError} = 1;
+</H2>
+<UL>
+<LI>to automatically 'throw an exception' after an error
+</UL></UL><UL>
+<LI><H2>Add surrounding eval { … } 
+</H2>
+<UL>
+<LI>catches the exception, the error text is stored in $@
+</UL></UL><UL>
+<LI><H2>Test $@ and $dbh-&#062rollback() if set
+</H2>
+<UL>
+<LI>note that a failed statement doesn’t automatically trigger a transaction rollback</UL></UL></P>
 <P>  -->
 </Body>
 </HTML>

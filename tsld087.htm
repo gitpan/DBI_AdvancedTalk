@@ -4,42 +4,37 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>DBI::PurePerl</TITLE> 
+ <TITLE>DBD::Multiplex</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>DBI::PurePerl</H1> 
+ <H1>DBD::Multiplex</H1> 
  <P><UL>
-<LI><H2>Need to use the DBI somewhere where you can’t compile extensions?
+<LI><H2>DBD::Multiplex
 </H2>
 <UL>
-<LI>To deliver pure-perl code to clients that might not have the DBI installed?
-<LI>On an ISP that won’t let you run extensions?
-<LI>On a Palm Pilot?
-<LI>
+<LI>Connects to multiple databases (DBI DSN's) at once and returns a single $dbh
+<LI>By default, executes any method call on that $dbh on each underlying $dbh in turn
 </UL></UL><UL>
-<LI><H2>The DBI::PurePerl module is an emulation of the DBI written in Perl
+<LI><H2>Can be configured to:
 </H2>
 <UL>
-<LI>Works with pure-perl drivers, including:
+<LI>modify (insert, update, …) only master db, select from one replica at random
+<LI>modify all databases but select from one ("poor man's replication")
+<LI>fallback to alternate database if primary is unavailable
+<LI>pick database for select at random to distribute load
+<LI>concatenate select results from multiple databases (effectively a 'union' select)
+<LI>return row counts/errors from non-select statements as select results
 <UL>
-AnyData, CSV, Excel, LDAP, mysqlPP, Sprite, XBase, etc.
-<BR></UL><LI>plus DBD::Proxy!
-<LI>
+<LI>one row for each underlying database
+</UL><LI>May also acquire fancy caching, retry, and other smart logic in the future
 </UL></UL><UL>
-<LI><H2>Enabled via the DBI_PUREPERL environment variable:
-</H2>
+<LI><H2>Watch this space: <A HREF="http://search.cpan.org/search?dist=DBD-Multiplex">http://search.cpan.org/search?dist=DBD-Multiplex</A><A HREF="ftp://not.tdlc.com/pub/Multiplex.pm">
+</A></H2>
 <UL>
-0 - Disabled
-<BR><BR>1 - Automatically fall-back to DBI::PurePerl if DBI extension can’t be bootstrapped
-<BR>2 - Force use of DBI::PurePerl
-<BR>
-</UL></UL><UL>
-<LI><H2>Reasonably complete emulation - enough for the drivers to work well
-</H2>
-<UL>
-<LI>See DBI::PurePerl documentation for the small-print if you want to use it</UL></UL></P>
+<LI>developed by Thomas Kishel and Tim Bunce
+<LI>currently undergoing a significant redevelopment</UL></UL></P>
 <P></P> 
 <P>
 <TABLE>

@@ -4,17 +4,34 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>The Power of the Proxy,</TITLE> 
+ <TITLE>SQL Portability - Metadata</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>The Power of the Proxy, Flexing the Multiplex,and a Pure-Perl DBI!</H1> 
+ <H1>SQL Portability - Metadata</H1> 
  <P><UL>
-<H2>Thin clients, high availability ...
+<LI><H2>Getting data about your data:
 </H2>
-</UL><UL>
-<H2>and other buzz words</H2>
+<UL>
+$sth = $dbh-&#062table_info( ... )
+<BR><UL>
+<LI>Now allows parameters to qualify which tables you want info on
+</UL>$sth = $dbh-&#062column_info($cat, $schema, $table, $col);
+<UL>
+<LI>Returns information about the columns of a table
+</UL>$sth = $dbh-&#062primary_key_info($cat, $schema, $table);
+<UL>
+<LI>Returns information about the primary keys of a table
+</UL>@keys = $dbh-&#062primary_key($cat, $schema, $table);
+<UL>
+<LI>Simpler way to return information about the primary keys of a table
+</UL>$sth = $dbh-&#062foreign_key_info($pkc, $pks, $pkt, $fkc, $fks, $fkt);
+<UL>
+<LI>Returns information about foreign keys
+<LI>
+</UL></UL></UL><UL>
+<LI><H2>These, and the features on the previous “SQL Portability” slides, are all fairly new so may not be supported by your driver yet. If not… offer to help implement them!</H2>
 </UL></P>
 <P></P> 
 <P>

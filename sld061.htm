@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>Our program for today...</TITLE> 
+ <TITLE>Enabling tracing</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld060.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld062.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld093.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld061.htm">Text</A>&nbsp;&nbsp;
@@ -25,56 +25,35 @@
          <IMG SRC="img061.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 61 of 93</P>
+<P>Slide 61 of 96</P>
 </CENTER>
 <!-- <UL>
-<H2>Our program for today...</H2>
+<H2>Enabling tracing</H2>
 </UL></P>
 <P><UL>
-<H2>#!/usr/bin/perl -w
-</H2>
-</UL><UL>
-<H2>use DBI;
-</H2>
-</UL><UL>
-<H2>$dbh = DBI-&#062connect('', '', '', { RaiseError =&#062 1 });
-</H2>
-</UL><UL>
-<H2>replace_price(split(/\s+/, $_)) while (&#060STDIN&#062);
-</H2>
-</UL><UL>
-<H2>$dbh-&#062disconnect;
-</H2>
-</UL><UL>
-<H2>
-</H2>
-</UL><UL>
-<H2>sub replace_price {
-</H2>
-</UL><UL>
-<H2>  my ($id, $price) = @_;
-</H2>
-</UL><UL>
-<H2>  local $dbh-&#062{TraceLevel} = 1;
-</H2>
-</UL><UL>
-<H2>  my $upd = $dbh-&#062prepare("UPDATE prices SET price=? WHERE id=?");
-</H2>
-</UL><UL>
-<H2>  my $ins = $dbh-&#062prepare_cached("INSERT INTO prices (id,price) VALUES(?,?)");
-</H2>
-</UL><UL>
-<H2>  my $rows = $upd-&#062execute($price, $id);
-</H2>
-</UL><UL>
-<H2>  $ins-&#062execute($id, $price) if $rows == 0;
-</H2>
-</UL><UL>
-<H2>}
+<LI><H2>Per handle
 </H2>
 <UL>
-
-<BR><BR>(The program is a little odd for the sake of producing a small trace output that can illustrate many concepts)</UL></UL></P>
+$h-&#062{TraceLevel} = $level;
+<BR><BR>$h-&#062trace($level);
+<BR>$h-&#062trace($level, $filename);
+</UL><LI>Trace level only effects that handle and any new child handles created from it
+<LI>Child handles get trace level of parent in effect at time of creation
+</UL><UL>
+<LI><H2>Global (internal to application)
+</H2>
+<UL>
+DBI-&#062trace(...);
+<BR></UL><LI>Sets effective global default minimum trace level
+</UL><UL>
+<LI><H2>Global (external to application)
+</H2>
+<UL>
+<LI>Enabled using DBI_TRACE environment variable
+<UL>
+DBI_TRACE=digits		  DBI-&#062trace(digits);
+<BR><BR>DBI_TRACE=filename		  DBI-&#062trace(2, filename);
+<BR>DBI_TRACE=digits=filename	  DBI-&#062trace(digits, filename);</UL></UL></UL></P>
 <P>  -->
 </Body>
 </HTML>

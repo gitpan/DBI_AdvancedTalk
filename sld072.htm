@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>DBI security tainting</TITLE> 
+ <TITLE>Web DBI - Tips for the novice</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld071.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld073.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld093.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld072.htm">Text</A>&nbsp;&nbsp;
@@ -25,42 +25,52 @@
          <IMG SRC="img072.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 72 of 93</P>
+<P>Slide 72 of 96</P>
 </CENTER>
 <!-- <UL>
-<H2>DBI security tainting</H2>
+<H2>Web DBI - Tips for the novice</H2>
 </UL></P>
 <P><UL>
-<LI><H2>By default the DBI ignores Perl tainting
+<LI><H2>Test one step at a time
 </H2>
 <UL>
-<LI>doesn't taint returned database data
-<LI>doesn't check that parameters are not tainted
-</UL><LI>
-</UL><UL>
-<LI><H2>The Taint attribute enables that behaviour
-</H2>
-<UL>
-<LI>If Perl itself is in taint mode
-<LI>
+<LI>Test perl + DBI + DBD driver outside the web server first
+<LI>Test web server + non-DBI CGI next
 </UL></UL><UL>
-<LI><H2>Each handle has it's own inherited Taint attribute
+<LI><H2>Remember that CGI scripts run as a different user with a different environment
 </H2>
 <UL>
-<LI>So can be enabled for particular connections and disabled for particular statements, for example:
-</UL>$dbh = DBI-&#062connect(…, { Taint =&#062 1 });
-<BR>$sth = $dbh-&#062prepare("select * from safe_table");
-<BR>$sth-&#062{Taint} = 0;  # no tainting on this statement handle
-<BR>
-</UL><UL>
-<LI><H2>Attribute metadata currently varies in degree of tainting
-</H2>
-<UL>
-$sth-&#062{NAME};	 — generally not tainted
-<BR><BR>$dbh-&#062get_info(…);	 — may be tainted if the item of info is fetched from database
+<LI>expect to be tripped up by that
 </UL></UL><UL>
-<H2>.</H2>
-</UL></P>
-<P>  -->
+<LI><H2>DBI $h-&#062trace($level, $filename) is your friend
+</H2>
+<UL>
+<LI>use it!
+</UL></UL><UL>
+<LI><H2>Use the perl "-w" and "-T" options.
+</H2>
+<UL>
+<LI>Always "use strict;" everywhere
+</UL></UL><UL>
+<LI><H2>Read and inwardly digest the WWW Security FAQ:  
+</H2>
+<UL>
+<LI>http://www.w3.org/Security/Faq/www-security-faq.html
+</UL></UL><UL>
+<LI><H2>Read the CGI related Perl FAQs:
+</H2>
+<UL>
+<LI>http://www.perl.com/perl/faq/
+</UL></UL><UL>
+<LI><H2>And if using Apache, read the mod_perl information available from:
+</H2>
+<UL>
+<LI>http://perl.apache.org</UL></UL></P>
+<P>  --><MAP NAME="Objmap">
+<AREA SHAPE=POLYGON COORDS="133, 490, 321, 490, 321, 509, 133, 509" HREF="http://www.perl.com/perl/faq/" >
+<AREA SHAPE=POLYGON COORDS="133, 541, 268, 541, 268, 560, 133, 560" HREF="http://perl.apache.org/" >
+<AREA SHAPE=POLYGON COORDS="133, 439, 483, 439, 483, 457, 133, 457" HREF="http://www.w3.org/Security/Faq/www-security-faq.html" >
+</MAP>
+
 </Body>
 </HTML>

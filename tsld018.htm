@@ -11,20 +11,31 @@
 
  <H1>Sling less for speed</H1> 
  <P><UL>
-<LI><H2>while(@row = $sth-&#062fetchrow_array) { … }
+<LI><H2>while(@row = $sth-&#062fetchrow_array) { }
 </H2>
 <UL>
-<LI>one field:   3,100 fetches per cpu second
-<LI>ten fields:  1,000 fetches per cpu second
+<LI>one column:   51,155 fetches per second
+<LI>20 columns:   24,032 fetches per second 
 </UL></UL><UL>
 <H2>
 </H2>
 </UL><UL>
-<LI><H2>while($row = $sth-&#062fetchrow_arrayref) { … }
+<LI><H2>while($row = $sth-&#062fetchrow_arrayref) { }
 </H2>
 <UL>
-<LI>one field:   5,300 fetches per cpu second
-<LI>ten fields:  4,000 fetches per cpu second 
+<LI>one column:   58,653 fetches per second  - approximately 12% faster
+<LI>20 columns:   49,390 fetches per second  - approximately 51% faster
+</UL></UL><UL>
+<H2>
+</H2>
+</UL><UL>
+<LI><H2>while($row = shift(@$rowcache)  || shift(@{$rowcache=$sth-&#062fetchall_arrayref(undef, $max_rows)})) { }
+</H2>
+<UL>
+<LI>one column:   348,140 fetches per second - by far the fastest!
+<LI>20 columns:     42,128 fetches per second - now slower than fetchrow_arrayref!
+<LI>Why? Balance time saved making fewer calls with time spent managing more memory
+<LI>Do your own benchmarks to find what works best for your situations
 </UL></UL><UL>
 <H2>
 </H2>
@@ -32,11 +43,8 @@
 <LI><H2>Notes:
 </H2>
 <UL>
-<LI>Timings made on an old SPARC 10 using DBD::Oracle
-<LI>Timings assume instant record fetch within driver
-<LI>Fields all just one char. @row would be even slower for more/bigger fields
-<LI>Use bind_columns() for direct access to fetched fields without copying
-</UL></UL></P>
+<LI>Tests used DBD::mysql on 100,000 rows with fields 9 chars each. $max_rows=1000;
+<LI>Time spent inside fetchrow_* method is approximately 0.000011s (~90,000 per second)</UL></UL></P>
 <P></P> 
 <P>
 <TABLE>

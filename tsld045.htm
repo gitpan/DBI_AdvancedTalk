@@ -4,36 +4,41 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>More Custom Error Handling</TITLE> 
+ <TITLE>Custom Error Handling</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>More Custom Error Handling</H1> 
+ <H1>Custom Error Handling</H1> 
  <P><UL>
-<LI><H2>It is also possible for HandleError to hide an error, to a limited degree
+<LI><H2>Don’t want to just Print or Raise an Error?
 </H2>
 <UL>
-<LI>use set_err() to reset $DBI::err and $DBI::errstr
-<LI>alter the return value of the failed method
-<LI>
-</UL>$h-&#062{HandleError} = sub {
-<BR>    my ($errmsg, $h) = @_;
-<BR>    return 0 unless $errmsg =~ /^\S+ fetchrow_arrayref failed:/;
-<BR>    return 0 unless $h-&#062err == 1234; # the error to 'hide'
-<BR>    $h-&#062set_err(0,"");	# turn off the error
-<BR>    $_[2] = [ ... ];	# supply alternative return value by altering parameter
-<BR>    return 1;
-<BR>};
-<LI>
-</UL><UL>
-<LI><H2>Only works for methods which return a single value and is hard to make reliable (avoiding infinite loops, for example) and so isn't recommended for general use!
+<LI>Now you can Handle it as well…
+<UL>
+$h-&#062{HandleError} = sub { … };
+<BR><BR>
+</UL></UL></UL><UL>
+<LI><H2>The HandleError code
 </H2>
 <UL>
-<LI>If you find a good use for it then please let me know.
+<LI>is called just before PrintError/RaiseError are handled
+<LI>it’s passed
+<UL>
+<LI>the error message string that RaiseError/PrintError would use
+<LI>the DBI handle being used
+<LI>the first value being returned by the method that failed (typically undef)
+</UL><LI>if it returns false then RaiseError/PrintError are checked and acted upon as normal
 </UL></UL><UL>
-<H2>_</H2>
-</UL></P>
+<LI><H2>
+</H2>
+</UL><UL>
+<LI><H2>The handler code can
+</H2>
+<UL>
+<LI>alter the error message text by changing $_[0]
+<LI>use caller() or Carp::confess() or similar to get a stack trace
+<LI>use Exception or a similar module to throw a formal exception object</UL></UL></P>
 <P></P> 
 <P>
 <TABLE>

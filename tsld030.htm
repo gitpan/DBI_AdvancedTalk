@@ -4,39 +4,39 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Keep a handle on your databases</TITLE> 
+ <TITLE>Let the DBI cache your handles</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Keep a handle on your databases</H1> 
+ <H1>Let the DBI cache your handles</H1> 
  <P><UL>
-<LI><H2>Connecting to a database can be slow
+<LI><H2>Sometimes it's not easy to hold all your handles
 </H2>
 <UL>
-<LI>Oracle especially so, but even MySQL does a reverse DNS lookup by default
+<LI>e.g., library code to lookup values from the database
+<LI>
 </UL></UL><UL>
-<LI><H2>
-</H2>
-</UL><UL>
-<LI><H2>Try to connect once and stay connected where practical
+<LI><H2>The prepare_cached() method gives you a client side statement handle cache:
 </H2>
 <UL>
-<LI>We'll discuss web server issues later
+
+<BR><BR>sub lookup_foo {
+<BR>    my ($dbh, $id) = @_;
+<BR>    $sth = $dbh-&#062prepare_cached("select foo from table where id=?");
+<BR>    return $dbh-&#062selectrow_array($sth, $id);
+<BR>}
+<BR>
 </UL></UL><UL>
-<LI><H2>
-</H2>
-</UL><UL>
-<LI><H2>The connect_cached() method … 
+<LI><H2>On later calls returns the previous cached handle
 </H2>
 <UL>
-<LI>Acts like prepare_cached() but for database handles
-<LI>Like prepare_cached(), it’s handy for library code
-<LI>It also checks the connection and automatically reconnects if it's broken
-<LI>Works well combined with prepare_cached(), see following example
+<LI>for the given statement text (and any method attributes)
 </UL></UL><UL>
-<H2>.</H2>
-</UL></P>
+<LI><H2>Can avoid the need for global statement handle variables
+</H2>
+<UL>
+<LI>which can cause problems in some situations, see later</UL></UL></P>
 <P></P> 
 <P>
 <TABLE>

@@ -4,30 +4,32 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Error checking - ways and means</TITLE> 
+ <TITLE>The importance of error checking</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Error checking - ways and means</H1> 
+ <H1>The importance of error checking</H1> 
  <P><UL>
-<LI><H2>Error checking the hard way...
+<LI><H2>Errors happen!
 </H2>
 <UL>
-
-<BR><BR>$h-&#062method or die "DBI method failed: $DBI::errstr";
-<BR>$h-&#062method or die "DBI method failed: $DBI::errstr";
-<BR>$h-&#062method or die "DBI method failed: $DBI::errstr";
-<BR>
-</UL></UL><UL>
-<LI><H2>Error checking the smart way...
-</H2>
+<LI>Failure happens when you don't expect errors!
 <UL>
-
-<BR><BR>$h-&#062{RaiseError} = 1;
-<BR>$h-&#062method;
-<BR>$h-&#062method;
-<BR>$h-&#062method;</UL></UL></P>
+<LI>database crash / network disconnection
+<LI>lack of disk space for insert or select (sort space for order by)
+<LI>server math error on select (divide by zero after 10,000 rows)
+<LI>and maybe, just maybe, errors in your own code [Gasp!]
+<LI>
+</UL><LI>Beat failure by expecting errors!
+<LI>
+<LI>Detect errors early to limit effects
+<UL>
+<LI>Defensive Programming, e.g., check assumptions
+<LI>Through Programming, e.g., check for errors after fetch loops
+</UL></UL></UL><UL>
+<H2>.</H2>
+</UL></P>
 <P></P> 
 <P>
 <TABLE>

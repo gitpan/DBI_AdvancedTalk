@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>Handling errors the smart way</TITLE> 
+ <TITLE>Error checking - ways and means</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld040.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld042.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld093.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld041.htm">Text</A>&nbsp;&nbsp;
@@ -25,41 +25,29 @@
          <IMG SRC="img041.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 41 of 93</P>
+<P>Slide 41 of 96</P>
 </CENTER>
 <!-- <UL>
-<H2>Handling errors the smart way</H2>
+<H2>Error checking - ways and means</H2>
 </UL></P>
 <P><UL>
-<LI><H2>Setting RaiseError make the DBI call die for you
+<LI><H2>Error checking the hard way...
 </H2>
 <UL>
-<LI>
+
+<BR><BR>$h-&#062method or die "DBI method failed: $DBI::errstr";
+<BR>$h-&#062method or die "DBI method failed: $DBI::errstr";
+<BR>$h-&#062method or die "DBI method failed: $DBI::errstr";
+<BR>
 </UL></UL><UL>
-<LI><H2>For simple applications immediate death on error is fine
+<LI><H2>Error checking the smart way...
 </H2>
 <UL>
-<LI>The error message is usually accurate and detailed enough
-<LI>Better than the error messages some developers use!
-<LI>
-</UL></UL><UL>
-<LI><H2>For more advanced applications greater control is needed, perhaps:
-</H2>
-<UL>
-<LI>Correct the problem and retry
-<LI>or, Fail that chunk of work and move on to another
-<LI>or, Log error and clean up before a graceful exit
-<LI>or, whatever else to need to do
-<LI>
-</UL></UL><UL>
-<LI><H2>Buzzwords:
-</H2>
-<UL>
-<LI>Need to catch the error exception being thrown by RaiseError
-<LI>
-</UL></UL><UL>
-<H2>.</H2>
-</UL></P>
+
+<BR><BR>$h-&#062{RaiseError} = 1;
+<BR>$h-&#062method;
+<BR>$h-&#062method;
+<BR>$h-&#062method;</UL></UL></P>
 <P>  -->
 </Body>
 </HTML>

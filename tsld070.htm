@@ -4,33 +4,46 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Web DBI - Concurrent editing</TITLE> 
+ <TITLE>Web DBI - Browsing pages of results</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Web DBI - Concurrent editing</H1> 
+ <H1>Web DBI - Browsing pages of results</H1> 
  <P><UL>
-<LI><H2>How to prevent updates overwriting each other?
+<LI><H2>Re-execute query each time then count/discard (simple but expensive)
 </H2>
 <UL>
-<LI>You can use Optimistic Locking via 'qualified update':
-<UL>
-update table set ...
-<BR><BR>where  key = $old_key
-<BR>and field1 = $old_field1
-<BR>and field2 = $old_field2  and …  for all other fields
-</UL></UL></UL><UL>
-<LI><H2>Check the update row count
-</H2>
-<UL>
-<LI>If it's zero then you know the record has been changed or deleted by another process
+<LI>works well for small cheap results sets or where users rarely view many pages
+<LI>fast initial response, degrades gradually for later pages
+<LI>count/discard in server is better but still inefficient for large result sets
+<LI>count/discard affected by inserts and deletes from other processes
 </UL></UL><UL>
-<LI><H2>Note
+<LI><H2>Re-execute query with where clause using min/max keys from last results
 </H2>
 <UL>
-<LI>Potential problems with floating point data values not matching due to rounding
-<LI>Some databases support a high-resolution 'update timestamp' field that can be checked instead</UL></UL></P>
+<LI>works well where original query can be qualified in that way, not common
+</UL></UL><UL>
+<LI><H2>Select and cache full result rows somewhere for fast access
+</H2>
+<UL>
+<LI>can be expensive for large result sets with big fields
+</UL></UL><UL>
+<LI><H2>Select and cache only the row keys, fetch full rows as needed
+</H2>
+<UL>
+<LI>optimisation of above, use ROWID if supported, "select … where … in (…)"
+</UL></UL><UL>
+<LI><H2>If data is static and queries predictable
+</H2>
+<UL>
+<LI>then custom pre-built indexes may be useful
+</UL></UL><UL>
+<LI><H2>The caches can be stored...
+</H2>
+<UL>
+<LI>on web server, e.g., using DBM file with locking (see also ‘spread’)
+<LI>on database server, e.g., using a table keyed by session id</UL></UL></P>
 <P></P> 
 <P>
 <TABLE>

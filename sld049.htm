@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>Transactions - How the DBI helps</TITLE> 
+ <TITLE>Transactions - Life Preservers</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld048.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld050.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld093.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld049.htm">Text</A>&nbsp;&nbsp;
@@ -25,41 +25,45 @@
          <IMG SRC="img049.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 49 of 93</P>
+<P>Slide 49 of 96</P>
 </CENTER>
 <!-- <UL>
-<H2>Transactions - How the DBI helps</H2>
+<H2>Transactions - Life Preservers</H2>
 </UL></P>
 <P><UL>
-<LI><H2>Tools of the trade:
+<LI><H2>Text Book:
 </H2>
 <UL>
-<LI>Set AutoCommit off
-<LI>Set RaiseError on
-<LI>Wrap eval { … } around the code
-<LI>Use $dbh-&#062commit; and $dbh-&#062rollback;
+<LI>system crash between one bank account being debited and another being credited.
+</UL></UL><UL>
+<LI><H2>Dramatic:
+</H2>
 <UL>
+<LI>power failure during update on 3 million rows when only part way through.
+</UL></UL><UL>
+<LI><H2>Real-world:
+</H2>
+<UL>
+<LI>complex series of inter-related updates, deletes and inserts on many separate tables fails at the last step due to a duplicate unique key on an insert.
 <LI>
-</UL></UL></UL><UL>
-<LI><H2>Disable AutoCommit via $dbh-&#062{AutoCommit}=0 or $dbh-&#062begin_work;
-</H2>
-<UL>
-<LI>to enable transactions and thus rollback-on-error
 </UL></UL><UL>
-<LI><H2>Enable RaiseError via $dbh-&#062{RaiseError} = 1;
+<LI><H2>Locking alone won’t help you in any of these situations
 </H2>
 <UL>
-<LI>to automatically 'throw an exception' after an error
+<LI>(And locking with DBD::mysql &#060 2.1027 is unsafe due to auto reconnect)
 </UL></UL><UL>
-<LI><H2>Add surrounding eval { … }
+<LI><H2>Transaction recovery would handle all these situations - automatically
 </H2>
 <UL>
-<LI>catches the exception, the error text is stored in $@
+<LI>Makes a system far more robust and trustworthy over the long term.
 </UL></UL><UL>
-<LI><H2>Test $@ and $dbh-&#062rollback() if set
+<LI><H2>Use transactions if your database supports them.
 </H2>
 <UL>
-<LI>note that a failed statement doesn’t automatically trigger a transaction rollback</UL></UL></P>
+<LI>If it doesn't and you need them, switch to a different database.
+</UL></UL><UL>
+<H2>.</H2>
+</UL></P>
 <P>  -->
 </Body>
 </HTML>

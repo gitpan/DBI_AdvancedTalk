@@ -4,42 +4,33 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Web DBI - Tips for the novice</TITLE> 
+ <TITLE>Web DBI - Concurrent editing</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Web DBI - Tips for the novice</H1> 
+ <H1>Web DBI - Concurrent editing</H1> 
  <P><UL>
-<LI><H2>Test one step at a time
+<LI><H2>How to prevent updates overwriting each other?
 </H2>
 <UL>
-<LI>Test perl + DBI + DBD driver outside the web server first
-<LI>Test web server + non-DBI CGI next
+<LI>You can use Optimistic Locking via 'qualified update':
+<UL>
+update table set ...
+<BR><BR>where  key = $old_key
+<BR>and field1 = $old_field1
+<BR>and field2 = $old_field2  and …  for all other fields
+</UL></UL></UL><UL>
+<LI><H2>Check the update row count
+</H2>
+<UL>
+<LI>If it's zero then you know the record has been changed or deleted by another process
 </UL></UL><UL>
-<LI><H2>Remember that CGI scripts run as a different user with a different environment - expect to be tripped up by that.
-</H2>
-</UL><UL>
-<LI><H2>DBI trace() is your friend - use it.
-</H2>
-</UL><UL>
-<LI><H2>Use the Perl "-w" and "-T" options. Always "use strict;"
-</H2>
-</UL><UL>
-<LI><H2>Read and inwardly digest the WWW Security FAQ:  
+<LI><H2>Note
 </H2>
 <UL>
-<LI><A HREF="http://www.w3.org/Security/Faq/www-security-faq.html">http://www.w3.org/Security/Faq/www-security-faq.html
-</A></UL></UL><UL>
-<LI><H2>Read the CGI related Perl FAQs:
-</H2>
-<UL>
-<LI><A HREF="http://www.perl.com/perl/faq/">http://www.perl.com/perl/faq/
-</A></UL></UL><UL>
-<LI><H2>And if using Apache read the mod_perl information available from:
-</H2>
-<UL>
-<LI><A HREF="http://perl.apache.org/">http://perl.apache.org</A></UL></UL></P>
+<LI>Potential problems with floating point data values not matching due to rounding
+<LI>Some databases support a high-resolution 'update timestamp' field that can be checked instead</UL></UL></P>
 <P></P> 
 <P>
 <TABLE>

@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>SQL Portability - SQL Dialects</TITLE> 
+ <TITLE>SQL Portability - Data Types</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld076.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld078.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld093.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld077.htm">Text</A>&nbsp;&nbsp;
@@ -25,51 +25,38 @@
          <IMG SRC="img077.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 77 of 93</P>
+<P>Slide 77 of 96</P>
 </CENTER>
 <!-- <UL>
-<H2>SQL Portability - SQL Dialects</H2>
+<H2>SQL Portability - Data Types</H2>
 </UL></P>
 <P><UL>
-<LI><H2>How to concatenate strings? Let me count the (incompatible) ways...
+<LI><H2>For raw information about data types supported by the driver:
 </H2>
 <UL>
-SELECT first_name || ' ' || last_name FROM table
-<BR><BR>SELECT first_name + ' ' + last_name FROM table
-<BR>SELECT first_name CONCAT ' ' CONCAT last_name FROM table
-<BR>SELECT CONCAT(first_name, ' ', last_name) FROM table
-<BR>SELECT CONCAT(first_name, CONCAT(' ', last_name)) FROM table
+
+<BR><BR>$type_info_data = $dbh-&#062type_info_all(…);
 </UL></UL><UL>
 <LI><H2>
 </H2>
 </UL><UL>
-<LI><H2>The ODBC way:     (not pretty, but portable)
+<LI><H2>To map data type codes to names:
 </H2>
 <UL>
-SELECT {fn CONCAT(first_name, {fn CONCAT(' ', last_name))}} FROM table
-<BR></UL></UL><UL>
-<H2>
-</H2>
-</UL><UL>
-<LI><H2>The {fn …} will be rewritten by prepare() to the required syntax via a call to
-</H2>
-<UL>
-$new_sql_fragment = $dbh-&#062{Rewrite}-&#062CONCAT(”…”)
-<BR></UL></UL><UL>
-<LI><H2>
-</H2>
-</UL><UL>
-<LI><H2>Similarly for some data types:
-</H2>
-<UL>
-SELECT * FROM table WHERE date_time &#062 {ts ’2002-06-04 12:00:00’ } FROM table
-<BR><BR>$new_sql_fragment = $dbh-&#062{Rewrite}-&#062ts(’2002-06-04 12:00:00’)
+<LI>
+<BR>$sth = $dbh-&#062prepare(“select foo, bar from tablename”);
+<BR>$sth-&#062execute;
+<BR>for my $i (0 .. $sth-&#062{NUM_OF_FIELDS}) {printf ”Column name %s: Column type name: %s”,    $sth-&#062{NAME}-&#062[$i],    $dbh-&#062type_info( $sth-&#062{TYPE} )-&#062{TYPE_NAME};
+<BR>}
+<BR>
 </UL></UL><UL>
-<LI><H2>
+<LI><H2>To select the nearest type supported by the database:
 </H2>
-</UL><UL>
-<LI><H2>This functionality is planned but not yet implemented</H2>
-</UL></P>
+<UL>
+<LI>
+<BR>$my_date_type = $dbh-&#062type_info( [ SQL_DATE, SQL_TIMESTAMP ] );
+<BR>$my_smallint_type = $dbh-&#062type_info( [ SQL_SMALLINT, SQL_INTEGER, SQL_DECIMAL ] );
+</UL></UL></P>
 <P>  -->
 </Body>
 </HTML>

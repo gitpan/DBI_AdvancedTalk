@@ -4,40 +4,42 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Handling LONG/BLOB data</TITLE> 
+ <TITLE>DBI security tainting</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Handling LONG/BLOB data</H1> 
+ <H1>DBI security tainting</H1> 
  <P><UL>
-<LI><H2>What makes LONG / BLOB / MEMO data special?
+<LI><H2>By default the DBI ignores Perl tainting
 </H2>
 <UL>
-<LI>Not practical to pre-allocate fixed size buffers for worst case
+<LI>doesn't taint database data returned ‘out’ of the DBI
+<LI>doesn't check that parameters passed ‘in’ to the DBI are not tainted
+</UL><LI>
+</UL><UL>
+<LI><H2>The TaintIn and TaintOut attributes enable those behaviours
+</H2>
+<UL>
+<LI>If Perl itself is in taint mode.
 <LI>
 </UL></UL><UL>
-<LI><H2>Fetching LONGs - treat as normal fields after setting:
+<LI><H2>Each handle has it's own inherited tainting attributes
 </H2>
 <UL>
-<LI>$dbh-&#062{LongReadLen} - buffer size to allocate for expected data
-<LI>$dbh-&#062{LongTruncOk} - should truncating-to-fit be allowed
-<LI>
-</UL></UL><UL>
-<LI><H2>Inserting LONGs
+<LI>So can be enabled for particular connections and disabled for particular statements, for example:
+</UL>$dbh = DBI-&#062connect(…, { Taint =&#062 1 }); # enable TaintIn and TaintOut
+<BR>$sth = $dbh-&#062prepare("select * from safe_table");
+<BR>$sth-&#062{TaintOut} = 0;  # don’t taint data from this statement handle
+<BR>
+</UL><UL>
+<LI><H2>Attribute metadata currently varies in degree of tainting
 </H2>
 <UL>
-<LI>The limitations of string literals
-<LI>The benefits of placeholders
-<LI>
+$sth-&#062{NAME};	 — generally not tainted
+<BR><BR>$dbh-&#062get_info(…);	 — may be tainted if the item of info is fetched from database
 </UL></UL><UL>
-<LI><H2>Chunking / Piecewise processing not yet supported
-</H2>
-<UL>
-<LI>So you're limited to available memory
-<LI>Some drivers support blob_read()and other private methods
-</UL></UL><UL>
-<H2>-</H2>
+<H2>.</H2>
 </UL></P>
 <P></P> 
 <P>

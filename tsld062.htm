@@ -4,49 +4,57 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Trace level 1</TITLE> 
+ <TITLE>Our program for today...</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Trace level 1</H1> 
+ <H1>Our program for today...</H1> 
  <P><UL>
-<LI><H2>Level 1 shows method returns with first two parameters, results, and line numbers:
+<H2>#!/usr/bin/perl -w
+</H2>
+</UL><UL>
+<H2>use DBI;
+</H2>
+</UL><UL>
+<H2>$dbh = DBI-&#062connect('', '', '', { RaiseError =&#062 1 });
+</H2>
+</UL><UL>
+<H2>replace_price(split(/\s+/, $_)) while (&#060STDIN&#062);
+</H2>
+</UL><UL>
+<H2>$dbh-&#062disconnect;
 </H2>
 </UL><UL>
 <H2>
 </H2>
 </UL><UL>
-<H2>    DBI::db=HASH(0x83674f0) trace level set to 1 in DBI 1.26
+<H2>sub replace_price {
 </H2>
 </UL><UL>
-<H2>    &#060- prepare('UPDATE prices SET price=? WHERE prod_id=?')= 			DBI::st=HASH(0x8367658) at test.pl line 10
+<H2>  my ($id, $price) = @_;
 </H2>
 </UL><UL>
-<H2>1   &#060- FETCH('CachedKids')= undef at DBI.pm line 1274
+<H2>  local $dbh-&#062{TraceLevel} = 1;
 </H2>
 </UL><UL>
-<H2>1   &#060- STORE('CachedKids' HASH(0x8367778))= 1 at DBI.pm line 1275
+<H2>  my $upd = $dbh-&#062prepare("UPDATE prices SET price=? WHERE id=?");
 </H2>
 </UL><UL>
-<H2>1   &#060- prepare('INSERT INTO prices (prod_id,price) VALUES(?,?)' undef)= 		DBI::st=HASH(0x8367748) at DBI.pm line 1287
+<H2>  my $ins = $dbh-&#062prepare_cached("INSERT INTO prices (id,price) VALUES(?,?)");
 </H2>
 </UL><UL>
-<H2>    &#060- prepare_cached('INSERT INTO prices (prod_id,price) VALUES(?,?)')= 		DBI::st=HASH(0x8367748) at test.pl line 11
+<H2>  my $rows = $upd-&#062execute($price, $id);
 </H2>
 </UL><UL>
-<H2>    &#060- execute('42.2' '1')= 1 at test.pl line 12
+<H2>  $ins-&#062execute($id, $price) if $rows == 0;
 </H2>
 </UL><UL>
-<H2>    &#060- DESTROY= undef at test.pl line 4
+<H2>}
 </H2>
-</UL><UL>
-<H2>    &#060- STORE('TraceLevel' 0)= 1 at test.pl line 4
-</H2>
-</UL><UL>
-<H2>    &#060- DESTROY= undef at test.pl line 5
-</H2>
-</UL></P>
+<UL>
+
+<BR><BR>(The program is a little odd for the sake of producing a small trace output that can illustrate many concepts)</UL></UL></P>
 <P></P> 
 <P>
 <TABLE>

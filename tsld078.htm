@@ -11,31 +11,45 @@
 
  <H1>SQL Portability - SQL Dialects</H1> 
  <P><UL>
-<LI><H2>Most people are familiar with how to portably quote a string literal:
+<LI><H2>How to concatenate strings? Let me count the (incompatible) ways...
 </H2>
 <UL>
-$dbh-&#062quote($value)
-<BR><UL>
-<LI>
-</UL></UL></UL><UL>
-<LI><H2>It’s now also possible to portably quote identifiers like table names:
-</H2>
-<UL>
-$dbh-&#062quote_identifier($name1, $name2, $name3, \%attr)
-<BR><BR>For example:
-<UL>
-$dbh-&#062quote_identifier( undef, 'Her schema', 'My table' );
-<BR><BR>using DBD::Oracle:		"Her schema"."My table”
-<BR>using DBD::mysql:		`Her schema`.`My table`
-</UL></UL></UL><UL>
+SELECT first_name || ' ' || last_name FROM table
+<BR><BR>SELECT first_name + ' ' + last_name FROM table
+<BR>SELECT first_name CONCAT ' ' CONCAT last_name FROM table
+<BR>SELECT CONCAT(first_name, ' ', last_name) FROM table
+<BR>SELECT CONCAT(first_name, CONCAT(' ', last_name)) FROM table
+</UL></UL><UL>
 <LI><H2>
 </H2>
 </UL><UL>
-<LI><H2>If three names are supplied then the first is assumed to be a catalog name and special rules may be applied based on what get_info() returns for SQL_CATALOG_NAME_SEPARATOR and SQL_CATALOG_LOCATION.  For example:
+<LI><H2>The ODBC way:     (not pretty, but portable)
 </H2>
 <UL>
-$dbh-&#062quote_identifier( ’link’, ’schema’, ’table’ );
-<BR><BR>using DBD::Oracle:		"schema"."table"@"link"</UL></UL></P>
+SELECT {fn CONCAT(first_name, {fn CONCAT(' ', last_name))}} FROM table
+<BR></UL></UL><UL>
+<H2>
+</H2>
+</UL><UL>
+<LI><H2>The {fn …} will be rewritten by prepare() to the required syntax via a call to
+</H2>
+<UL>
+$new_sql_fragment = $dbh-&#062{Rewrite}-&#062CONCAT(”…”)
+<BR></UL></UL><UL>
+<LI><H2>
+</H2>
+</UL><UL>
+<LI><H2>Similarly for some data types:
+</H2>
+<UL>
+SELECT * FROM table WHERE date_time &#062 {ts ’2002-06-04 12:00:00’ } FROM table
+<BR><BR>$new_sql_fragment = $dbh-&#062{Rewrite}-&#062ts(’2002-06-04 12:00:00’)
+</UL></UL><UL>
+<LI><H2>
+</H2>
+</UL><UL>
+<LI><H2>This functionality is planned but not yet implemented</H2>
+</UL></P>
 <P></P> 
 <P>
 <TABLE>

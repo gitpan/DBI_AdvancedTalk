@@ -4,17 +4,35 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Transactions</TITLE> 
+ <TITLE>More Custom Error Handling</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Transactions</H1> 
+ <H1>More Custom Error Handling</H1> 
  <P><UL>
-<H2>To do or to undo,
+<LI><H2>It is also possible for HandleError to hide an error, to a limited degree
 </H2>
+<UL>
+<LI>use set_err() to reset $DBI::err and $DBI::errstr
+<LI>alter the return value of the failed method
+<LI>
+</UL>$h-&#062{HandleError} = sub {
+<BR>    my ($errmsg, $h) = @_;
+<BR>    return 0 unless $errmsg =~ /^\S+ fetchrow_arrayref failed:/;
+<BR>    return 0 unless $h-&#062err == 1234; # the error to 'hide'
+<BR>    $h-&#062set_err(0,"");	# turn off the error
+<BR>    $_[2] = [ ... ];	# supply alternative return value by altering parameter
+<BR>    return 1;
+<BR>};
+<LI>
 </UL><UL>
-<H2>that is the question</H2>
+<LI><H2>Only works for methods which return a single value and is hard to make reliable (avoiding infinite loops, for example) and so isn't recommended for general use!
+</H2>
+<UL>
+<LI>If you find a good use for it then please let me know.
+</UL></UL><UL>
+<H2>_</H2>
 </UL></P>
 <P></P> 
 <P>

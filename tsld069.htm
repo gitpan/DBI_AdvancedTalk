@@ -4,46 +4,38 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Web DBI - Browsing pages of results</TITLE> 
+ <TITLE>Web DBI - State-less-ness</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Web DBI - Browsing pages of results</H1> 
+ <H1>Web DBI - State-less-ness</H1> 
  <P><UL>
-<LI><H2>Re-execute query each time then count/discard (simple but expensive)
+<LI><H2>No fixed client-server pair
 </H2>
 <UL>
-<LI>works well for small results sets or where users rarely view many pages
-<LI>fast initial response, degrades gradually for later pages
-<LI>count/discard in server is better but still inefficient for large result sets
-<LI>count/discard affected by inserts and deletes from other processes
+<LI>Each request can be handled by a different process.
+<LI>So can't simply stop fetching rows from $sth when one page is complete and continue fetching from the same $sth when the next page is requested.
+<LI>And transactions can't span requests.
+<LI>Even if they could you'd have problems with database locks being held etc.
 </UL></UL><UL>
-<LI><H2>Re-execute query with where clause using min/max keys from last results
+<LI><H2>Need access to 'accumulated state' somehow: 
 </H2>
 <UL>
-<LI>works well where original query can be qualified in that way, not common
+<LI>via the client (e.g., hidden form fields - simple but insecure)
+<UL>
+<LI>Can be made safer using encryption or extra field with checksum (e.g. MD5 hash)
+</UL><LI>via the server:
+<UL>
+<LI>requires a session id (via cookie or url)
+<LI>in the database (records in a session_state table keyed the session id)
+<LI>in the web server file system (DBM files etc) if shared across servers
+<LI>Need to purge old state info if stored on server, so timestamp it
+<LI>See Apache::Session module
+</UL><LI>DBI::ProxyServer + connect_cached with session id may suit, one day
 </UL></UL><UL>
-<LI><H2>Select and cache full result rows somewhere for fast access
-</H2>
-<UL>
-<LI>can be expensive for large result sets with big fields
-</UL></UL><UL>
-<LI><H2>Select and cache only the row keys, fetch full rows as needed
-</H2>
-<UL>
-<LI>optimisation of above, use ROWID if supported, "select … where … in (…)"
-</UL></UL><UL>
-<LI><H2>If data is static and queries predictable
-</H2>
-<UL>
-<LI>then custom pre-built indexes may be useful
-</UL></UL><UL>
-<LI><H2>The caches can be stored...
-</H2>
-<UL>
-<LI>on web server, e.g., using DBM file with locking (see also ‘spread’)
-<LI>on database server, e.g., using a table keyed by session id</UL></UL></P>
+<H2>.</H2>
+</UL></P>
 <P></P> 
 <P>
 <TABLE>

@@ -4,33 +4,47 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Reference Materials</TITLE> 
+ <TITLE>What else is new? (since the book)</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Reference Materials</H1> 
+ <H1>What else is new? (since the book)</H1> 
  <P><UL>
-<LI><H2><A HREF="http://dbi.perl.org/">http://dbi.perl.org/</A>
+<LI><H2>Bulk operations:
+</H2>
+</UL><UL>
+<LI><H2>
+</H2>
+</UL><UL>
+<H2>$dbh-&#062bind_param_array(1, \@array_of_values, \%attr)
 </H2>
 <UL>
-<LI>The DBI Home Page
+<LI>
 </UL></UL><UL>
-<LI><H2><A HREF="http://www.perl.com/CPAN/authors/id/TIMB/DBI_IntroTalk_2002.tar.gz">http://www.perl.com/CPAN/authors/id/TIMB/DBI_IntroTalk_2002.tar.gz</A>
+<H2>$tuples = $sth-&#062execute_array(\%attr) # use bind_param_array
+</H2>
+</UL><UL>
+<H2>$tuples = $sth-&#062execute_array(\%attr, \@list_of_arrayrefs)
+</H2>
+</UL><UL>
+<H2>$tuples = $sth-&#062execute_array({ ArrayTupleFetch =&#062 sub { … } })
+</H2>
+</UL><UL>
+<H2>$tuples = $sth-&#062execute_array({ ArrayTupleFetch =&#062 $sth })
+</H2>
+</UL><UL>
+<H2>$tuples = $sth-&#062execute_array({ ArrayTupleStatus =&#062 \@ary, ... })
+</H2>
+</UL><UL>
+<H2>
 </H2>
 <UL>
-<LI>The “Introduction to the DBI” tutorial
-</UL></UL><UL>
-<LI><H2><A HREF="http://www.perl.com/CPAN/authors/id/TIMB/DBI_AdvancedTalk_2002.tar.gz">http://www.perl.com/CPAN/authors/id/TIMB/DBI_AdvancedTalk_2002.tar.gz</A>
-</H2>
-<UL>
-<LI>This “Advanced DBI” tutorial (updated each year)
-</UL></UL><UL>
-<LI><H2><A HREF="http://www.oreilly.com/catalog/perldbi/">http://www.oreilly.com/catalog/perldbi/
-</A></H2>
-<UL>
-<LI>or <A HREF="http://www.amazon.com/exec/obidos/ASIN/1565926994/dbi">http://www.amazon.com/exec/obidos/ASIN/1565926994/dbi</A>
-<LI>“Programming the Perl DBI” - The DBI book!</UL></UL></P>
+<LI>Returns count of executions, including failures
+<LI>Use ArrayTupleStatus attribute to get row count or error details for each
+<LI>DBI provides default methods that work for all drivers
+<LI>Some drivers support use of specific database API for very high performance 
+</UL></UL></P>
 <P></P> 
 <P>
 <TABLE>

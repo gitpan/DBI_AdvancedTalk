@@ -4,17 +4,37 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Error Checking & Error Handling</TITLE> 
+ <TITLE>Some TYPE gotchas</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Error Checking & Error Handling</H1> 
+ <H1>Some TYPE gotchas</H1> 
  <P><UL>
-<H2>To err is human,
+<LI><H2>Bind TYPE attribute is just a hint
 </H2>
-</UL><UL>
-<H2>to detect, divine!</H2>
+<UL>
+<LI>and like all hints in the DBI, they can be ignored
+<LI>
+</UL></UL><UL>
+<LI><H2>Many drivers only care about the number vs string distinction
+</H2>
+<UL>
+<LI>and ignore other kinds of TYPE value
+<LI>
+</UL></UL><UL>
+<LI><H2>For some drivers/databases that do pay attention to the TYPE…
+</H2>
+<UL>
+<LI>using the wrong type can mean an index on the value field isn’t used!
+<LI>
+</UL></UL><UL>
+<LI><H2>Some drivers let you specify private types
+</H2>
+<UL>
+$sth-&#062bind_param(1, $value, { ora_type =&#062 97 });
+<BR></UL></UL><UL>
+<H2>-</H2>
 </UL></P>
 <P></P> 
 <P>

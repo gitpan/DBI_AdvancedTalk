@@ -4,41 +4,39 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Custom Error Handling</TITLE> 
+ <TITLE>Handling errors the smart way</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Custom Error Handling</H1> 
+ <H1>Handling errors the smart way</H1> 
  <P><UL>
-<LI><H2>Don’t want to just Print or Raise an Error?
+<LI><H2>So, what went wrong?
 </H2>
 <UL>
-<LI>Now you can Handle it as well…
+$@
+<BR><UL>
+<LI>holds the text of the error message
+</UL>if ($DBI::err && $@ =~ /^(\S+) (\S+) failed: /)
 <UL>
-$h-&#062{HandleError} = sub { … };
-<BR><BR>
+<LI>then it was probably a DBI error
+<LI>and $1 is the driver class (e.g. DBD::foo::db), $2 is the name of the method (e.g. prepare)
+</UL>$DBI::lasth
+<UL>
+<LI>holds last DBI handle used (not recommended for general use)
+</UL>$h-&#062{Statement}
+<UL>
+<LI>holds the statement text associated with the handle (even if it’s a database handle)
+<LI>
 </UL></UL></UL><UL>
-<LI><H2>The HandleError code
+<LI><H2>$h-&#062{ShowErrorStatement} = 1
 </H2>
 <UL>
-<LI>is called just before PrintError/RaiseError are handled
-<LI>it’s passed
-<UL>
-<LI>the error message string that RaiseError/PrintError would use
-<LI>the DBI handle being used
-<LI>the first value being returned by the method that failed (typically undef)
-</UL><LI>if it returns false then RaiseError/PrintError are checked and acted upon as normal
-</UL></UL><UL>
-<LI><H2>
-</H2>
-</UL><UL>
-<LI><H2>The hander code can
-</H2>
-<UL>
-<LI>alter the error message text by changing $_[0]
-<LI>use caller() or Carp::confess() or similar to get a stack trace
-<LI>use Exception or a similar module to throw a formal exception object</UL></UL></P>
+<LI>appends $h-&#062{Statement} and to RaiseError/PrintError messages:
+<LI>DBD::foo::execute failed: duplicate key [for ``insert …’’]
+<LI>for statement handles it also includes the $h-&#062{ParamValues} if available.
+<LI>Makes error messages much more useful. Better than using $DBI::lasth
+<LI>Many drivers should enable it by default. Inherited by child handles.</UL></UL></P>
 <P></P> 
 <P>
 <TABLE>

@@ -4,40 +4,39 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Web DBI - Too many connections</TITLE> 
+ <TITLE>Web DBI - Connect speed</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Web DBI - Too many connections</H1> 
+ <H1>Web DBI - Connect speed</H1> 
  <P><UL>
-<LI><H2>Busy web sites run many web server processes
+<LI><H2>Databases can be slow to connect
 </H2>
 <UL>
-<LI>possibly on many machines
-<LI>
+<LI>Traditional CGI forces a new connect per request
 </UL></UL><UL>
-<LI><H2>Limits on database connections
+<LI><H2>Move Perl and DBI into the web server
 </H2>
 <UL>
-<LI>Memory consumption of web server processes
-<LI>Database server resources or licensing
-<LI>
+<LI>Apache with mod_perl and Apache::DBI module
+<LI>Microsoft IIS with ActiveState's PerlEx
 </UL></UL><UL>
-<LI><H2>So… partition web servers into General and Database groups
+<LI><H2>Connections can then persist and be shared between requests
 </H2>
 <UL>
-<LI>
+<LI>Apache::DBI automatically used by DBI if loaded
+<LI>No CGI script changes required to get persistence
 </UL></UL><UL>
-<LI><H2>Direct requests that require database access to the Database web servers
+<LI><H2>Take care not to change the shared session behaviour
 </H2>
 <UL>
-<LI>Use Reverse Proxy / Redirect / Rewrite to achieve this
-<LI>Allows each subset of servers to be tuned to best fit workload
-<LI>And/or be run on appropriate hardware platforms
+<LI>Leave the $dbh and db session in the same state you found it!
 </UL></UL><UL>
-<H2>.</H2>
-</UL></P>
+<LI><H2>Other alternatives include
+</H2>
+<UL>
+<LI>FastCGI, CGI::SpeedyCGI and CGI::MiniSvr</UL></UL></P>
 <P></P> 
 <P>
 <TABLE>

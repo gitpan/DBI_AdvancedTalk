@@ -4,34 +4,41 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>The practical realities</TITLE> 
+ <TITLE>Thin clients and other buzz words</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>The practical realities</H1> 
+ <H1>Thin clients and other buzz words</H1> 
  <P><UL>
-<LI><H2>Modes of operation
+<LI><H2>Proxying for remote access: "thin-client"
 </H2>
 <UL>
-<LI>Multi-threaded Mode - one thread per connection
-<UL>
-<LI>Not safe for production use with perl 5.5 threads, untested with 5.6 iThreads
-<LI>DBI 1.30 now has iThreads support and should work once drivers are updated
-</UL><LI>Forking Mode - one process per connection
-<UL>
-<LI>Most practical mode for UNIX-like systems
-<LI>Doesn’t scale well to large numbers of connections
-<LI>Not available on Windows prior to Perl 5.6.0
-<LI>Fork emulation on Windows in Perl 5.6.0 not tested with DBI, 5.8.0 will be better
-</UL><LI>Single Connection Mode - only one connection per proxy server process
-<UL>
-<LI>Would need to start many processes to allow many connections
-</UL></UL></UL><UL>
-<LI><H2>No round-robin mode available yet
+<LI>No need for database client code on the DBI client
+</UL></UL><UL>
+<LI><H2>Proxying for network security: "encryption"
 </H2>
 <UL>
-<LI>patches welcome</UL></UL></P>
+<LI>Can use Crypt::IDEA, Crypt::DES etc.
+</UL></UL><UL>
+<LI><H2>Proxying for "access control" and "firewalls"
+</H2>
+<UL>
+<LI>extra user/password checks, choose port number, handy for web servers
+</UL></UL><UL>
+<LI><H2>Proxying for action control
+</H2>
+<UL>
+<LI>e.g., only allow specific select or insert statements per user or host
+</UL></UL><UL>
+<LI><H2>Proxying for performance: "compression"
+</H2>
+<UL>
+<LI>Can compress data transfers using Compress::Zlib
+</UL></UL><UL>
+<H2>.
+</H2>
+</UL></P>
 <P></P> 
 <P>
 <TABLE>

@@ -4,38 +4,37 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Some TYPE gotchas</TITLE> 
+ <TITLE>Your TYPE or mine?</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Some TYPE gotchas</H1> 
+ <H1>Your TYPE or mine?</H1> 
  <P><UL>
-<LI><H2>Bind TYPE attribute is just a hint
+<LI><H2>Sometimes the data type for bind values needs to be specified
+</H2>
+</UL><UL>
+<LI><H2>
 </H2>
 <UL>
-<LI>and like all hints in the DBI, they can be ignored
-<LI>
+use DBI qw(:sql_types);
+<BR><UL>
+<LI>to import the type constants
+</UL>$sth-&#062bind_param(1, $value, { TYPE =&#062 SQL_INTEGER });
+<UL>
+<LI>to specify the INTEGER type
+<LI>which can be abbreviated to:
+</UL>$sth-&#062bind_param(1, $value, SQL_INTEGER);
+<BR>
 </UL></UL><UL>
-<LI><H2>Many drivers only care about the number vs string distinction
+<LI><H2>To just distinguish numeric versus string types, try
 </H2>
 <UL>
-<LI>and ignore other types of TYPE value
-<LI>
-</UL></UL><UL>
-<LI><H2>For some drivers that do pay attention to the TYPE…
-</H2>
+$sth-&#062bind_param(1, $value+0);  # bind as numeric value
+<BR><BR>$sth-&#062bind_param(1, ”$value”);  # bind as string value
 <UL>
-<LI>using the wrong type can mean an index on the value field isn’t used!
-<LI>
-</UL></UL><UL>
-<LI><H2>Some drivers let you specify private types
-</H2>
-<UL>
-$sth-&#062bind_param(1, $value, { ora_type =&#062 97 });
-<BR></UL></UL><UL>
-<H2>-</H2>
-</UL></P>
+<LI>Works because perl values generally know if they are strings or numbers. So...
+<LI>Generally the +0 or ”” isn’t needed because $value has the right ‘perl type’ already</UL></UL></UL></P>
 <P></P> 
 <P>
 <TABLE>

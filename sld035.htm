@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>Then, some more detail...</TITLE> 
+ <TITLE>First, the simple stuff...</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld034.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld036.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld093.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld035.htm">Text</A>&nbsp;&nbsp;
@@ -25,34 +25,37 @@
          <IMG SRC="img035.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 35 of 93</P>
+<P>Slide 35 of 96</P>
 </CENTER>
 <!-- <UL>
-<H2>Then, some more detail...</H2>
+<H2>First, the simple stuff...</H2>
 </UL></P>
 <P><UL>
-<LI><H2>If  $sth-&#062execute(…) specifies any values, it must specify them all
+<LI><H2>After calling prepare() on a statement with placeholders:
+</H2>
+<UL>
+$sth = $dbh-&#062prepare(“select * from table where k1=? and k2=?”);
+<BR><UL>
+<LI>
+</UL></UL></UL><UL>
+<LI><H2>Values need to be assigned (‘bound’) to each placeholder before the database can execute the statement
 </H2>
 <UL>
 <LI>
 </UL></UL><UL>
-<LI><H2>Bound values are sticky across multiple executions:
+<LI><H2>Either at execute, for simple cases:
+</H2>
+<UL>
+$sth-&#062execute($p1, $p2);
+<BR><UL>
+<LI>
+</UL></UL></UL><UL>
+<LI><H2>or before execute:
 </H2>
 <UL>
 $sth-&#062bind_param(1, $p1);
-<BR><BR>foreach my $p2 (@p2) {
-<BR>  $sth-&#062bind_param(2, $p2);
-<BR>  $sth-&#062execute;
-<BR>}
-<BR>	
-</UL></UL><UL>
-<LI><H2>The currently bound values might be retrievable using:
-</H2>
-<UL>
-$dbh-&#062{ShowParamValues} = 1; # set before prepare()
-<BR><BR>%bound_values = %{ $sth-&#062{ParamValues} };
-<UL>
-<LI>Potential new DBI feature, not yet fully specified at time of writing this</UL></UL></UL></P>
+<BR><BR>$sth-&#062bind_param(2, $p2);
+<BR>$sth-&#062execute;</UL></UL></P>
 <P>  -->
 </Body>
 </HTML>

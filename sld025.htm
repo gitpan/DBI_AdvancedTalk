@@ -5,7 +5,7 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for Microsoft PowerPoint 97">
- <TITLE>Attribution</TITLE> 
+ <TITLE>How fast was what?</TITLE> 
 </HEAD>
 
 <BODY     >
@@ -16,7 +16,7 @@
          <A HREF="sld001.htm">First</A>&nbsp;&nbsp;
          <A HREF="sld024.htm">Previous</A>&nbsp;&nbsp;
          <A HREF="sld026.htm">Next</A>&nbsp;&nbsp;
-         <A HREF="sld093.htm">Last</A>&nbsp;&nbsp;
+         <A HREF="sld096.htm">Last</A>&nbsp;&nbsp;
 &nbsp;&nbsp;         <A HREF="index.htm">Index</A>&nbsp;&nbsp;
          <A HREF="dbi.perl.org">Home</A>&nbsp;&nbsp;
          <A HREF="tsld025.htm">Text</A>&nbsp;&nbsp;
@@ -25,14 +25,35 @@
          <IMG SRC="img025.gif" usemap="#Objmap" WIDTH=800 HEIGHT=600 BORDER=0>
      </TD> </TR>
 </TABLE>
-<P>Slide 25 of 93</P>
+<P>Slide 25 of 96</P>
 </CENTER>
 <!-- <UL>
-<H2>Attribution</H2>
+<H2>How fast was what?</H2>
 </UL></P>
 <P><UL>
-<H2>Names and Places</H2>
-</UL></P>
+<LI><H2>Breakdown by statement and method:
+</H2>
+<UL>
+$ DBI_PROFILE=6 test.pl         (only part of output is shown here)
+<BR><BR>'UPDATE prices SET price=? WHERE prod_id=?' =&#062
+<BR>    'execute' =&#062
+<BR>        0.000951s
+<BR>    'prepare' =&#062
+<BR>        0.000404s
+<BR>
+</UL></UL><UL>
+<LI><H2>Some key points
+</H2>
+<UL>
+<LI>Only profiles ‘top level’ calls from application, not ‘recursive’ calls from within DBI/DBD.
+<LI>Timing data is collected and merged into a $h-&#062{Profile} data tree
+<LI>All handles share the same data tree by default - giving one overall set of results
+<LI>The ‘path’ through the tree to where the data is merged-in can be dynamically controlled
+<LI>By default $dbh method calls are usually associated with the $dbh-&#062{Statement} string
+<LI>DBI::Profile can be subclassed (e.g., DBI::ProfileDumper for mod_perl)
+<LI>Applications can add their own timing data
+<LI>More features than I can fit on the slide...
+</UL></UL></P>
 <P>  -->
 </Body>
 </HTML>

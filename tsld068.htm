@@ -4,32 +4,39 @@
 <HEAD>
 
 <meta name="GENERATOR" content="Microsoft Internet Assistant for PowerPoint 97">
- <TITLE>Web DBI - State-less-ness</TITLE> 
+ <TITLE>Web DBI - Too many connections</TITLE> 
 </HEAD>
 
 <BODY     >
 
- <H1>Web DBI - State-less-ness</H1> 
+ <H1>Web DBI - Too many connections</H1> 
  <P><UL>
-<LI><H2>No fixed client-server pair
+<LI><H2>Busy web sites run many web server processes
 </H2>
 <UL>
-<LI>Each request can be handled by a different process.
-<LI>So can't simply stop fetching rows from $sth when one page is complete and continue fetching from the same $sth when the next page is requested.
-<LI>And transactions can't span requests.
-<LI>Even if they could you'd have problems with database locks being held etc.
+<LI>possibly on many machines...
+<LI>Machines * Processes = Many Connections
+<LI>Machines * Processes * Users = Very Many Connections
+<LI>
 </UL></UL><UL>
-<LI><H2>Need access to 'accumulated state' somehow: 
+<LI><H2>Limits on database connections
 </H2>
 <UL>
-<LI>via the client (e.g., hidden form fields - simple but insecure)
-<LI>via the server:
+<LI>Memory consumption of web server processes
+<LI>Database server resources (memory, threads etc.) or licensing
+<LI>
+</UL></UL><UL>
+<LI><H2>So… partition web servers into General and Database groups
+</H2>
 <UL>
-<LI>in the database (records in a session_state table keyed by a ‘session id’)
-<LI>in the web server file system (DBM files etc) if shared across servers
-<LI>Need to purge old state info if stored on server, so timestamp it
-<LI>See Apache::Session module
-</UL><LI>DBI::ProxyServer + connect_cached with session id may suit, one day
+<LI>
+</UL></UL><UL>
+<LI><H2>Direct requests that require database access to the Database web servers
+</H2>
+<UL>
+<LI>Use Reverse Proxy / Redirect / Rewrite to achieve this
+<LI>Allows each subset of servers to be tuned to best fit workload
+<LI>And/or be run on appropriate hardware platforms
 </UL></UL><UL>
 <H2>.</H2>
 </UL></P>
